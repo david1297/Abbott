@@ -98,6 +98,7 @@ a, div {
 	<div id="wrapper">
 		<?php
 			include("Menu.php");
+			include("componentes/modal/Agregar_Objeto.php");
 			include("componentes/modal/Agregar_Session.php");
 		?>
 		<div id="main-content">
@@ -114,44 +115,88 @@ a, div {
 					<div class="panel-body">
 						<div class="tab-content content-profile">
 							<div class="tab-pane fade in active" id="Informacion">
-							<button type="button" class="btn btn-default"data-toggle="modal" data-target="#AgregarSession">
+							<button type="button" class="btn btn-default" data-toggle="modal" data-target="#AgregarSession">
 									<i class="fas fa-plus"></i> Adicionar Seccion
 								</button>
 								<form class="form-horizontal " method="post" id="Guardar_Pagina" name="Guardar_Pagina">
 			   					<div id="resultados_ajax"></div>
 									<input type="text" class="form-control hidden" id="Id" name="Id"  value="<?php echo $Id; ?>" > 
 								<?php
-									$sql="SELECT Descripcion,Id FROM seccion1 where Pagina = $Id ";
+									$sql="SELECT Tipo,Seccion FROM paginad where Pagina = $Id ";
 									$query = mysqli_query($con, $sql);
 									while ($row=mysqli_fetch_array($query)){
-									?>
-									<br>
-									<div class="card border-secondary mb-12" >
-  									<div class="card-header">
-										<div class="btn-group pull-left">
-										<h4><?php echo $row['Descripcion']; ?></h4>
-										</div>
-											<div class="btn-group pull-right">
-															
-												<button type="button" class="btn btn-default" id="Configurarcion">
-													<span class="fas fa-cogs"></span>
-												</button>
+										if ($row['Tipo'] =='1'){
+											$sql="SELECT Descripcion,Id FROM seccion1 where Pagina = $Id ";
+											$query1 = mysqli_query($con, $sql);
+											while ($row1=mysqli_fetch_array($query1)){
+											?>
+											<br>
+											<div class="card border-secondary mb-12" >
+												<div class="card-header">
+													<div class="btn-group pull-left">
+														<h4><?php echo $row1['Descripcion']; ?></h4>
+													</div>
+													<div class="btn-group pull-right">			
+														<button type="button" class="btn btn-default" id="Configurarcion">
+															<span class="fas fa-cogs"></span>
+														</button>
+													</div>
+												</div>
+												<div class="card-body text-secondary">
+													<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto">
+														<i class="fas fa-plus"></i>
+													</button>
+													<br>
+													<button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
+												</div>
 											</div>
-										</div>
-  									<div class="card-body text-secondary">
-    									
-    									<button type="button" class="btn btn-default btn-lg btn-block">	<i class="fas fa-plus"></i></button>
-<br>
-											<button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
-  									</div>
-									</div>
-									<br>	
+											<br>	
+											<?php
+											}
+										}else{
+											if ($row['Tipo'] =='2'){
+												$sql="SELECT Descripcion,Id FROM seccion2 where Pagina = $Id ";
+												$query = mysqli_query($con, $sql);
+												while ($row=mysqli_fetch_array($query)){
+												?>
+												<br>
+												<div class="card border-secondary mb-12" >
+													<div class="card-header">
+														<div class="btn-group pull-left">
+															<h4><?php echo $row['Descripcion']; ?></h4>
+														</div>
+														<div class="btn-group pull-right">			
+															<button type="button" class="btn btn-default" id="Configurarcion">
+																<span class="fas fa-cogs"></span>
+															</button>
+														</div>
+													</div>
+													<div class="card-body text-secondary">
+														<div class="col-md-6">
+														<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto">
+															<i class="fas fa-plus"></i>
+														</button>
+														<br>
+														<button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
+														</div>
+														<div class="col-md-6">
+														<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto">
+															<i class="fas fa-plus"></i>
+														</button>
+														<br>
+														<button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
+														</div>
+														
+													</div>
+												</div>
+												<br>	
+												<?php
+												}
+											}
+										}
+									}
 									
-							</div>
-			</div>
-		</div>
-	<?php
-	}?>
+									?>
 								</form>	
 							</div>
 						</div>
@@ -172,6 +217,21 @@ a, div {
 	<script src="assets/scripts/common.js"></script>
 	<script>
 function NuevaSession(N){
+	var Id = document.getElementById('Id').value;
+	$.ajax({
+	url:'Componentes/Ajax/Crear_Session.php?Pagina='+Id+'&Tipo='+N,
+		 beforeSend: function(objeto){
+			$('#loader').html('<img src="./assets/img/ajax-loader.gif"> Cargando...');
+	  },
+		success:function(data){
+	
+			$('#AgregarSession').modal('hide');
+			
+		}
+	})
+	
+}
+function NuevoObjeto(N){
 	var Id = document.getElementById('Id').value;
 	$.ajax({
 	url:'Componentes/Ajax/Crear_Session.php?Pagina='+Id+'&Tipo='+N,

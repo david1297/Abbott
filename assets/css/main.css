@@ -815,7 +815,8 @@ textarea.parsley-error {
 
 /* Buttons */
 .btn {
-  padding: 8px 25px; }
+  padding: 8px 25px; 
+  }
   .btn:focus, .btn.focus {
     outline: none; }
   .btn.active, .btn:active {
