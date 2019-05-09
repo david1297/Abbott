@@ -251,18 +251,35 @@ function NuevoObjeto(N){
 function ConfigurarPagina(Pagina){
 	
 	$('#ConfiguracionPagina').modal('show');
-	$.ajax({
-	url:'Componentes/Ajax/Paginas.php?Pagina='+Pagina,
-		 beforeSend: function(objeto){
-			$('#loader').html('<img src="./assets/img/ajax-loader.gif"> Cargando...');
-	  },
-		success:function(data){
-	
-			$('#AgregarSession').modal('hide');
-			
-		}
-	})
+
 }
+$( "#Editar_Pagina" ).submit(function( event ) {
+  
+  
+  var parametros = $(this).serialize();
+	  $.ajax({
+		   type: "POST",
+			 url: "Componentes/Ajax/Editar_Pagina.php",
+		   data: parametros,
+			  beforeSend: function(objeto){
+			   $("#resultados_ajax3B").html("Mensaje: Cargando...");
+			   },
+		   success: function(datos){
+	
+		
+		   $("#resultados_ajax3B").html(datos);
+		 
+		   $('#actualizar_datos3B').attr("disabled", false);
+		   $('#resultados_ajax3B').fadeOut(2000); 
+			   setTimeout(function() { 
+				   $('#resultados_ajax3B').html('');	
+				   $('#resultados_ajax3B').fadeIn(1000); 
+			   }, 1000);	
+		   
+		   }
+   });
+   event.preventDefault();
+})
 
 	</script>
 </body>

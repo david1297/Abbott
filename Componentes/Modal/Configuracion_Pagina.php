@@ -12,7 +12,7 @@
 		  	</div>
 		  	<div class="modal-body">
 					<form class="form-horizontal" method="post" id="Editar_Pagina" name="Editar_Pagina">
-						<div id="resultados_ajax3B"></div>
+						
 						<?php
 						$sql="SELECT * FROM Pagina where Id = $Id ";
 						$query = mysqli_query($con, $sql);
@@ -61,6 +61,7 @@
 								?>													
 							</div>
 			  			</div>
+						  <div id="resultados_ajax3B"></div>
 		  			<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 							<button type="submit" class="btn btn-primary" id="actualizar_datos3B">Guardar</button>
