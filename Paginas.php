@@ -99,6 +99,7 @@ a, div {
 		<?php
 			include("Menu.php");
 			include("componentes/modal/Agregar_Objeto.php");
+			include("componentes/modal/Configuracion_Pagina.php");
 			include("componentes/modal/Agregar_Session.php");
 		?>
 		<div id="main-content">
@@ -106,7 +107,7 @@ a, div {
 				<div class="panel panel-default">
 					<div class="panel-heading">
 		    		<div class="btn-group pull-right">				
-							<button type="button" class="btn btn-default" id="Configurarcion">
+							<button type="button" class="btn btn-default" id="Configurarcion" onclick="ConfigurarPagina(<?php echo $Id; ?>)">
 								<span class="fas fa-cogs"></span> Configuracion
 							</button>
 						</div>
@@ -120,7 +121,8 @@ a, div {
 								</button>
 								<form class="form-horizontal " method="post" id="Guardar_Pagina" name="Guardar_Pagina">
 			   					<div id="resultados_ajax"></div>
-									<input type="text" class="form-control hidden" id="Id" name="Id"  value="<?php echo $Id; ?>" > 
+									
+								
 								<?php
 									$sql="SELECT Tipo,Seccion FROM paginad where Pagina = $Id ";
 									$query = mysqli_query($con, $sql);
@@ -245,6 +247,21 @@ function NuevoObjeto(N){
 		}
 	})
 	
+}
+function ConfigurarPagina(Pagina){
+	
+	$('#ConfiguracionPagina').modal('show');
+	$.ajax({
+	url:'Componentes/Ajax/Paginas.php?Pagina='+Pagina,
+		 beforeSend: function(objeto){
+			$('#loader').html('<img src="./assets/img/ajax-loader.gif"> Cargando...');
+	  },
+		success:function(data){
+	
+			$('#AgregarSession').modal('hide');
+			
+		}
+	})
 }
 
 	</script>
