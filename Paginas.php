@@ -94,13 +94,14 @@ a, div {
 }
 	</style>
 </head>
-<body>
+<body onload="CargarSessiones()">
 	<div id="wrapper">
 		<?php
 			include("Menu.php");
 			include("componentes/modal/Agregar_Objeto.php");
 			include("componentes/modal/Configuracion_Pagina.php");
 			include("componentes/modal/Agregar_Session.php");
+			include("componentes/modal/Configuracion_Session.php");
 		?>
 		<div id="main-content">
 			<div class="container-fluid">
@@ -123,82 +124,7 @@ a, div {
 			   					<div id="resultados_ajax"></div>
 									
 								
-								<?php
-									$sql="SELECT Tipo,Seccion FROM paginad where Pagina = $Id ";
-									$query = mysqli_query($con, $sql);
-									while ($row=mysqli_fetch_array($query)){
-										if ($row['Tipo'] =='1'){
-											$sql="SELECT Descripcion,Id FROM seccion1 where Pagina = $Id ";
-											$query1 = mysqli_query($con, $sql);
-											while ($row1=mysqli_fetch_array($query1)){
-											?>
-											<br>
-											<div class="card border-secondary mb-12" >
-												<div class="card-header">
-													<div class="btn-group pull-left">
-														<h4><?php echo $row1['Descripcion']; ?></h4>
-													</div>
-													<div class="btn-group pull-right">			
-														<button type="button" class="btn btn-default" id="Configurarcion">
-															<span class="fas fa-cogs"></span>
-														</button>
-													</div>
-												</div>
-												<div class="card-body text-secondary">
-													<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto">
-														<i class="fas fa-plus"></i>
-													</button>
-													<br>
-													<button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
-												</div>
-											</div>
-											<br>	
-											<?php
-											}
-										}else{
-											if ($row['Tipo'] =='2'){
-												$sql="SELECT Descripcion,Id FROM seccion2 where Pagina = $Id ";
-												$query = mysqli_query($con, $sql);
-												while ($row=mysqli_fetch_array($query)){
-												?>
-												<br>
-												<div class="card border-secondary mb-12" >
-													<div class="card-header">
-														<div class="btn-group pull-left">
-															<h4><?php echo $row['Descripcion']; ?></h4>
-														</div>
-														<div class="btn-group pull-right">			
-															<button type="button" class="btn btn-default" id="Configurarcion">
-																<span class="fas fa-cogs"></span>
-															</button>
-														</div>
-													</div>
-													<div class="card-body text-secondary">
-														<div class="col-md-6">
-														<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto">
-															<i class="fas fa-plus"></i>
-														</button>
-														<br>
-														<button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
-														</div>
-														<div class="col-md-6">
-														<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto">
-															<i class="fas fa-plus"></i>
-														</button>
-														<br>
-														<button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
-														</div>
-														
-													</div>
-												</div>
-												<br>	
-												<?php
-												}
-											}
-										}
-									}
-									
-									?>
+								
 								</form>	
 							</div>
 						</div>
@@ -262,24 +188,87 @@ $( "#Editar_Pagina" ).submit(function( event ) {
 			 url: "Componentes/Ajax/Editar_Pagina.php",
 		   data: parametros,
 			  beforeSend: function(objeto){
-			   $("#resultados_ajax3B").html("Mensaje: Cargando...");
+			   $("#resultados_Pagina").html("Mensaje: Cargando...");
 			   },
 		   success: function(datos){
 	
 		
-		   $("#resultados_ajax3B").html(datos);
+		   $("#resultados_Pagina").html(datos);
 		 
 		   $('#actualizar_datos3B').attr("disabled", false);
-		   $('#resultados_ajax3B').fadeOut(2000); 
+		   $('#resultados_Pagina').fadeOut(2000); 
 			   setTimeout(function() { 
-				   $('#resultados_ajax3B').html('');	
-				   $('#resultados_ajax3B').fadeIn(1000); 
+				   $('#resultados_Pagina').html('');	
+				   $('#resultados_Pagina').fadeIn(1000); 
 			   }, 1000);	
 		   
 		   }
    });
    event.preventDefault();
 })
+
+function CargarSessiones(){
+	var Id = document.getElementById('Id').value;
+	$.ajax({
+	url:'Componentes/Ajax/Cargar_Session.php?Id='+Id,
+		 beforeSend: function(objeto){
+			$('#loader').html('<img src="./assets/img/ajax-loader.gif"> Cargando...');
+	  },
+		success:function(data){
+	
+			$('#resultados_ajax').html(data);
+			
+		}
+	})
+	
+}
+function ConfigurarSession(Session,Tipo){
+	
+
+$('#ConfiguracionSession').modal('show');
+}
+$( "#Editar_Session" ).submit(function( event ) {
+  
+  
+  var parametros = $(this).serialize();
+
+	  $.ajax({
+		url: "Componentes/Ajax/Editar_Session.php",
+		   type: "POST",
+		   data: new FormData(this),
+		   cache: false,
+    contentType: false,
+    processData: false,
+			  beforeSend: function(objeto){
+			   $("#resultados_Session").html("Mensaje: Cargando...");
+			   },
+		   success: function(datos){
+	
+		
+		   $("#resultados_Session").html(datos);
+		 
+		   $('#actualizar_datos3B').attr("disabled", false);
+		  
+		   
+		   }
+   });
+   event.preventDefault();
+})
+$("#Fondo").change(function() {
+        var file = this.files[0];
+        var imagefile = file.type;
+        var match= ["image/jpeg","image/png","image/jpg"];
+        if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]))){
+            alert('Please select a valid image file (JPEG/JPG/PNG).');
+            $("#file").val('');
+            return false;
+        }
+    });
+
+
+
+
+
 
 	</script>
 </body>

@@ -61,7 +61,7 @@
 								?>													
 							</div>
 			  			</div>
-						  <div id="resultados_ajax3B"></div>
+						  <div id="resultados_Pagina"></div>
 		  			<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 							<button type="submit" class="btn btn-primary" id="actualizar_datos3B">Guardar</button>
