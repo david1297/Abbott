@@ -18,7 +18,7 @@
   				<h4 class="text-center"><?php echo $row['Nombre']; ?>&nbsp;&nbsp;<?php echo $Star; ?>  </h4>
   			</div>
   			<div class="card-body">
-    			<a href="Paginas.php?id=<?php echo $row['Id']; ?>" class="btn btn-primary punteado btn-lg btn-block">Editar</a>
+    			<a href="Paginas.php?id=<?php echo $row['Id']; ?>" class="btn btn-primary punteado btn-lg btn-block"><i class="fas fa-edit"></i> Editar</a>
   			</div>
 			</div>
 			<br>
