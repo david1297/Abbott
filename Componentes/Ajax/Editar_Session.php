@@ -18,12 +18,15 @@ if (empty($_POST['Id'])){
 	$TipoFondo = mysqli_real_escape_string($con,(strip_tags($_POST["TipoFondo"],ENT_QUOTES)));
 	$Id = mysqli_real_escape_string($con,(strip_tags($_POST["Id"],ENT_QUOTES)));
 	$Descripcion = mysqli_real_escape_string($con,(strip_tags($_POST["Descripcion"],ENT_QUOTES)));
+
 	if ($TipoFondo=='Imagen'){
-		if(isset($_FILES['Fondo']['name'])){
-			$nombre =$_FILES['Fondo']['tmp_name'];
+		if(!empty($_FILES['Imagen']['name'])){
+			$nombre =$_FILES['Imagen']['tmp_name'];
+		
+		
 			$im = file_get_contents($nombre);
 			$imdata = base64_encode($im);
-			$sql =  "UPDATE seccion1 SET Fondo='$imdata' where Id = $Id;";
+			$sql =  "UPDATE seccion".$Tipo." SET Fondo='$imdata' where Id = $Id;";
 			$query_update = mysqli_query($con,$sql);
 			if ($query_update) {
 				$messages = "Los Datos Se Han Guardado Con Exito.";
@@ -33,8 +36,8 @@ if (empty($_POST['Id'])){
 		
 		}
 	}else{
-		$imdata = mysqli_real_escape_string($con,(strip_tags($_POST["Fondo"],ENT_QUOTES)));
-		$sql =  "UPDATE seccion1 SET Fondo='$imdata' where Id = $Id;";
+		$imdata = mysqli_real_escape_string($con,(strip_tags($_POST["Color"],ENT_QUOTES)));
+		$sql =  "UPDATE seccion".$Tipo." SET Fondo='$imdata' where Id = $Id;";
 		$query_update = mysqli_query($con,$sql);
 		if ($query_update) {
 			$messages = "Los Datos Se Han Guardado Con Exito.";
@@ -43,7 +46,7 @@ if (empty($_POST['Id'])){
 		}
 			
 	}
-		$sql =  "UPDATE seccion1 SET Descripcion='$Descripcion',TipoFondo='$TipoFondo',Completa='$Completa' where Id = $Id;";
+		$sql =  "UPDATE seccion".$Tipo." SET Descripcion='$Descripcion',TipoFondo='$TipoFondo',Completa='$Completa' where Id = $Id;";
 		$query_update = mysqli_query($con,$sql);
 		if ($query_update) {
 			$messages = "Los Datos Se Han Guardado Con Exito.";

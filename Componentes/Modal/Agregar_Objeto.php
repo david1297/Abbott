@@ -47,6 +47,20 @@
 									<i class="fas fa-images"></i> Carrusel
 								</h4>
 							</li>
+							<li class="fusion_alert fusion-builder-element" onclick="NuevoObjeto(6);">
+								<h4 class="fusion_module_title">
+									<div class="fusion-module-icon fusiona-exclamation-triangle"></div>
+									<i class="fas fa-book"></i> Album de Fotos
+								</h4>
+							</li>
+							<li class="fusion_alert fusion-builder-element" onclick="NuevoObjeto(7);">
+								<h4 class="fusion_module_title">
+									<div class="fusion-module-icon fusiona-exclamation-triangle"></div>
+									<i class="fas fa-fighter-jet"></i> Botonera
+								</h4>
+							</li>
+
+							
 							
 							
 							
@@ -60,7 +74,7 @@
 						<br>
 		  			<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-							<button type="submit" class="btn btn-primary" id="actualizar_datos3B">Guardar</button>
+							<!--<button type="submit" class="btn btn-primary" id="actualizar_datos3B">Guardar</button>-->
 		  			</div>
 		  		</form>
 				</div>

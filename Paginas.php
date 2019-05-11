@@ -162,13 +162,13 @@ function NuevaSession(N){
 function NuevoObjeto(N){
 	var Id = document.getElementById('Id').value;
 	$.ajax({
-	url:'Componentes/Ajax/Crear_Session.php?Pagina='+Id+'&Tipo='+N,
+	url:'Componentes/Ajax/Crear_Objeto.php?Pagina='+Id+'&Tipo='+N,
 		 beforeSend: function(objeto){
 			$('#loader').html('<img src="./assets/img/ajax-loader.gif"> Cargando...');
 	  },
 		success:function(data){
 	
-			$('#AgregarSession').modal('hide');
+			$('#AgregarObjeto').modal('hide');
 			
 		}
 	})
@@ -193,16 +193,16 @@ $( "#Editar_Pagina" ).submit(function( event ) {
 		   success: function(datos){
 	
 		
-		   $("#resultados_Pagina").html(datos);
+			$("#resultados_Pagina").html(datos);
 		 
-		   $('#actualizar_datos3B').attr("disabled", false);
-		   $('#resultados_Pagina').fadeOut(2000); 
-			   setTimeout(function() { 
-				   $('#resultados_Pagina').html('');	
-				   $('#resultados_Pagina').fadeIn(1000); 
-			   }, 1000);	
-		   
-		   }
+		 $('#actualizar_datos3B').attr("disabled", false);
+		 $('#resultados_Pagina').fadeOut(2000); 
+			 setTimeout(function() { 
+				 $('#resultados_Pagina').html('');	
+				 $('#resultados_Pagina').fadeIn(1000); 
+			 }, 1000);	
+		 
+		 }
    });
    event.preventDefault();
 })
@@ -212,7 +212,7 @@ function CargarSessiones(){
 	$.ajax({
 	url:'Componentes/Ajax/Cargar_Session.php?Id='+Id,
 		 beforeSend: function(objeto){
-			$('#loader').html('<img src="./assets/img/ajax-loader.gif"> Cargando...');
+			$('#resultados_ajax').html('<img src="./assets/img/ajax-loader.gif"> Cargando...');
 	  },
 		success:function(data){
 	
@@ -223,9 +223,19 @@ function CargarSessiones(){
 	
 }
 function ConfigurarSession(Session,Tipo){
+	$('#ConfiguracionSession').modal('show');
+	$.ajax({
+	url:'Componentes/Ajax/Cargar_Session_Editar.php?Id='+Session+'&Tipo='+Tipo,
+		 beforeSend: function(objeto){
+			$('#Trae_Session').html('<img src="./assets/img/ajax-loader.gif"> Cargando...');
+	  },
+		success:function(data){
 	
+			$('#Trae_Session').html(data);
+			
+		}
+	})
 
-$('#ConfiguracionSession').modal('show');
 }
 $( "#Editar_Session" ).submit(function( event ) {
   
@@ -245,25 +255,41 @@ $( "#Editar_Session" ).submit(function( event ) {
 		   success: function(datos){
 	
 		
+		  
 		   $("#resultados_Session").html(datos);
 		 
-		   $('#actualizar_datos3B').attr("disabled", false);
+	
+		 
+		 
+		 }
 		  
 		   
-		   }
+		 
    });
    event.preventDefault();
 })
-$("#Fondo").change(function() {
+$("#Imagen").change(function() {
         var file = this.files[0];
         var imagefile = file.type;
         var match= ["image/jpeg","image/png","image/jpg"];
         if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]))){
-            alert('Please select a valid image file (JPEG/JPG/PNG).');
+            alert('Por Favor Seleccione un Archivo (JPEG/JPG/PNG).');
             $("#file").val('');
+          
             return false;
         }
     });
+function CambioTipoFondo(){
+	
+	if (document.getElementById('TipoFondo').value=='Imagen'){
+		$('#Div-Imagen').removeClass("hidden");
+		$('#Div-Fondo').addClass("hidden");
+	} else{
+		$('#Div-Imagen').addClass("hidden");
+		$('#Div-Fondo').removeClass("hidden");
+	}
+	
+}
 
 
 
