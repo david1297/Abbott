@@ -26,11 +26,40 @@
 					</div>
 				</div>
 				<div class="card-body text-secondary">
-					<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto">
+					<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(1,'I',<?php echo $Session;?>)">
 						<i class="fas fa-plus"></i>
 					</button>
+					<?php
+					$sql1="SELECT Tipo,Elemento FROM seccion1d where Seccion = $Session order by Orden";
+					$query1 = mysqli_query($con, $sql1);
+					while ($row1=mysqli_fetch_array($query1)){
+						if ($row1['Tipo'] =='Titulo'){
+							?>
+							<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-text-height"></i>	 Titulo</button>
+							<?php
+						}else{
+							if ($row1['Tipo'] =='Parrafo'){
+								?>
+								<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-stream"></i>	 Parrafo</button>
+								<?php
+							}else{
+								if ($row1['Tipo'] =='Imagen'){
+									?>
+									<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-image"></i> Imagen</button>
+									<?php
+								}else{
+									if ($row1['Tipo'] =='Video'){
+										?>
+										<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-video"></i> Video</button>
+										<?php
+									}
+								}
+							}
+						}
+					}
+					?>
 					<br>
-					<button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
+					
 				</div>
 			</div>
 			<br>	
@@ -57,14 +86,14 @@
 					</div>
 					<div class="card-body text-secondary">
 						<div class="col-md-6">
-						<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto">
+						<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'I',<?php echo $Session;?>)">
 							<i class="fas fa-plus"></i>
 						</button>
 						<br>
 						<button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
 						</div>
 						<div class="col-md-6">
-						<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto">
+						<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'D',<?php echo $Session;?>)">
 							<i class="fas fa-plus"></i>
 						</button>
 						<br>

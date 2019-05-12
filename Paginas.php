@@ -121,6 +121,9 @@ a, div {
 									<i class="fas fa-plus"></i> Adicionar Seccion
 								</button>
 								<form class="form-horizontal " method="post" id="Guardar_Pagina" name="Guardar_Pagina">
+								<input type="text" class="hidden" id="TipoSession">
+								<input type="text" class="hidden" id="LadoSession">
+								<input type="text" class="hidden" id="IdSession">
 			   					<div id="resultados_ajax"></div>
 									
 								
@@ -144,8 +147,10 @@ a, div {
 	<script src="assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 	<script src="assets/scripts/common.js"></script>
 	<script>
+
 function NuevaSession(N){
 	var Id = document.getElementById('Id').value;
+	
 	$.ajax({
 	url:'Componentes/Ajax/Crear_Session.php?Pagina='+Id+'&Tipo='+N,
 		 beforeSend: function(objeto){
@@ -160,9 +165,11 @@ function NuevaSession(N){
 	
 }
 function NuevoObjeto(N){
-	var Id = document.getElementById('Id').value;
+	var Tipo = document.getElementById('TipoSession').value;
+	var Lado = document.getElementById('LadoSession').value;
+	var IdSession = document.getElementById('IdSession').value;
 	$.ajax({
-	url:'Componentes/Ajax/Crear_Objeto.php?Pagina='+Id+'&Tipo='+N,
+	url:'Componentes/Ajax/Crear_Objeto.php?Tipo='+N+'&TipoSession='+Tipo+'&Lado='+Lado+'&IdSession='+IdSession,
 		 beforeSend: function(objeto){
 			$('#loader').html('<img src="./assets/img/ajax-loader.gif"> Cargando...');
 	  },
@@ -288,6 +295,16 @@ function CambioTipoFondo(){
 		$('#Div-Imagen').addClass("hidden");
 		$('#Div-Fondo').removeClass("hidden");
 	}
+	
+}
+function TipoCSession(Tipo,Lado,Id){
+	
+	$('#LadoSession').val(Lado);
+	$('#TipoSession').val(Tipo);
+	$('#IdSession').val(Id);
+
+	
+	
 	
 }
 
