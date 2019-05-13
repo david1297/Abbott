@@ -124,6 +124,7 @@ a, div {
 								<input type="text" class="hidden" id="TipoSession">
 								<input type="text" class="hidden" id="LadoSession">
 								<input type="text" class="hidden" id="IdSession">
+								<input type="text" class="hidden" id="IdObjeto">
 			   					<div id="resultados_ajax"></div>
 									
 								
@@ -159,7 +160,7 @@ function NuevaSession(N){
 		success:function(data){
 	
 			$('#AgregarSession').modal('hide');
-			
+			CargarSessiones();
 		}
 	})
 	
@@ -168,15 +169,16 @@ function NuevoObjeto(N){
 	var Tipo = document.getElementById('TipoSession').value;
 	var Lado = document.getElementById('LadoSession').value;
 	var IdSession = document.getElementById('IdSession').value;
+	var IdObjeto = document.getElementById('IdObjeto').value;
 	$.ajax({
-	url:'Componentes/Ajax/Crear_Objeto.php?Tipo='+N+'&TipoSession='+Tipo+'&Lado='+Lado+'&IdSession='+IdSession,
+	url:'Componentes/Ajax/Crear_Objeto.php?Tipo='+N+'&TipoSession='+Tipo+'&Lado='+Lado+'&IdSession='+IdSession+'&IdObjeto='+IdObjeto,
 		 beforeSend: function(objeto){
 			$('#loader').html('<img src="./assets/img/ajax-loader.gif"> Cargando...');
 	  },
 		success:function(data){
 	
 			$('#AgregarObjeto').modal('hide');
-			
+			CargarSessiones();
 		}
 	})
 	
@@ -297,15 +299,16 @@ function CambioTipoFondo(){
 	}
 	
 }
-function TipoCSession(Tipo,Lado,Id){
-	
+function TipoCSession(Tipo,Lado,Id,Objeto){
+
+
 	$('#LadoSession').val(Lado);
 	$('#TipoSession').val(Tipo);
 	$('#IdSession').val(Id);
+	$('#IdObjeto').val(Objeto);
 
 	
-	
-	
+
 }
 
 

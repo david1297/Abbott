@@ -4,7 +4,7 @@
 	require_once ("../../config/conexion.php");
 	$Id = $_GET["Id"];
 
-	$sql="SELECT Tipo,Seccion FROM paginad where Pagina = $Id ";
+	$sql="SELECT Tipo,Seccion FROM paginad where Pagina = $Id order by ORden";
 	$query = mysqli_query($con, $sql);
 	while ($row=mysqli_fetch_array($query)){
 		if ($row['Tipo'] =='1'){
@@ -26,11 +26,11 @@
 					</div>
 				</div>
 				<div class="card-body text-secondary">
-					<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(1,'I',<?php echo $Session;?>)">
+					<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(1,'I',<?php echo $Session;?>,0)">
 						<i class="fas fa-plus"></i>
 					</button>
 					<?php
-					$sql1="SELECT Tipo,Elemento FROM seccion1d where Seccion = $Session order by Orden";
+					$sql1="SELECT Tipo,Elemento,Id FROM seccion1d where Seccion = $Session order by Orden";
 					$query1 = mysqli_query($con, $sql1);
 					while ($row1=mysqli_fetch_array($query1)){
 						if ($row1['Tipo'] =='Titulo'){
@@ -86,20 +86,110 @@
 					</div>
 					<div class="card-body text-secondary">
 						<div class="col-md-6">
-						<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'I',<?php echo $Session;?>)">
-							<i class="fas fa-plus"></i>
-						</button>
-						<br>
-						<button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
+							<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'I',<?php echo $Session;?>,0)">
+								<i class="fas fa-plus"></i>
+							</button>
+							<br>
 						</div>
 						<div class="col-md-6">
-						<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'D',<?php echo $Session;?>)">
-							<i class="fas fa-plus"></i>
-						</button>
-						<br>
-						<button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
+							<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'D',<?php echo $Session;?>,0)">
+								<i class="fas fa-plus"></i>
+							</button>
+							<br>
 						</div>
-						
+						<?php
+					$sql1="SELECT Tipo1,Elemento1,Tipo2,Elemento2,Id FROM seccion2d where Seccion = $Session order by Orden";
+					$query1 = mysqli_query($con, $sql1);
+					while ($row1=mysqli_fetch_array($query1)){	
+						$Objeto=$row1['Id'];
+						if ($row1['Tipo1'] =='Titulo'){
+							?>
+							<div class="col-md-6">
+								<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-text-height"></i>	 Titulo</button>
+								<br>
+							</div>
+							<?php
+						}else{
+							if ($row1['Tipo1'] =='Parrafo'){
+								?>
+								<div class="col-md-6">
+									<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-stream"></i>	 Parrafo</button>
+									<br>
+								</div>
+								<?php
+							}else{
+								if ($row1['Tipo1'] =='Imagen'){
+									?>
+									<div class="col-md-6">
+										<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-image"></i> Imagen</button>
+										<br>
+									</div>
+									<?php
+								}else{
+									if ($row1['Tipo1'] =='Video'){
+										?>
+										<div class="col-md-6">
+											<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-video"></i> Video</button>
+											<br>
+										</div>
+										<?php
+									}else{
+										?>
+										<div class="col-md-6">
+										<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'I',<?php echo $Session;?>,<?php echo $Objeto;?>)"><i class="fas fa-plus" ></i>
+							</button>
+							<br>
+										</div>
+										<?php	
+									}
+								}
+							}
+						}
+						if ($row1['Tipo2'] =='Titulo'){
+							?>
+							<div class="col-md-6">
+								<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-text-height"></i>	 Titulo</button>
+								<br>
+							</div>
+							<?php
+						}else{
+							if ($row1['Tipo2'] =='Parrafo'){
+								?>
+								<div class="col-md-6">
+									<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-stream"></i>	 Parrafo</button>
+									<br>
+								</div>
+								<?php
+							}else{
+								if ($row1['Tipo2'] =='Imagen'){
+									?>
+									<div class="col-md-6">
+										<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-image"></i> Imagen</button>
+										<br>
+									</div>
+									<?php
+								}else{
+									if ($row1['Tipo2'] =='Video'){
+										?>
+										<div class="col-md-6">
+											<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-video"></i> Video</button>
+											<br>
+										</div>
+										<?php
+									}else{
+										?>
+										<div class="col-md-6">
+											<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'D',<?php echo $Session;?>,<?php echo $Objeto;?>)"><i class="fas fa-plus" ></i>
+											</button><br>
+										</div>
+										<?php	
+									}
+								}
+							}
+						}
+					}
+					?>
+
 					</div>
 				</div>
 				<br>	
