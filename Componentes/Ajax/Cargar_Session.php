@@ -33,24 +33,25 @@
 					$sql1="SELECT Tipo,Elemento,Id FROM seccion1d where Seccion = $Session order by Orden";
 					$query1 = mysqli_query($con, $sql1);
 					while ($row1=mysqli_fetch_array($query1)){
+						$Objeto=$row1['Id'];
 						if ($row1['Tipo'] =='Titulo'){
 							?>
-							<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-text-height"></i>	 Titulo</button>
+							<button type="button" class="btn btn-secondary btn-lg btn-block" onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Titulo')"><i class="fas fa-text-height"></i>	 Titulo</button>
 							<?php
 						}else{
 							if ($row1['Tipo'] =='Parrafo'){
 								?>
-								<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-stream"></i>	 Parrafo</button>
+								<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Parrafo')"><i class="fas fa-stream"></i>	 Parrafo</button>
 								<?php
 							}else{
 								if ($row1['Tipo'] =='Imagen'){
 									?>
-									<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-image"></i> Imagen</button>
+									<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Imagen')"><i class="fas fa-image"></i> Imagen</button>
 									<?php
 								}else{
 									if ($row1['Tipo'] =='Video'){
 										?>
-										<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-video"></i> Video</button>
+										<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Video')"><i class="fas fa-video"></i> Video</button>
 										<?php
 									}
 								}
@@ -105,7 +106,7 @@
 						if ($row1['Tipo1'] =='Titulo'){
 							?>
 							<div class="col-md-6">
-								<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-text-height"></i>	 Titulo</button>
+								<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Titulo')"><i class="fas fa-text-height"></i>	 Titulo</button>
 								<br>
 							</div>
 							<?php
@@ -113,7 +114,7 @@
 							if ($row1['Tipo1'] =='Parrafo'){
 								?>
 								<div class="col-md-6">
-									<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-stream"></i>	 Parrafo</button>
+									<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Parrafo')"><i class="fas fa-stream"></i>	 Parrafo</button>
 									<br>
 								</div>
 								<?php
@@ -121,7 +122,7 @@
 								if ($row1['Tipo1'] =='Imagen'){
 									?>
 									<div class="col-md-6">
-										<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-image"></i> Imagen</button>
+										<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Imagen')"><i class="fas fa-image"></i> Imagen</button>
 										<br>
 									</div>
 									<?php
@@ -129,7 +130,7 @@
 									if ($row1['Tipo1'] =='Video'){
 										?>
 										<div class="col-md-6">
-											<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-video"></i> Video</button>
+											<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Video')"><i class="fas fa-video"></i> Video</button>
 											<br>
 										</div>
 										<?php
@@ -148,7 +149,7 @@
 						if ($row1['Tipo2'] =='Titulo'){
 							?>
 							<div class="col-md-6">
-								<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-text-height"></i>	 Titulo</button>
+								<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Titulo')"><i class="fas fa-text-height"></i>	 Titulo</button>
 								<br>
 							</div>
 							<?php
@@ -156,7 +157,7 @@
 							if ($row1['Tipo2'] =='Parrafo'){
 								?>
 								<div class="col-md-6">
-									<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-stream"></i>	 Parrafo</button>
+									<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Parrafo')"><i class="fas fa-stream"></i>	 Parrafo</button>
 									<br>
 								</div>
 								<?php
@@ -164,7 +165,7 @@
 								if ($row1['Tipo2'] =='Imagen'){
 									?>
 									<div class="col-md-6">
-										<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-image"></i> Imagen</button>
+										<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Imagen')"><i class="fas fa-image"></i> Imagen</button>
 										<br>
 									</div>
 									<?php
@@ -172,7 +173,7 @@
 									if ($row1['Tipo2'] =='Video'){
 										?>
 										<div class="col-md-6">
-											<button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fas fa-video"></i> Video</button>
+											<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Video')"><i class="fas fa-video"></i> Video</button>
 											<br>
 										</div>
 										<?php

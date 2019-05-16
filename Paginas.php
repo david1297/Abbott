@@ -102,6 +102,7 @@ a, div {
 			include("componentes/modal/Configuracion_Pagina.php");
 			include("componentes/modal/Agregar_Session.php");
 			include("componentes/modal/Configuracion_Session.php");
+			include("componentes/modal/Configuracion_Objeto.php");
 		?>
 		<div id="main-content">
 			<div class="container-fluid">
@@ -242,6 +243,21 @@ function ConfigurarSession(Session,Tipo){
 	
 			$('#Trae_Session').html(data);
 			
+		}
+	})
+
+}
+function ConfigurarObjeto(Objeto,Tipo){
+
+	$('#ConfiguracionObjeto').modal('show');
+	
+	$.ajax({
+	url:'Componentes/Ajax/Cargar_Objeto_Editar.php?Id='+Objeto+'&Tipo='+Tipo,
+		 beforeSend: function(objeto){
+			$('#Trae_Objeto').html('<img src="./assets/img/ajax-loader.gif"> Cargando...');
+	  },
+		success:function(data){
+			$('#Trae_Objeto').html(data);
 		}
 	})
 
