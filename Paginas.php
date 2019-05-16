@@ -263,33 +263,49 @@ function ConfigurarObjeto(Objeto,Tipo){
 
 }
 $( "#Editar_Session" ).submit(function( event ) {
-  
-  
-  var parametros = $(this).serialize();
-
-	  $.ajax({
+  	var parametros = $(this).serialize();
+	$.ajax({
 		url: "Componentes/Ajax/Editar_Session.php",
+		type: "POST",
+		data: new FormData(this),
+		cache: false,
+		contentType: false,
+		processData: false,
+		beforeSend: function(objeto){
+			$("#resultados_Session").html("Mensaje: Cargando...");
+		},
+		success: function(datos){
+			$("#resultados_Session").html(datos);	
+			$('#resultados_Session').fadeOut(2000); 
+			 setTimeout(function() { 
+				 $('#resultados_Session').html('');	
+				 $('#resultados_Session').fadeIn(1000); 
+			 }, 1000);		 
+		} 
+   });
+   event.preventDefault();
+})
+
+$( "#Editar_Objeto" ).submit(function( event ) { 
+  var parametros = $(this).serialize();
+	  $.ajax({
+		url: "Componentes/Ajax/Editar_Objeto.php",
 		   type: "POST",
 		   data: new FormData(this),
 		   cache: false,
     contentType: false,
     processData: false,
 			  beforeSend: function(objeto){
-			   $("#resultados_Session").html("Mensaje: Cargando...");
+			   $("#resultados_Objeto").html("Mensaje: Cargando...");
 			   },
-		   success: function(datos){
-	
-		
-		  
-		   $("#resultados_Session").html(datos);
-		 
-	
-		 
-		 
-		 }
-		  
-		   
-		 
+		   success: function(datos){ 
+		   $("#resultados_Objeto").html(datos);	 
+		   $('#resultados_Objeto').fadeOut(2000); 
+			 setTimeout(function() { 
+				 $('#resultados_Objeto').html('');	
+				 $('#resultados_Objeto').fadeIn(1000); 
+			 }, 1000);
+		 }	 
    });
    event.preventDefault();
 })

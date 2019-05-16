@@ -9,7 +9,7 @@ if($Tipo=='Titulo'){
 	$query = mysqli_query($con, $sql);
 	$row=mysqli_fetch_array($query);
 	$Texto = $row['Texto'];
-	$color = $row['color'];
+	$Color = $row['color'];
 	$Tamaño = $row['Tamaño'];
 	$TipoGrafia = $row['TipoGrafia'];
 	?>
@@ -18,6 +18,7 @@ if($Tipo=='Titulo'){
 						<div class="col-sm-8">
 						<input type="Text" class="form-control" id="Texto" name="Texto" Value="<?php echo $Texto;?>" placeholder="Descripcion de la Session" autocomplete="off" required>
 						<input type="text" class="form-control hidden" id="Id" name="Id"  value="<?php echo $Id;?>" > 
+						<input type="text" class="form-control hidden" id="Tipo" name="Tipo"  value="Titulo" > 
 						</div>
 					</div>
 					
@@ -26,7 +27,7 @@ if($Tipo=='Titulo'){
 					<div class="form-group" id="Div-Fondo">
 						<label for="Nombre" class="col-sm-4 control-label">Color</label>
 						<div class="col-sm-8">
-							<input type="color" class="form-control" id="Color" name="Color" Value="<?php echo $ColorFondo;?>" placeholder="Descripcion de la Session" autocomplete="off">
+							<input type="color" class="form-control" id="Color" name="Color" Value="<?php echo $Color;?>" placeholder="Descripcion de la Session" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group ">
