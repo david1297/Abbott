@@ -21,6 +21,22 @@ $Tipo = $_GET["Tipo"];
 						</div>
 					</div>
 					<div class="form-group ">
+						<label  class="col-sm-4 control-label">Tamaño </label>
+						<div class="col-md-8 col-sm-8">
+							<select class='form-control' id="Completa" name ="Completa" placeholder="Completa" > 
+								<?php 
+								if($Completa == 'True'){
+									echo '<option value="True">100%</option>';
+									echo '<option value="False">80%</option>';
+								}else{
+									echo '<option value="False">80%</option>';
+									echo '<option value="True">100%</option>';
+								}
+								?>
+							</select>
+						</div>
+					</div>
+					<div class="form-group ">
 						<label  class="col-sm-4 control-label">Tipo de Fondo </label>
 						<div class="col-md-8 col-sm-8">
 							<select class='form-control' id="TipoFondo" name ="TipoFondo" placeholder="TipoFondo" onchange="CambioTipoFondo()" > 
@@ -50,14 +66,16 @@ $Tipo = $_GET["Tipo"];
 						$ImagenFondo='';
 					}								
 					?>	
+					
 					<div class="form-group <?php echo $Imagen; ?>" id="Div-Imagen">
 						<label for="Nombre" class="col-sm-4 control-label">Fondo</label>
 						<div class="col-sm-8">
 							<input type="file" class="form-control-file" id="Imagen" name="Imagen" data-max-size="2048" accept="image/x-png,image/jpg,image/jpeg">
 							<p class="text-muted">Tamaño Maximo 2Mb</p>	
 							<br>
-							<img src='data:image/jpg;base64,<?php echo $ImagenFondo; ?>'  width='200' style='<display:none;'id='file' />
-							<img src=''  width='200' id='Foto' />
+						</div>
+						<div class="col-md-offset-2 col-md-8 ">
+							<img src='data:image/jpg;base64,<?php echo $ImagenFondo; ?>' class='img-thumbnail'  alt="Imagen" />
 						</div>
 					</div> 						
 					<div class="form-group <?php echo $Color; ?>" id="Div-Fondo">
@@ -66,20 +84,5 @@ $Tipo = $_GET["Tipo"];
 							<input type="color" class="form-control" id="Color" name="Color" Value="<?php echo $ColorFondo;?>" placeholder="Descripcion de la Session" autocomplete="off">
 						</div>
 					</div>
-					<div class="form-group ">
-						<label  class="col-sm-4 control-label">Tamaño </label>
-						<div class="col-md-8 col-sm-8">
-							<select class='form-control' id="Completa" name ="Completa" placeholder="Completa" > 
-								<?php 
-								if($Completa == 'True'){
-									echo '<option value="True">100%</option>';
-									echo '<option value="False">80%</option>';
-								}else{
-									echo '<option value="False">80%</option>';
-									echo '<option value="True">100%</option>';
-								}
-								?>
-							</select>
-						</div>
-					</div> 
+					 
 

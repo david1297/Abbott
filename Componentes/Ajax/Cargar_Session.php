@@ -102,7 +102,7 @@
 					$sql1="SELECT Tipo1,Elemento1,Tipo2,Elemento2,Id FROM seccion2d where Seccion = $Session order by Orden";
 					$query1 = mysqli_query($con, $sql1);
 					while ($row1=mysqli_fetch_array($query1)){	
-						$Objeto=$row1['Id'];
+						$Objeto=$row1['Elemento1'];
 						if ($row1['Tipo1'] =='Titulo'){
 							?>
 							<div class="col-md-6">
@@ -146,6 +146,7 @@
 								}
 							}
 						}
+						$Objeto=$row1['Elemento2'];
 						if ($row1['Tipo2'] =='Titulo'){
 							?>
 							<div class="col-md-6">

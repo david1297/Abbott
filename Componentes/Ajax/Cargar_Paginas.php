@@ -2,7 +2,7 @@
 	$session_id= session_id();
 	require_once ("../../config/db.php");
 	require_once ("../../config/conexion.php");
-	$sql="SELECT Nombre,Id,Principal FROM pagina ";
+	$sql="SELECT Nombre,Id,Principal,Estado FROM pagina ";
 	$query = mysqli_query($con, $sql);
 	
 	while ($row=mysqli_fetch_array($query)){
@@ -11,10 +11,18 @@
 		}else{
 			$Star='';
 		}
+		if ($row['Estado']=='Activa'){
+			$Border='border-primary';
+		}else{
+			$Border='border-dark';
+		}
+
+
+
 	?>
 		<div class="col-md-3 col-sm-3">
-			<div class="card">
-  			<div class="card-header">
+			<div class="card <?php echo $Border; ?>">
+  			<div class="card-header <?php echo $Border; ?>">
   				<h4 class="text-center"><?php echo $row['Nombre']; ?>&nbsp;&nbsp;<?php echo $Star; ?>  </h4>
   			</div>
   			<div class="card-body">

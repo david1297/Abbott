@@ -300,11 +300,7 @@ $( "#Editar_Objeto" ).submit(function( event ) {
 			   },
 		   success: function(datos){ 
 		   $("#resultados_Objeto").html(datos);	 
-		   $('#resultados_Objeto').fadeOut(2000); 
-			 setTimeout(function() { 
-				 $('#resultados_Objeto').html('');	
-				 $('#resultados_Objeto').fadeIn(1000); 
-			 }, 1000);
+		  
 		 }	 
    });
    event.preventDefault();
@@ -332,15 +328,14 @@ function CambioTipoFondo(){
 	
 }
 function TipoCSession(Tipo,Lado,Id,Objeto){
-
-
 	$('#LadoSession').val(Lado);
 	$('#TipoSession').val(Tipo);
 	$('#IdSession').val(Id);
 	$('#IdObjeto').val(Objeto);
-
-	
-
+}
+function nombre(fic) {
+  fic = fic.split('\\');
+  $('#Video').val(fic[fic.length-1]);
 }
 
 
