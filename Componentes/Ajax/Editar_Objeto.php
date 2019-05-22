@@ -48,8 +48,6 @@ if (empty($_POST['Id'])){
 				
 				if(!empty($_FILES['Imagen']['name'])){
 					$nombre =$_FILES['Imagen']['tmp_name'];
-				
-				
 					$im = file_get_contents($nombre);
 					$imdata = base64_encode($im);
 					$sql =  "UPDATE imagenes SET Imagen='$imdata' where Id = $Id;";
@@ -62,30 +60,40 @@ if (empty($_POST['Id'])){
 				}
 			}else{
 				if($Tipo=='Video'){
-				
-						if(!empty($_POST["Video"])){
-							echo 'video';
-							$Tipo = mysqli_real_escape_string($con,(strip_tags($_POST["Tipo"],ENT_QUOTES)));
-							$Video = mysqli_real_escape_string($con,(strip_tags($_POST["Video"],ENT_QUOTES)));
-							
-							$sql =  "UPDATE videos SET Video='$Video' where Id = $Id;";
-							$query_update = mysqli_query($con,$sql);
-							if ($query_update) {
-								$messages = "Los Datos Se Han Guardado Con Exito.";
-							} else {
-								$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
-							}
+					if(!empty($_POST["Video"])){
+						$Tipo = mysqli_real_escape_string($con,(strip_tags($_POST["Tipo"],ENT_QUOTES)));
+						$Video = mysqli_real_escape_string($con,(strip_tags($_POST["Video"],ENT_QUOTES)));	
+						$sql =  "UPDATE videos SET Video='$Video' where Id = $Id;";
+						$query_update = mysqli_query($con,$sql);
+						if ($query_update) {
+							$messages = "Los Datos Se Han Guardado Con Exito.";
+						} else {
+							$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
 						}
-						if (isset($_POST['Autoplay'])){
-							$Autoplay='Autoplay';
-							
-						}else{
-							$Autoplay='';
-						}
-						$sql =  "UPDATE  Videos SET Autoplay='$Autoplay'  where Id = $Id;";
-							$query_update = mysqli_query($con,$sql);
-	
 					}
+					if (isset($_POST['Autoplay'])){
+						$Autoplay='Autoplay';							
+					}else{
+						$Autoplay='';
+					}
+					$sql =  "UPDATE  Videos SET Autoplay='$Autoplay'  where Id = $Id;";
+					$query_update = mysqli_query($con,$sql);
+				}else{
+					if($Tipo=='Carrusel'){
+						if (isset($_POST['Controles'])){
+							$Controles='True';							
+						}else{
+							$Controles='False';
+						}
+						$sql =  "UPDATE  Carrusel SET Controles='$Controles'  where Id = $Id;";
+						$query_update = mysqli_query($con,$sql);
+						if ($query_update) {
+							$messages = "Los Datos Se Han Guardado Con Exito.";
+						} else {
+							$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
+						}
+					}
+				}
 			}
 		} 
 	}

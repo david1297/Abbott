@@ -272,7 +272,20 @@ if($Tipo=='Titulo'){
 							<div class="card border-dark">
 							  <div class="card-body">
 							  <img src='data:image/jpg;base64,<?php echo $row['Imagen']; ?>' class='img-thumbnail'  alt="Imagen" />
-							  <button type="button" class="btn btn-default btn-block" onclick="ConfigurarObjeto(<?php echo $row['Id'];?>,'CarruselD')">Editar</button>
+							  	<div class="form-group row">
+								  <div class="col-md-4">
+							  		<button type="button" class="btn btn-outline-danger " onclick="EliminarCarruselD(<?php echo $row['Id'];?>)" ><i class="fas fa-trash-alt"></i></button>   
+									  </div>
+									  <div class="col-md-8">
+										<button type="button" class="btn btn-default btn-block " onclick="ConfigurarObjeto(<?php echo $row['Id'];?>,'CarruselD')">Editar</button>
+    								</div>
+  								</div>
+  								
+								
+							 
+							 
+							 
+							 
 								
 							  </div>
 							</div>
