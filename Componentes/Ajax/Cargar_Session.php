@@ -33,7 +33,7 @@
 					$sql1="SELECT Tipo,Elemento,Id FROM seccion1d where Seccion = $Session order by Orden";
 					$query1 = mysqli_query($con, $sql1);
 					while ($row1=mysqli_fetch_array($query1)){
-						$Objeto=$row1['Id'];
+						$Objeto=$row1['Elemento'];
 						if ($row1['Tipo'] =='Titulo'){
 							?>
 							<button type="button" class="btn btn-secondary btn-lg btn-block" onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Titulo')"><i class="fas fa-text-height"></i>	 Titulo</button>
@@ -53,6 +53,12 @@
 										?>
 										<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Video')"><i class="fas fa-video"></i> Video</button>
 										<?php
+									}else{
+										if ($row1['Tipo'] =='Carrusel'){
+											?>
+											<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Carrusel')"><i class="fas fa-images"></i> Carrusel</button>
+											<?php
+										}
 									}
 								}
 							}
@@ -102,6 +108,7 @@
 					$sql1="SELECT Tipo1,Elemento1,Tipo2,Elemento2,Id FROM seccion2d where Seccion = $Session order by Orden";
 					$query1 = mysqli_query($con, $sql1);
 					while ($row1=mysqli_fetch_array($query1)){	
+						$Linea= $row1['Id'];
 						$Objeto=$row1['Elemento1'];
 						if ($row1['Tipo1'] =='Titulo'){
 							?>
@@ -135,13 +142,23 @@
 										</div>
 										<?php
 									}else{
-										?>
-										<div class="col-md-6">
-										<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'I',<?php echo $Session;?>,<?php echo $Objeto;?>)"><i class="fas fa-plus" ></i>
-							</button>
-							<br>
-										</div>
-										<?php	
+										if ($row1['Tipo1'] =='Carrusel'){
+											?>
+											<div class="col-md-6">
+												<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Carrusel')"><i class="fas fa-images"></i> Carrusel</button>
+												<br>
+											</div>
+											<?php
+										}else{
+											?>
+											<div class="col-md-6">
+											<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'I',<?php echo $Session;?>,<?php echo $Linea;?>)"><i class="fas fa-plus" ></i>
+											<?php echo $Objeto;?>
+											</button>
+											<br>
+											</div>
+											<?php	
+										}
 									}
 								}
 							}
@@ -179,13 +196,24 @@
 										</div>
 										<?php
 									}else{
-										?>
-										<div class="col-md-6">
-											<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'D',<?php echo $Session;?>,<?php echo $Objeto;?>)"><i class="fas fa-plus" ></i>
-											</button><br>
-										</div>
-										<?php	
-									}
+										if ($row1['Tipo2'] =='Carrusel'){
+											?>
+											<div class="col-md-6">
+												<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Carrusel')"><i class="fas fa-images"></i> Carrusel</button>
+												<br>
+											</div>
+											<?php
+										}else{
+											?>
+											<div class="col-md-6">
+												<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'D',<?php echo $Session;?>,<?php echo $Linea;?>)"><i class="fas fa-plus" ></i>
+												</button><br>
+											</div>
+											<?php	
+										}
+									}	
+										
+										
 								}
 							}
 						}

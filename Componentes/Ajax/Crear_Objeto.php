@@ -2,6 +2,7 @@
 
 
 $session_id= session_id();
+$TipoSession=0;
 	if (isset($_GET['Tipo'])){$Tipo=$_GET['Tipo'];}
 	if (isset($_GET['TipoSession'])){$TipoSession=$_GET['TipoSession'];}
 	if (isset($_GET['Lado'])){$Lado=$_GET['Lado'];}
@@ -76,6 +77,22 @@ require_once ("../../config/conexion.php");
 							if ($query_update) {						
 							}
 						}	
+					}else{
+						if($Tipo == '5'){
+							$sql =  "INSERT INTO Carrusel(Controles) VALUES ('True');";
+							$query_update = mysqli_query($con,$sql);
+							if ($query_update) {
+								$sql="SELECT Max(Id) AS Id FROM Carrusel";
+								$query = mysqli_query($con, $sql);
+								$row=mysqli_fetch_array($query);
+								$Elemento= $row['Id'];
+				
+								$sql =  "INSERT INTO seccion1d(Seccion,Tipo,Elemento,Orden) VALUES ($IdSession,'Carrusel',$Elemento,$Orden);";
+								$query_update = mysqli_query($con,$sql);
+								if ($query_update) {						
+								}
+							}	
+						}
 					}
 				}		
 			}
@@ -179,6 +196,30 @@ require_once ("../../config/conexion.php");
 									}
 								}
 							}	
+						}else{
+							if($Tipo == '5'){
+								$sql =  "INSERT INTO Carrusel(Controles) VALUES ('True');";
+								$query_update = mysqli_query($con,$sql);
+								if ($query_update) {
+									$sql="SELECT Max(Id) AS Id FROM Carrusel";
+									$query = mysqli_query($con, $sql);
+									$row=mysqli_fetch_array($query);
+									$Elemento= $row['Id'];
+									if ($Lado=='I'){
+										$sql =  "INSERT INTO seccion2d(Seccion,Tipo1,Elemento1,Orden) VALUES ($IdSession,'Carrusel',$Elemento,$Orden);";
+										$query_update = mysqli_query($con,$sql);
+										if ($query_update) {						
+										}
+									}else{
+										if ($Lado=='D'){
+											$sql =  "INSERT INTO seccion2d(Seccion,Tipo2,Elemento2,Orden) VALUES ($IdSession,'Carrusel',$Elemento,$Orden);";
+											$query_update = mysqli_query($con,$sql);
+											if ($query_update) {						
+											}
+										}
+									}
+								}	
+							}
 						}
 					}
 				}
@@ -275,6 +316,30 @@ require_once ("../../config/conexion.php");
 									}
 								}
 							}	
+						}else{
+							if($Tipo == '5'){
+								$sql =  "INSERT INTO Carrusel(Controles) VALUES ('True');";
+								$query_update = mysqli_query($con,$sql);
+								if ($query_update) {
+									$sql="SELECT Max(Id) AS Id FROM Carrusel";
+									$query = mysqli_query($con, $sql);
+									$row=mysqli_fetch_array($query);
+									$Elemento= $row['Id'];
+									if ($Lado=='I'){
+										$sql =  "UPDATE seccion2d SET Tipo1 ='Carrusel' ,Elemento1=$Elemento WHERE ID= $IdObjeto;";
+										$query_update = mysqli_query($con,$sql);
+										if ($query_update) {						
+										}
+									}else{
+										if ($Lado=='D'){
+											$sql =  "UPDATE seccion2d SET Tipo2 ='Carrusel' ,Elemento2=$Elemento WHERE ID= $IdObjeto;";
+											$query_update = mysqli_query($con,$sql);
+											if ($query_update) {						
+											}
+										}
+									}
+								}	
+							}
 						}
 					}
 				}
@@ -282,6 +347,22 @@ require_once ("../../config/conexion.php");
 		}
 	}
 
+	if (isset($_GET['Tipo1'])){
+		$IdCarrusel=$_GET['IdCarrusel'];
+		$sql="SELECT Max(Orden) AS Orden FROM carruseld where Carrusel = ".$IdCarrusel."; ";
+							$query = mysqli_query($con, $sql);
+							$row=mysqli_fetch_array($query);
+							$Orden= $row['Orden'];
+							$Orden=$Orden+1;
+							$sql =  "INSERT INTO carruseld (Carrusel, Orden, TTamaño,PTamaño) VALUES ($IdCarrusel, $Orden, '12', '12');";
+							$query_update = mysqli_query($con,$sql);
+							if ($query_update) {
+								$sql="SELECT Max(Id) AS Id FROM carruseld";
+								$query = mysqli_query($con, $sql);
+								$row=mysqli_fetch_array($query);
+								echo $row['Id'];		
+							}
+	}
 	
 
 

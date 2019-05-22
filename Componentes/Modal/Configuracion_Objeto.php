@@ -14,11 +14,8 @@
 				<form class="form-horizontal"  enctype="multipart/form-data" id="Editar_Objeto" name="Editar_Objeto">							
 					<div id="Trae_Objeto"></div>
 					
-					<div id="resultados_Objeto"></div>
-		  			<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('#Trae_Objeto').html('');">Cerrar</button>
-							<button type="submit" class="btn btn-primary" id="actualizar_datos3B">Guardar</button>
-		  			</div>
+					
+		  			
 		  		</form>
 				</div>
 	  	</div>

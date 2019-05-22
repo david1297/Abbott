@@ -12,6 +12,14 @@
 *	############################################################################################
 */
 /* General Styles */
+#ConfiguracionObjeto {
+  padding-right: 0px;
+  left: 0px;
+ }
+ #ConfiguracionObjeto .modal-dialog {
+  width:80%;
+  margin:30px auto
+ } 
 .punteado{ 
   border-style: dotted; 
   	border-width: 1px; 

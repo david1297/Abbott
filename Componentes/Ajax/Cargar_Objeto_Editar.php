@@ -59,6 +59,11 @@ if($Tipo=='Titulo'){
 			</select>
 		</div>
 	</div>
+	<div id="resultados_Objeto"></div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('#Trae_Objeto').html('');$('#ConfiguracionObjeto').modal('hide');">Cerrar</button>
+		<button type="submit" class="btn btn-primary" id="actualizar_datos3B">Guardar</button>
+	</div>
 	<?php
 }else{
 	if($Tipo=='Parrafo'){
@@ -144,6 +149,11 @@ if($Tipo=='Titulo'){
 			<input type="text" class="form-control hidden" id="Tipo" name="Tipo"  value="Parrafo" > 
 			</div>
 		</div>
+		<div id="resultados_Objeto"></div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('#Trae_Objeto').html('');$('#ConfiguracionObjeto').modal('hide');">Cerrar</button>
+			<button type="submit" class="btn btn-primary" id="actualizar_datos3B">Guardar</button>
+		</div>
 		<?php
 	}else{
 		if($Tipo=='Imagen'){
@@ -169,6 +179,11 @@ if($Tipo=='Titulo'){
 				<input type="text" class="form-control hidden" id="Id" name="Id"  value="<?php echo $Id;?>" > 
 				<input type="text" class="form-control hidden" id="Tipo" name="Tipo"  value="Imagen" > 
 				</div>
+			</div>
+			<div id="resultados_Objeto"></div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('#Trae_Objeto').html('');$('#ConfiguracionObjeto').modal('hide');">Cerrar</button>
+				<button type="submit" class="btn btn-primary" id="actualizar_datos3B">Guardar</button>
 			</div>
 			<?php
 		}else{
@@ -214,11 +229,262 @@ if($Tipo=='Titulo'){
 					<input type="text" class="form-control hidden" id="Tipo" name="Tipo"  value="Video" > 
 					</div>
 				</div>
+				<div id="resultados_Objeto"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('#Trae_Objeto').html('');$('#ConfiguracionObjeto').modal('hide');">Cerrar</button>
+					<button type="submit" class="btn btn-primary" id="actualizar_datos3B">Guardar</button>
+				</div>
 				<?php
+			}else{
+				if($Tipo=='Carrusel'){
+					$sql="SELECT * FROM Carrusel where Id = ".$Id." ";    
+					$query = mysqli_query($con, $sql);
+					$row=mysqli_fetch_array($query);
+					$Controles = $row['Controles'];
+					?> 	
+					<button type="button" class="btn btn-default" onclick="AgregarCarrusel(<?php echo $Id;?>)"><i class="fas fa-plus"></i>Agregar</button>
+					<br>
+					<br>
+					<div class="row">
+						<div class="form-group">
+							<label class="col-md-1 control-label" for="Principal">Controles</label>
+							<div class="col-sm-8">		
+								<?php
+								if ($Controles =='True'){
+									?>
+									<input class="form-check-input" type="checkbox" value="True" id="Controles" Name="Controles" checked>
+									<?php
+								}else{
+									?>
+									<input class="form-check-input" type="checkbox" value="True" id="Controles" Name="Controles" >
+									<?php
+								}	
+								?>													
+							</div>
+						</div>
+					</div>
+					<?php
+					$sql="SELECT Imagen,Id FROM Carruseld where Carrusel = ".$Id." order by Orden";    
+					$query = mysqli_query($con, $sql);
+					while ($row=mysqli_fetch_array($query)){
+						?>
+						<div class="col-md-2">
+							<div class="card border-dark">
+							  <div class="card-body">
+							  <img src='data:image/jpg;base64,<?php echo $row['Imagen']; ?>' class='img-thumbnail'  alt="Imagen" />
+							  <button type="button" class="btn btn-default btn-block" onclick="ConfigurarObjeto(<?php echo $row['Id'];?>,'CarruselD')">Editar</button>
+								
+							  </div>
+							</div>
+							<br>
+						</div>
+					<?php
+					}	
+					?>
+					<div class="form-group">
+						<div class="col-sm-8">
+						<input type="text" class="form-control hidden" id="Id" name="Id"  value="<?php echo $Id;?>" > 
+						<input type="text" class="form-control hidden" id="Tipo" name="Tipo"  value="Carrusel" > 
+						</div>
+					</div>
+					<div id="resultados_Objeto"></div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('#Trae_Objeto').html('');$('#ConfiguracionObjeto').modal('hide');">Cerrar</button>
+						<button type="submit" class="btn btn-primary" id="actualizar_datos3B">Guardar</button>
+					</div>
+					<?php
+				}else{
+					if($Tipo=='CarruselD'){
+						$sql="SELECT Carrusel,Imagen,Id,Titulo,TTamaño,TColor,TTipografia,TJustificacion,Parrafo,PTamaño,PColor,PTipografia,PJustificacion FROM Carruseld where Carrusel = ".$Id." order by Orden";    
+						$query = mysqli_query($con, $sql);
+						$row=mysqli_fetch_array($query);
+						$Imagen = $row['Imagen'];
+						$Titulo = $row['Titulo'];
+						$TColor = $row['TColor'];
+						$TTamaño = $row['TTamaño'];
+						$TTipografia = $row['TTipografia'];
+						$TJustificacion =$row['TJustificacion']; 
+						$Parrafo = $row['Parrafo'];
+						$PColor = $row['PColor'];
+						$PTamaño = $row['PTamaño'];
+						$PTipografia = $row['PTipografia'];
+						$PJustificacion =$row['PJustificacion'];
+						$Carrusel =$row['Carrusel'];  
+						?>
+						<div class="form-group" id="Div-Imagen">
+							<label for="Nombre" class="col-sm-4 control-label">Imagen</label>
+							<div class="col-sm-8">
+								<input type="file" class="form-control-file" id="Imagen" name="Imagen" data-max-size="10240" accept="image/x-png,image/jpg,image/jpeg">
+								<p class="text-muted">Tamaño Maximo 2Mb</p>	
+								<br>
+							</div>
+							 	
+						</div> 
+						<div class="row"> 
+							<div class="col-md-2 ">
+								<img src='data:image/jpg;base64,<?php echo $Imagen; ?>' class='img-thumbnail'  alt="Imagen" />
+							</div>
+							<div class="col-md-5">
+								<div class="form-group">
+									<label for="Nombre" class="col-sm-4 control-label">Titulo</label>
+									<div class="col-sm-8">
+										<input type="Text" class="form-control" id="Titulo" name="Titulo" Value="<?php echo $Titulo;?>" placeholder="Descripcion de la Session" autocomplete="off" required> 
+									</div>
+								</div>
+								<div class="form-group" id="Div-Fondo">
+									<label for="Nombre" class="col-sm-4 control-label">Color</label>
+									<div class="col-sm-8">
+										<input type="Color" class="form-control" id="TColor" name="TColor" Value="<?php echo $TColor;?>" placeholder="Descripcion de la Session" autocomplete="off">
+									</div>
+								</div>
+								<div class="form-group ">
+									<label  class="col-sm-4 control-label">Tamaño </label>
+									<div class="col-md-8 col-sm-8">
+										<select class='form-control' id="TTamaño" name ="TTamaño" placeholder="TTamaño"> 
+											<?php 
+											for ($i = 1; $i <= 72; $i++) {
+												if($i == $TTamaño){
+													echo '<option value="'.$i.'" selected>'.$i.'</option>';
+												}else{
+													echo '<option value="'.$i.'">'.$i.'</option>';
+												}
+											}
+											?>
+										</select>
+									</div>
+								</div> 
+								<div class="form-group ">
+									<label  class="col-sm-4 control-label">Fuente </label>
+									<div class="col-md-8 col-sm-8">
+										<select class='form-control' id="TTipografia" name ="TTipografia" placeholder="TTipografia" > 
+											<?php 
+											if($TTipografia == 'Arial'){
+												echo '<option value="Arial">Arial</option>';
+												echo '<option value="Verdana">Verdana</option>';
+											}else{
+												echo '<option value="Verdana">Verdana</option>';
+												echo '<option value="Arial">Arial</option>';
+											}
+											?>
+										</select>
+									</div>
+								</div>	
+								<div class="form-group ">
+									<label  class="col-sm-4 control-label">Alineacion </label>
+									<div class="col-md-8 col-sm-8">
+										<select class='form-control' id="TJustificacion" name ="TJustificacion" placeholder="TJustificacion" > 
+											<?php 
+											if($TJustificacion == 'Derecha'){
+												echo '<option value="Derecha">Derecha</option>';
+												echo '<option value="Izquierda">Izquierda</option>';
+												echo '<option value="Centrada">Centrada</option>';
+											}else{
+												if($TJustificacion == 'Izquierda'){
+													echo '<option value="Izquierda">Izquierda</option>';
+													echo '<option value="Derecha">Derecha</option>';
+													echo '<option value="Centrada">Centrada</option>';
+												}else{
+													echo '<option value="Centrada">Centrada</option>';
+													echo '<option value="Izquierda">Izquierda</option>';
+													echo '<option value="Derecha">Derecha</option>';
+												}
+											
+											}
+											?>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-5">
+								<div class="form-group">
+									<label for="Nombre" class="col-sm-4 control-label">Parrafo</label>
+									<div class="col-sm-8">
+										<textarea class="form-control" rows="3" id="Parrafo" name="Parrafo"><?php echo $Parrafo;?></textarea>
+									</div>
+								</div>
+								<div class="form-group" id="Div-Fondo">
+									<label for="Nombre" class="col-sm-4 control-label">Color</label>
+									<div class="col-sm-8">
+										<input type="color" class="form-control" id="PColor" name="PColor" Value="<?php echo $PColor;?>" placeholder="Descripcion de la Session" autocomplete="off">
+									</div>
+								</div>
+								<div class="form-group ">
+									<label  class="col-sm-4 control-label">Tamaño </label>
+									<div class="col-md-8 col-sm-8">
+										<select class='form-control' id="PTamaño" name ="PTamaño" placeholder="PTamaño"> 
+											<?php 
+											for ($i = 1; $i <= 72; $i++) {
+												if($i == $PTamaño){
+													echo '<option value="'.$i.'" selected>'.$i.'</option>';
+													
+												}else{
+													echo '<option value="'.$i.'">'.$i.'</option>';
+												}
+											}
+											?>
+										</select>
+									</div>
+								</div> 
+								<div class="form-group ">
+									<label  class="col-sm-4 control-label">Fuente </label>
+									<div class="col-md-8 col-sm-8">
+										<select class='form-control' id="PTipografia" name ="PTipografia" placeholder="PTipografia" > 
+											<?php 
+											if($PTipografia == 'Arial'){
+												echo '<option value="Arial">Arial</option>';
+												echo '<option value="Verdana">Verdana</option>';
+											}else{
+												echo '<option value="Verdana">Verdana</option>';
+												echo '<option value="Arial">Arial</option>';
+											}
+											?>
+										</select>
+									</div>
+								</div>
+								<div class="form-group ">
+									<label  class="col-sm-4 control-label">Alineacion </label>
+									<div class="col-md-8 col-sm-8">
+										<select class='form-control' id="PJustificacion" name ="PJustificacion" placeholder="PJustificacion" > 
+											<?php 
+											if($PJustificacion == 'Derecha'){
+												echo '<option value="Derecha">Derecha</option>';
+												echo '<option value="Izquierda">Izquierda</option>';
+												echo '<option value="Centrada">Centrada</option>';
+											}else{
+												if($PJustificacion == 'Izquierda'){
+													echo '<option value="Izquierda">Izquierda</option>';
+													echo '<option value="Derecha">Derecha</option>';
+													echo '<option value="Centrada">Centrada</option>';
+												}else{
+													echo '<option value="Centrada">Centrada</option>';
+													echo '<option value="Izquierda">Izquierda</option>';
+													echo '<option value="Derecha">Derecha</option>';
+												}
+											
+											}
+											?>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-8">
+							<input type="text" class="form-control hidden" id="Id" name="Id"  value="<?php echo $Id;?>" > 
+							<input type="text" class="form-control hidden" id="Tipo" name="Tipo"  value="CarruselD" > 
+							</div>
+						</div>
+						<div id="resultados_Objeto"></div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal" onclick="ConfigurarObjeto(<?php echo $Carrusel;?>,'Carrusel')">Cerrar</button>
+							<button type="submit" class="btn btn-primary" id="actualizar_datos3B">Guardar</button>
+						</div>
+						<?php
+					}
+				}
 			}
 		}
 	}
 }
 ?>
-					 
-
+					
