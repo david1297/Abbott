@@ -8,9 +8,10 @@
 	$query = mysqli_query($con, $sql);
 	while ($row=mysqli_fetch_array($query)){
 		if ($row['Tipo'] =='1'){
-			$sql="SELECT Descripcion,Id FROM seccion1 where Pagina = $Id ";
+			$IDs=$row['Seccion'];
+			$sql="SELECT Descripcion,Id FROM seccion1 where Id =$IDs ";
 			$query1 = mysqli_query($con, $sql);
-			while ($row1=mysqli_fetch_array($query1)){
+			$row1=mysqli_fetch_array($query1);
 				$Session = $row1['Id'];
 			?>
 			<br>
@@ -26,37 +27,78 @@
 					</div>
 				</div>
 				<div class="card-body text-secondary">
-					<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(1,'I',<?php echo $Session;?>,0)">
-						<i class="fas fa-plus"></i>
-					</button>
+					<div class="form-group row">
+						<div class="col-md-12">
+							<button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(1,'I',<?php echo $Session;?>,0)">
+								<i class="fas fa-plus"></i>
+							</button>
+						</div>
+					</div>
 					<?php
+					
 					$sql1="SELECT Tipo,Elemento,Id FROM seccion1d where Seccion = $Session order by Orden";
 					$query1 = mysqli_query($con, $sql1);
 					while ($row1=mysqli_fetch_array($query1)){
 						$Objeto=$row1['Elemento'];
+						$SessionD=$row1['Id'];
 						if ($row1['Tipo'] =='Titulo'){
 							?>
-							<button type="button" class="btn btn-secondary btn-lg btn-block" onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Titulo')"><i class="fas fa-text-height"></i>	 Titulo</button>
+							<div class="form-group row">
+								<div class="col-md-11">
+									<button type="button" class="btn btn-outline-dark btn-block" onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Titulo')"><i class="fas fa-text-height"></i>	 Titulo</button>
+								</div>
+								<div class="col-md-1">
+									<button type="button" class="btn btn-outline-danger btn-block" onclick="Eliminar_SessionD(1,'I',<?php echo $SessionD;?>,'Titulo',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+								</div>
+							</div>
 							<?php
 						}else{
 							if ($row1['Tipo'] =='Parrafo'){
 								?>
-								<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Parrafo')"><i class="fas fa-stream"></i>	 Parrafo</button>
+								<div class="form-group row">
+									<div class="col-md-11">
+										<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Parrafo')"><i class="fas fa-stream"></i>	 Parrafo</button>
+									</div>
+									<div class="col-md-1">
+										<button type="button" class="btn btn-outline-danger btn-block" onclick="Eliminar_SessionD(1,'I',<?php echo $SessionD;?>,'Parrafo',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+									</div>
+								</div>
 								<?php
 							}else{
 								if ($row1['Tipo'] =='Imagen'){
 									?>
-									<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Imagen')"><i class="fas fa-image"></i> Imagen</button>
+									<div class="form-group row">
+										<div class="col-md-11">
+											<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Imagen')"><i class="fas fa-image"></i> Imagen</button>
+										</div>
+										<div class="col-md-1">
+											<button type="button" class="btn btn-outline-danger btn-block" onclick="Eliminar_SessionD(1,'I',<?php echo $SessionD;?>,'Imagen',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+										</div>
+									</div>
 									<?php
 								}else{
 									if ($row1['Tipo'] =='Video'){
 										?>
-										<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Video')"><i class="fas fa-video"></i> Video</button>
+										<div class="form-group row">
+											<div class="col-md-11">
+												<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Video')"><i class="fas fa-video"></i> Video</button>
+											</div>
+											<div class="col-md-1">
+												<button type="button" class="btn btn-outline-danger btn-block" onclick="Eliminar_SessionD(1,'I',<?php echo $SessionD;?>,'Video',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+											</div>
+										</div>
 										<?php
 									}else{
 										if ($row1['Tipo'] =='Carrusel'){
 											?>
-											<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Carrusel')"><i class="fas fa-images"></i> Carrusel</button>
+											<div class="form-group row">
+												<div class="col-md-11">
+													<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Carrusel')"><i class="fas fa-images"></i> Carrusel</button>
+												</div>
+												<div class="col-md-1">
+													<button type="button" class="btn btn-outline-danger btn-block" onclick="Eliminar_SessionD(1,'I',<?php echo $SessionD;?>,'Carrusel',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+												</div>
+											</div>
 											<?php
 										}
 									}
@@ -65,25 +107,26 @@
 						}
 					}
 					?>
-					<br>
+					
 					
 				</div>
 			</div>
 			<br>	
 			<?php
-			}
+			
 		}else{
 			if ($row['Tipo'] =='2'){
-				$sql="SELECT Descripcion,Id FROM seccion2 where Pagina = $Id ";
-				$query = mysqli_query($con, $sql);
-				while ($row=mysqli_fetch_array($query)){
-					$Session = $row['Id'];
+				$IDs=$row['Seccion'];
+				$sql="SELECT Descripcion,Id FROM seccion2 where Id = $IDs ";
+				$query1 = mysqli_query($con, $sql);
+				$row1=mysqli_fetch_array($query1);
+				$Session = $row1['Id'];
 				?>
 				<br>
 				<div class="card border-secondary mb-12" >
 					<div class="card-header">
 						<div class="btn-group pull-left">
-							<h4><?php echo $row['Descripcion']; ?></h4>
+							<h4><?php echo $row1['Descripcion']; ?></h4>
 						</div>
 						<div class="btn-group pull-right">			
 							<button type="button" class="btn btn-default" id="Configurarcion" onclick="ConfigurarSession(<?php echo $Session;?>,2)">
@@ -93,16 +136,22 @@
 					</div>
 					<div class="card-body text-secondary">
 						<div class="col-md-6">
-							<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'I',<?php echo $Session;?>,0)">
-								<i class="fas fa-plus"></i>
-							</button>
-							<br>
+							<div class="form-group row">
+								<div class="col-md-12">
+									<button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'I',<?php echo $Session;?>,0)">
+										<i class="fas fa-plus"></i>
+									</button>
+								</div>
+							</div>
 						</div>
 						<div class="col-md-6">
-							<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'D',<?php echo $Session;?>,0)">
-								<i class="fas fa-plus"></i>
-							</button>
-							<br>
+							<div class="form-group row">
+								<div class="col-md-12">
+									<button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'D',<?php echo $Session;?>,0)">
+										<i class="fas fa-plus"></i>
+									</button>
+								</div>	
+							</div>		
 						</div>
 						<?php
 					$sql1="SELECT Tipo1,Elemento1,Tipo2,Elemento2,Id FROM seccion2d where Seccion = $Session order by Orden";
@@ -113,49 +162,80 @@
 						if ($row1['Tipo1'] =='Titulo'){
 							?>
 							<div class="col-md-6">
-								<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Titulo')"><i class="fas fa-text-height"></i>	 Titulo</button>
-								<br>
+								<div class="form-group row">
+									<div class="col-md-10">
+										<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Titulo')"><i class="fas fa-text-height"></i>	 Titulo</button>
+									</div>
+									<div class="col-md-2">
+										<button type="button" class="btn btn-outline-danger btn-block" onclick="Eliminar_SessionD(2,'I',<?php echo $Linea;?>,'Titulo',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+									</div>
+								</div>
 							</div>
 							<?php
 						}else{
 							if ($row1['Tipo1'] =='Parrafo'){
 								?>
 								<div class="col-md-6">
-									<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Parrafo')"><i class="fas fa-stream"></i>	 Parrafo</button>
-									<br>
+									<div class="form-group row">
+										<div class="col-md-10">
+											<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Parrafo')"><i class="fas fa-stream"></i>	 Parrafo</button>
+										</div>
+										<div class="col-md-2">
+											<button type="button" class="btn btn-outline-danger btn-block" onclick="Eliminar_SessionD(2,'I',<?php echo $Linea;?>,'Parrafo',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+										</div>
+									</div>
 								</div>
 								<?php
 							}else{
 								if ($row1['Tipo1'] =='Imagen'){
 									?>
 									<div class="col-md-6">
-										<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Imagen')"><i class="fas fa-image"></i> Imagen</button>
-										<br>
+										<div class="form-group row">
+											<div class="col-md-10">
+												<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Imagen')"><i class="fas fa-image"></i> Imagen</button>
+											</div>
+											<div class="col-md-2">
+												<button type="button" class="btn btn-outline-danger btn-block" onclick="Eliminar_SessionD(2,'I',<?php echo $Linea;?>,'Imagen',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+											</div>
+										</div>
 									</div>
 									<?php
 								}else{
 									if ($row1['Tipo1'] =='Video'){
 										?>
 										<div class="col-md-6">
-											<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Video')"><i class="fas fa-video"></i> Video</button>
-											<br>
+											<div class="form-group row">
+												<div class="col-md-10">
+													<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Video')"><i class="fas fa-video"></i> Video</button>
+												</div>
+												<div class="col-md-2">
+													<button type="button" class="btn btn-outline-danger btn-block" onclick="Eliminar_SessionD(2,'I',<?php echo $Linea;?>,'Video',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+												</div>
+											</div>
 										</div>
 										<?php
 									}else{
 										if ($row1['Tipo1'] =='Carrusel'){
 											?>
 											<div class="col-md-6">
-												<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Carrusel')"><i class="fas fa-images"></i> Carrusel</button>
-												<br>
+												<div class="form-group row">
+													<div class="col-md-10">
+														<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Carrusel')"><i class="fas fa-images"></i> Carrusel</button>
+													</div>
+													<div class="col-md-2">
+														<button type="button" class="btn btn-outline-danger btn-block" onclick="Eliminar_SessionD(2,'I',<?php echo $Linea;?>,'Carrusel',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+													</div>
+												</div>
 											</div>
 											<?php
 										}else{
 											?>
 											<div class="col-md-6">
-											<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'I',<?php echo $Session;?>,<?php echo $Linea;?>)"><i class="fas fa-plus" ></i>
-											<?php echo $Objeto;?>
-											</button>
-											<br>
+												<div class="form-group row">
+													<div class="col-md-12">
+														<button type="button" class="btn btn-default  btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'I',<?php echo $Session;?>,<?php echo $Linea;?>)"><i class="fas fa-plus" ></i></button>
+													</div>
+												</div>
 											</div>
 											<?php	
 										}
@@ -167,47 +247,80 @@
 						if ($row1['Tipo2'] =='Titulo'){
 							?>
 							<div class="col-md-6">
-								<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Titulo')"><i class="fas fa-text-height"></i>	 Titulo</button>
-								<br>
+								<div class="form-group row">
+									<div class="col-md-10">
+										<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Titulo')"><i class="fas fa-text-height"></i>	 Titulo</button>
+									</div>
+									<div class="col-md-2">
+										<button type="button" class="btn btn-outline-danger btn-block" onclick="Eliminar_SessionD(2,'D',<?php echo $Linea;?>,'Titulo',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+									</div>
+								</div>
 							</div>
 							<?php
 						}else{
 							if ($row1['Tipo2'] =='Parrafo'){
 								?>
 								<div class="col-md-6">
-									<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Parrafo')"><i class="fas fa-stream"></i>	 Parrafo</button>
-									<br>
+									<div class="form-group row">
+										<div class="col-md-10">
+											<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Parrafo')"><i class="fas fa-stream"></i>	 Parrafo</button>
+										</div>
+										<div class="col-md-2">
+											<button type="button" class="btn btn-outline-danger btn-block" onclick="Eliminar_SessionD(2,'D',<?php echo $Linea;?>,'Parrafo',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+										</div>
+									</div>
 								</div>
 								<?php
 							}else{
 								if ($row1['Tipo2'] =='Imagen'){
 									?>
 									<div class="col-md-6">
-										<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Imagen')"><i class="fas fa-image"></i> Imagen</button>
-										<br>
+										<div class="form-group row">
+											<div class="col-md-10">
+												<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Imagen')"><i class="fas fa-image"></i> Imagen</button>
+											</div>
+											<div class="col-md-2">
+												<button type="button" class="btn btn-outline-danger btn-block" onclick="Eliminar_SessionD(2,'D',<?php echo $Linea;?>,'Imagen',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+											</div>
+										</div>
 									</div>
 									<?php
 								}else{
 									if ($row1['Tipo2'] =='Video'){
 										?>
 										<div class="col-md-6">
-											<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Video')"><i class="fas fa-video"></i> Video</button>
-											<br>
+											<div class="form-group row">
+												<div class="col-md-10">
+													<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Video')"><i class="fas fa-video"></i> Video</button>
+												</div>
+												<div class="col-md-2">
+													<button type="button" class="btn btn-outline-danger btn-block" onclick="Eliminar_SessionD(2,'D',<?php echo $Linea;?>,'Video',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+												</div>
+											</div>
 										</div>
 										<?php
 									}else{
 										if ($row1['Tipo2'] =='Carrusel'){
 											?>
 											<div class="col-md-6">
-												<button type="button" class="btn btn-secondary btn-lg btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Carrusel')"><i class="fas fa-images"></i> Carrusel</button>
-												<br>
+												<div class="form-group row">
+													<div class="col-md-10">
+														<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Carrusel')"><i class="fas fa-images"></i> Carrusel</button>
+													</div>
+													<div class="col-md-2">
+														<button type="button" class="btn btn-outline-danger btn-block" onclick="Eliminar_SessionD(2,'D',<?php echo $Linea;?>,'Carrusel',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+													</div>
+												</div>
 											</div>
 											<?php
 										}else{
 											?>
 											<div class="col-md-6">
-												<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'D',<?php echo $Session;?>,<?php echo $Linea;?>)"><i class="fas fa-plus" ></i>
-												</button><br>
+												<div class="form-group row">
+													<div class="col-md-12">
+														<button type="button" class="btn btn-default  btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'D',<?php echo $Session;?>,<?php echo $Linea;?>)"><i class="fas fa-plus" ></i></button>
+													</div>	
+												</div>
 											</div>
 											<?php	
 										}
@@ -224,7 +337,7 @@
 				</div>
 				<br>	
 				<?php
-				}
+				
 			}
 		}
 	}

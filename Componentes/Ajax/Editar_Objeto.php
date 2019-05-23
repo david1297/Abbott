@@ -92,6 +92,41 @@ if (empty($_POST['Id'])){
 						} else {
 							$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
 						}
+					}else{
+						if($Tipo=='CarruselD'){
+							if(!empty($_FILES['Imagen']['name'])){
+								$nombre =$_FILES['Imagen']['tmp_name'];
+								$im = file_get_contents($nombre);
+								$imdata = base64_encode($im);
+								$sql =  "UPDATE Carruseld SET Imagen='$imdata' where Id = $Id;";
+								$query_update = mysqli_query($con,$sql);
+								if ($query_update) {
+									$messages = "Los Datos Se Han Guardado Con Exito.";
+								} else {
+									$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
+								}	
+							}
+							$Titulo = mysqli_real_escape_string($con,(strip_tags($_POST["Titulo"],ENT_QUOTES)));
+							$TTamaño = mysqli_real_escape_string($con,(strip_tags($_POST["TTamaño"],ENT_QUOTES)));
+							$TTipografia = mysqli_real_escape_string($con,(strip_tags($_POST["TTipografia"],ENT_QUOTES)));
+							$TColor = mysqli_real_escape_string($con,(strip_tags($_POST["TColor"],ENT_QUOTES)));
+							$TJustificacion = mysqli_real_escape_string($con,(strip_tags($_POST["TJustificacion"],ENT_QUOTES)));
+							$Parrafo = mysqli_real_escape_string($con,(strip_tags($_POST["Parrafo"],ENT_QUOTES)));
+							$PTamaño = mysqli_real_escape_string($con,(strip_tags($_POST["PTamaño"],ENT_QUOTES)));
+							$PTipografia = mysqli_real_escape_string($con,(strip_tags($_POST["PTipografia"],ENT_QUOTES)));
+							$PColor = mysqli_real_escape_string($con,(strip_tags($_POST["PColor"],ENT_QUOTES)));
+							$PJustificacion = mysqli_real_escape_string($con,(strip_tags($_POST["PJustificacion"],ENT_QUOTES)));
+							$sql =  "UPDATE Carruseld SET Titulo='$Titulo',TTamaño='$TTamaño',TTipografia='$TTipografia',TColor='$TColor',TJustificacion='$TJustificacion'
+									,Parrafo='$Parrafo',PTamaño='$PTamaño',PTipografia='$PTipografia',PColor='$PColor',PJustificacion='$PJustificacion'
+							
+							 where Id = $Id;";
+								$query_update = mysqli_query($con,$sql);
+								if ($query_update) {
+									$messages = "Los Datos Se Han Guardado Con Exito.";
+								} else {
+									$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
+								}
+						}
 					}
 				}
 			}

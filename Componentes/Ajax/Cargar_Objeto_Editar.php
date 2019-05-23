@@ -47,15 +47,18 @@ if($Tipo=='Titulo'){
 		<label  class="col-sm-4 control-label">Fuente </label>
 		<div class="col-md-8 col-sm-8">
 			<select class='form-control' id="TipoGrafia" name ="TipoGrafia" placeholder="TipoGrafia" > 
-				<?php 
-				if($TipoGrafia == 'Arial'){
-					echo '<option value="Arial">Arial</option>';
-					echo '<option value="Verdana">Verdana</option>';
-				}else{
-					echo '<option value="Verdana">Verdana</option>';
-					echo '<option value="Arial">Arial</option>';
-				}
-				?>
+			<?php 
+						$sql="SELECT * FROM tipografias order by Id ";    
+						$query1 = mysqli_query($con, $sql);
+						while($row1=mysqli_fetch_array($query1)){
+							if($TipoGrafia == $row1['Valor']){
+								echo '<option class="'.$row1['Valor'].'" value="'.$row1['Valor'].'" selected>'.$row1['Tipo'].'</option>';
+							}else{
+								echo '<option class="'.$row1['Valor'].'" value="'.$row1['Valor'].'" >'.$row1['Tipo'].'</option>';
+							}
+						}
+
+					?>
 			</select>
 		</div>
 	</div>
@@ -105,13 +108,16 @@ if($Tipo=='Titulo'){
 			<div class="col-md-8 col-sm-8">
 				<select class='form-control' id="TipoGrafia" name ="TipoGrafia" placeholder="TipoGrafia" > 
 					<?php 
-					if($TipoGrafia == 'Arial'){
-						echo '<option value="Arial">Arial</option>';
-						echo '<option value="Verdana">Verdana</option>';
-					}else{
-						echo '<option value="Verdana">Verdana</option>';
-						echo '<option value="Arial">Arial</option>';
-					}
+						$sql="SELECT * FROM tipografias order by Id ";    
+						$query1 = mysqli_query($con, $sql);
+						while($row1=mysqli_fetch_array($query1)){
+							if($TipoGrafia == $row1['Valor']){
+								echo '<option class="'.$row1['Valor'].'" value="'.$row1['Valor'].'" selected>'.$row1['Tipo'].'</option>';
+							}else{
+								echo '<option class="'.$row1['Valor'].'" value="'.$row1['Valor'].'" >'.$row1['Tipo'].'</option>';
+							}
+						}
+
 					?>
 				</select>
 			</div>
@@ -121,19 +127,32 @@ if($Tipo=='Titulo'){
 			<div class="col-md-8 col-sm-8">
 				<select class='form-control' id="Justificacion" name ="Justificacion" placeholder="Justificacion" > 
 					<?php 
-					if($Justificacion == 'Derecha'){
-						echo '<option value="Derecha">Derecha</option>';
-						echo '<option value="Izquierda">Izquierda</option>';
-						echo '<option value="Centrada">Centrada</option>';
+					if($Justificacion == 'text-right'){
+						echo '<option value="text-right">Derecha</option>';
+						echo '<option value="text-left">Izquierda</option>';
+						echo '<option value="text-center">Centrada</option>';
+						echo '<option value="text-justify">Justificado</option>';
 					}else{
-						if($Justificacion == 'Izquierda'){
-							echo '<option value="Izquierda">Izquierda</option>';
-							echo '<option value="Derecha">Derecha</option>';
-							echo '<option value="Centrada">Centrada</option>';
+						if($Justificacion == 'text-left'){
+							echo '<option value="text-left">Izquierda</option>';
+							echo '<option value="text-right">Derecha</option>';
+							echo '<option value="text-center">Centrada</option>';
+							echo '<option value="text-justify">Justificado</option>';
 						}else{
-							echo '<option value="Centrada">Centrada</option>';
-							echo '<option value="Izquierda">Izquierda</option>';
-							echo '<option value="Derecha">Derecha</option>';
+							if($Justificacion == 'text-justify'){
+								echo '<option value="text-justify">Justificado</option>';
+								echo '<option value="text-center">Centrada</option>';
+								echo '<option value="text-left">Izquierda</option>';
+								echo '<option value="text-right">Derecha</option>';
+							
+
+							}else{
+								echo '<option value="text-center">Centrada</option>';
+								echo '<option value="text-left">Izquierda</option>';
+								echo '<option value="text-right">Derecha</option>';
+								echo '<option value="text-justify">Justificado</option>';
+							}	
+						
 						}
 					
 					}
@@ -242,7 +261,9 @@ if($Tipo=='Titulo'){
 					$row=mysqli_fetch_array($query);
 					$Controles = $row['Controles'];
 					?> 	
-					<button type="button" class="btn btn-default" onclick="AgregarCarrusel(<?php echo $Id;?>)"><i class="fas fa-plus"></i>Agregar</button>
+					<div class="col-sm-2">
+						<button type="button" class="btn btn-default  btn-block" onclick="AgregarCarrusel(<?php echo $Id;?>)"><i class="fas fa-plus"></i>Agregar</button>
+					</div>
 					<br>
 					<br>
 					<div class="row">
@@ -267,6 +288,7 @@ if($Tipo=='Titulo'){
 					$sql="SELECT Imagen,Id FROM Carruseld where Carrusel = ".$Id." order by Orden";    
 					$query = mysqli_query($con, $sql);
 					while ($row=mysqli_fetch_array($query)){
+						$Cid= $row['Id'];
 						?>
 						<div class="col-md-2">
 							<div class="card border-dark">
@@ -274,19 +296,12 @@ if($Tipo=='Titulo'){
 							  <img src='data:image/jpg;base64,<?php echo $row['Imagen']; ?>' class='img-thumbnail'  alt="Imagen" />
 							  	<div class="form-group row">
 								  <div class="col-md-4">
-							  		<button type="button" class="btn btn-outline-danger " onclick="EliminarCarruselD(<?php echo $row['Id'];?>)" ><i class="fas fa-trash-alt"></i></button>   
+							  		<button type="button" class="btn btn-outline-danger " onclick="EliminarObjeto(<?php echo $Cid;?>,'CarruselD')" ><i class="fas fa-trash-alt"></i></button>   
 									  </div>
 									  <div class="col-md-8">
-										<button type="button" class="btn btn-default btn-block " onclick="ConfigurarObjeto(<?php echo $row['Id'];?>,'CarruselD')">Editar</button>
+										<button type="button" class="btn btn-outline-secondary btn-block " onclick="ConfigurarObjeto(<?php echo $Cid;?>,'CarruselD')">Editar</button>
     								</div>
   								</div>
-  								
-								
-							 
-							 
-							 
-							 
-								
 							  </div>
 							</div>
 							<br>
@@ -308,7 +323,7 @@ if($Tipo=='Titulo'){
 					<?php
 				}else{
 					if($Tipo=='CarruselD'){
-						$sql="SELECT Carrusel,Imagen,Id,Titulo,TTamaño,TColor,TTipografia,TJustificacion,Parrafo,PTamaño,PColor,PTipografia,PJustificacion FROM Carruseld where Carrusel = ".$Id." order by Orden";    
+						$sql="SELECT Carrusel,Imagen,Id,Titulo,TTamaño,TColor,TTipografia,TJustificacion,Parrafo,PTamaño,PColor,PTipografia,PJustificacion FROM Carruseld where Id = ".$Id." order by Orden";    
 						$query = mysqli_query($con, $sql);
 						$row=mysqli_fetch_array($query);
 						$Imagen = $row['Imagen'];
@@ -341,13 +356,13 @@ if($Tipo=='Titulo'){
 								<div class="form-group">
 									<label for="Nombre" class="col-sm-4 control-label">Titulo</label>
 									<div class="col-sm-8">
-										<input type="Text" class="form-control" id="Titulo" name="Titulo" Value="<?php echo $Titulo;?>" placeholder="Descripcion de la Session" autocomplete="off" required> 
+										<input type="Text" class="form-control" id="Titulo" name="Titulo" Value="<?php echo $Titulo;?>" placeholder="Titulo" autocomplete="off" required> 
 									</div>
 								</div>
 								<div class="form-group" id="Div-Fondo">
 									<label for="Nombre" class="col-sm-4 control-label">Color</label>
 									<div class="col-sm-8">
-										<input type="Color" class="form-control" id="TColor" name="TColor" Value="<?php echo $TColor;?>" placeholder="Descripcion de la Session" autocomplete="off">
+										<input type="Color" class="form-control" id="TColor" name="TColor" Value="<?php echo $TColor;?>"  autocomplete="off">
 									</div>
 								</div>
 								<div class="form-group ">
@@ -489,7 +504,7 @@ if($Tipo=='Titulo'){
 						</div>
 						<div id="resultados_Objeto"></div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal" onclick="ConfigurarObjeto(<?php echo $Carrusel;?>,'Carrusel')">Cerrar</button>
+							<button type="button" class="btn btn-default" onclick="ConfigurarObjeto(<?php echo $Carrusel;?>,'Carrusel')">Cerrar</button>
 							<button type="submit" class="btn btn-primary" id="actualizar_datos3B">Guardar</button>
 						</div>
 						<?php

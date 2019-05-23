@@ -313,7 +313,11 @@ $( "#Editar_Objeto" ).submit(function( event ) {
 			   },
 		   success: function(datos){ 
 		   $("#resultados_Objeto").html(datos);	 
-		  
+		   $('#resultados_Objeto').fadeOut(2000); 
+			 setTimeout(function() { 
+				 $('#resultados_Objeto').html('');	
+				 $('#resultados_Objeto').fadeIn(1000); 
+			 }, 1000);	
 		 }	 
    });
    event.preventDefault();
@@ -349,6 +353,33 @@ function TipoCSession(Tipo,Lado,Id,Objeto){
 function nombre(fic) {
   fic = fic.split('\\');
   $('#Video').val(fic[fic.length-1]);
+}
+function EliminarObjeto(IdO,TipoO){
+	
+	  $.ajax({
+		url: "Componentes/Ajax/Eliminar_Objeto.php?Id="+IdO+"&Tipo="+TipoO,
+			  beforeSend: function(objeto){
+			   },
+		   success: function(datos){ 
+		 
+		 }	 
+   });
+
+}
+
+function Eliminar_SessionD(TipoS,Lado,Session,TipoO,IdO){
+	var R =0;
+	$.ajax({
+		url: "Componentes/Ajax/Eliminar_SessionD.php?TipoS="+TipoS+"&Lado="+Lado+"&Session="+Session+"&TipoO="+TipoO+"&IdO="+IdO,
+			  beforeSend: function(objeto){
+			   },
+		   success: function(datos){ 
+			R=1;
+			EliminarObjeto(IdO,TipoO);
+			CargarSessiones();
+		 }	 
+   });
+   event.preventDefault();
 }
 
 
