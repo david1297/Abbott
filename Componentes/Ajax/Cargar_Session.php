@@ -100,6 +100,19 @@
 												</div>
 											</div>
 											<?php
+										}else{
+											if ($row1['Tipo'] =='Album'){
+												?>
+												<div class="form-group row">
+													<div class="col-md-11">
+														<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Album')"><i class="fas fa-book"></i> Album</button>
+													</div>
+													<div class="col-md-1">
+														<button type="button" class="btn btn-outline-danger btn-block" onclick="Eliminar_SessionD(1,'I',<?php echo $SessionD;?>,'Album',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+													</div>
+												</div>
+												<?php
+											}
 										}
 									}
 								}
@@ -229,7 +242,21 @@
 											</div>
 											<?php
 										}else{
-											?>
+											if ($row1['Tipo1'] =='Album'){
+												?>
+												<div class="col-md-6">
+													<div class="form-group row">
+														<div class="col-md-10">
+															<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Album')"><i class="fas fa-book"></i> Album</button>
+														</div>
+														<div class="col-md-2">
+															<button type="button" class="btn btn-outline-danger btn-block" onclick="Eliminar_SessionD(2,'I',<?php echo $Linea;?>,'Album',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+														</div>
+													</div>
+												</div>
+												<?php
+											}else{
+												?>
 											<div class="col-md-6">
 												<div class="form-group row">
 													<div class="col-md-12">
@@ -237,7 +264,8 @@
 													</div>
 												</div>
 											</div>
-											<?php	
+											<?php
+											}
 										}
 									}
 								}
@@ -314,7 +342,21 @@
 											</div>
 											<?php
 										}else{
-											?>
+											if ($row1['Tipo2'] =='Album'){
+												?>
+												<div class="col-md-6">
+													<div class="form-group row">
+														<div class="col-md-10">
+															<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Album')"><i class="fas fa-images"></i> Album</button>
+														</div>
+														<div class="col-md-2">
+															<button type="button" class="btn btn-outline-danger btn-block" onclick="Eliminar_SessionD(2,'D',<?php echo $Linea;?>,'Album',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+														</div>
+													</div>
+												</div>
+												<?php
+											}else{
+												?>
 											<div class="col-md-6">
 												<div class="form-group row">
 													<div class="col-md-12">
@@ -323,6 +365,8 @@
 												</div>
 											</div>
 											<?php	
+											}
+											
 										}
 									}	
 										

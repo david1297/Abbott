@@ -92,6 +92,21 @@ require_once ("../../config/conexion.php");
 								if ($query_update) {						
 								}
 							}	
+						}else{
+							if($Tipo == '6'){
+								$sql =  "INSERT INTO album(Descripcion) VALUES ('');";
+								$query_update = mysqli_query($con,$sql);
+								if ($query_update) {
+									$sql="SELECT Max(Id) AS Id FROM album";
+									$query = mysqli_query($con, $sql);
+									$row=mysqli_fetch_array($query);
+									$Elemento= $row['Id'];
+									$sql =  "INSERT INTO seccion1d(Seccion,Tipo,Elemento,Orden) VALUES ($IdSession,'Album',$Elemento,$Orden);";
+									$query_update = mysqli_query($con,$sql);
+									if ($query_update) {						
+									}
+								}	
+							}
 						}
 					}
 				}		
@@ -219,6 +234,30 @@ require_once ("../../config/conexion.php");
 										}
 									}
 								}	
+							}else{
+								if($Tipo == '6'){
+									$sql =  "INSERT INTO album(Descripcion) VALUES ('');";
+									$query_update = mysqli_query($con,$sql);
+									if ($query_update) {
+										$sql="SELECT Max(Id) AS Id FROM album";
+										$query = mysqli_query($con, $sql);
+										$row=mysqli_fetch_array($query);
+										$Elemento= $row['Id'];
+										if ($Lado=='I'){
+											$sql =  "INSERT INTO seccion2d(Seccion,Tipo1,Elemento1,Orden) VALUES ($IdSession,'Album',$Elemento,$Orden);";
+											$query_update = mysqli_query($con,$sql);
+											if ($query_update) {						
+											}
+										}else{
+											if ($Lado=='D'){
+												$sql =  "INSERT INTO seccion2d(Seccion,Tipo2,Elemento2,Orden) VALUES ($IdSession,'Album',$Elemento,$Orden);";
+												$query_update = mysqli_query($con,$sql);
+												if ($query_update) {						
+												}
+											}
+										}
+									}	
+								}
 							}
 						}
 					}
@@ -346,22 +385,37 @@ require_once ("../../config/conexion.php");
 			}
 		}
 	}
-
 	if (isset($_GET['Tipo1'])){
 		$IdCarrusel=$_GET['IdCarrusel'];
 		$sql="SELECT Max(Orden) AS Orden FROM carruseld where Carrusel = ".$IdCarrusel."; ";
-							$query = mysqli_query($con, $sql);
-							$row=mysqli_fetch_array($query);
-							$Orden= $row['Orden'];
-							$Orden=$Orden+1;
-							$sql =  "INSERT INTO carruseld (Carrusel, Orden, TTamaño,PTamaño) VALUES ($IdCarrusel, $Orden, '12', '12');";
-							$query_update = mysqli_query($con,$sql);
-							if ($query_update) {
-								$sql="SELECT Max(Id) AS Id FROM carruseld";
-								$query = mysqli_query($con, $sql);
-								$row=mysqli_fetch_array($query);
-								echo $row['Id'];		
-							}
+		$query = mysqli_query($con, $sql);
+		$row=mysqli_fetch_array($query);
+		$Orden= $row['Orden'];
+		$Orden=$Orden+1;
+		$sql =  "INSERT INTO carruseld (Carrusel, Orden, TTamaño,PTamaño) VALUES ($IdCarrusel, $Orden, '12', '12');";
+		$query_update = mysqli_query($con,$sql);
+		if ($query_update) {
+			$sql="SELECT Max(Id) AS Id FROM carruseld";
+			$query = mysqli_query($con, $sql);
+			$row=mysqli_fetch_array($query);
+			echo $row['Id'];		
+		}
+	}
+	if (isset($_GET['Tipo2'])){
+		$Album=$_GET['Album'];
+		$sql="SELECT Max(Orden) AS Orden FROM AlbumD where Album = ".$Album."; ";
+		$query = mysqli_query($con, $sql);
+		$row=mysqli_fetch_array($query);
+		$Orden= $row['Orden'];
+		$Orden=$Orden+1;
+		$sql =  "INSERT INTO AlbumD (Album, Orden) VALUES ($Album, $Orden);";
+		$query_update = mysqli_query($con,$sql);
+		if ($query_update) {
+			$sql="SELECT Max(Id) AS Id FROM AlbumD";
+			$query = mysqli_query($con, $sql);
+			$row=mysqli_fetch_array($query);
+			echo $row['Id'];		
+		}
 	}
 	
 

@@ -197,6 +197,17 @@ function AgregarCarrusel(N) {
 	})
 	
 }
+function AgregarAlbum(N){
+	$.ajax({
+	url:'Componentes/Ajax/Crear_Objeto.php?Tipo2=Album&Album='+N,
+		 beforeSend: function(objeto){
+			$('#loader').html('<img src="./assets/img/ajax-loader.gif"> Cargando...');
+	  },
+		success:function(data){
+			ConfigurarObjeto(data,'AlbumD');
+		}
+	})
+}
 function ConfigurarPagina(Pagina){
 	
 	$('#ConfiguracionPagina').modal('show');

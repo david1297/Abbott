@@ -126,6 +126,21 @@ if (empty($_POST['Id'])){
 								} else {
 									$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
 								}
+						}else{
+							if($Tipo=='AlbumD'){
+								if(!empty($_FILES['Imagen']['name'])){
+									$nombre =$_FILES['Imagen']['tmp_name'];
+									$im = file_get_contents($nombre);
+									$imdata = base64_encode($im);
+									$sql =  "UPDATE AlbumD SET Imagen='$imdata' where Id = $Id;";
+									$query_update = mysqli_query($con,$sql);
+									if ($query_update) {
+										$messages = "Los Datos Se Han Guardado Con Exito.";
+									} else {
+										$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
+									}	
+								}
+							}
 						}
 					}
 				}

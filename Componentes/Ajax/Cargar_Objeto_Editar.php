@@ -385,15 +385,18 @@ if($Tipo=='Titulo'){
 									<label  class="col-sm-4 control-label">Fuente </label>
 									<div class="col-md-8 col-sm-8">
 										<select class='form-control' id="TTipografia" name ="TTipografia" placeholder="TTipografia" > 
-											<?php 
-											if($TTipografia == 'Arial'){
-												echo '<option value="Arial">Arial</option>';
-												echo '<option value="Verdana">Verdana</option>';
-											}else{
-												echo '<option value="Verdana">Verdana</option>';
-												echo '<option value="Arial">Arial</option>';
+										<?php 
+											$sql="SELECT * FROM tipografias order by Id ";    
+											$query1 = mysqli_query($con, $sql);
+											while($row1=mysqli_fetch_array($query1)){
+												if($TTipografia == $row1['Valor']){
+													echo '<option class="'.$row1['Valor'].'" value="'.$row1['Valor'].'" selected>'.$row1['Tipo'].'</option>';
+												}else{
+													echo '<option class="'.$row1['Valor'].'" value="'.$row1['Valor'].'" >'.$row1['Tipo'].'</option>';
+												}
 											}
-											?>
+
+										?>
 										</select>
 									</div>
 								</div>	
@@ -402,23 +405,38 @@ if($Tipo=='Titulo'){
 									<div class="col-md-8 col-sm-8">
 										<select class='form-control' id="TJustificacion" name ="TJustificacion" placeholder="TJustificacion" > 
 											<?php 
-											if($TJustificacion == 'Derecha'){
-												echo '<option value="Derecha">Derecha</option>';
-												echo '<option value="Izquierda">Izquierda</option>';
-												echo '<option value="Centrada">Centrada</option>';
-											}else{
-												if($TJustificacion == 'Izquierda'){
-													echo '<option value="Izquierda">Izquierda</option>';
-													echo '<option value="Derecha">Derecha</option>';
-													echo '<option value="Centrada">Centrada</option>';
+												
+												if($TJustificacion == 'text-right'){
+													echo '<option value="text-right">Derecha</option>';
+													echo '<option value="text-left">Izquierda</option>';
+													echo '<option value="text-center">Centrada</option>';
+													echo '<option value="text-justify">Justificado</option>';
 												}else{
-													echo '<option value="Centrada">Centrada</option>';
-													echo '<option value="Izquierda">Izquierda</option>';
-													echo '<option value="Derecha">Derecha</option>';
+													if($TJustificacion == 'text-left'){
+														echo '<option value="text-left">Izquierda</option>';
+														echo '<option value="text-right">Derecha</option>';
+														echo '<option value="text-center">Centrada</option>';
+														echo '<option value="text-justify">Justificado</option>';
+													}else{
+														if($TJustificacion == 'text-justify'){
+															echo '<option value="text-justify">Justificado</option>';
+															echo '<option value="text-center">Centrada</option>';
+															echo '<option value="text-left">Izquierda</option>';
+															echo '<option value="text-right">Derecha</option>';
+														
+							
+														}else{
+															echo '<option value="text-center">Centrada</option>';
+															echo '<option value="text-left">Izquierda</option>';
+															echo '<option value="text-right">Derecha</option>';
+															echo '<option value="text-justify">Justificado</option>';
+														}	
+													
+													}
+												
 												}
+												?>
 											
-											}
-											?>
 										</select>
 									</div>
 								</div>
@@ -457,15 +475,18 @@ if($Tipo=='Titulo'){
 									<label  class="col-sm-4 control-label">Fuente </label>
 									<div class="col-md-8 col-sm-8">
 										<select class='form-control' id="PTipografia" name ="PTipografia" placeholder="PTipografia" > 
-											<?php 
-											if($PTipografia == 'Arial'){
-												echo '<option value="Arial">Arial</option>';
-												echo '<option value="Verdana">Verdana</option>';
-											}else{
-												echo '<option value="Verdana">Verdana</option>';
-												echo '<option value="Arial">Arial</option>';
+										<?php 
+											$sql="SELECT * FROM tipografias order by Id ";    
+											$query1 = mysqli_query($con, $sql);
+											while($row1=mysqli_fetch_array($query1)){
+												if($PTipografia == $row1['Valor']){
+													echo '<option class="'.$row1['Valor'].'" value="'.$row1['Valor'].'" selected>'.$row1['Tipo'].'</option>';
+												}else{
+													echo '<option class="'.$row1['Valor'].'" value="'.$row1['Valor'].'" >'.$row1['Tipo'].'</option>';
+												}
 											}
-											?>
+
+										?>
 										</select>
 									</div>
 								</div>
@@ -474,22 +495,35 @@ if($Tipo=='Titulo'){
 									<div class="col-md-8 col-sm-8">
 										<select class='form-control' id="PJustificacion" name ="PJustificacion" placeholder="PJustificacion" > 
 											<?php 
-											if($PJustificacion == 'Derecha'){
-												echo '<option value="Derecha">Derecha</option>';
-												echo '<option value="Izquierda">Izquierda</option>';
-												echo '<option value="Centrada">Centrada</option>';
-											}else{
-												if($PJustificacion == 'Izquierda'){
-													echo '<option value="Izquierda">Izquierda</option>';
-													echo '<option value="Derecha">Derecha</option>';
-													echo '<option value="Centrada">Centrada</option>';
+												if($PJustificacion == 'text-right'){
+													echo '<option value="text-right">Derecha</option>';
+													echo '<option value="text-left">Izquierda</option>';
+													echo '<option value="text-center">Centrada</option>';
+													echo '<option value="text-justify">Justificado</option>';
 												}else{
-													echo '<option value="Centrada">Centrada</option>';
-													echo '<option value="Izquierda">Izquierda</option>';
-													echo '<option value="Derecha">Derecha</option>';
+													if($PJustificacion == 'text-left'){
+														echo '<option value="text-left">Izquierda</option>';
+														echo '<option value="text-right">Derecha</option>';
+														echo '<option value="text-center">Centrada</option>';
+														echo '<option value="text-justify">Justificado</option>';
+													}else{
+														if($PJustificacion == 'text-justify'){
+															echo '<option value="text-justify">Justificado</option>';
+															echo '<option value="text-center">Centrada</option>';
+															echo '<option value="text-left">Izquierda</option>';
+															echo '<option value="text-right">Derecha</option>';
+														
+							
+														}else{
+															echo '<option value="text-center">Centrada</option>';
+															echo '<option value="text-left">Izquierda</option>';
+															echo '<option value="text-right">Derecha</option>';
+															echo '<option value="text-justify">Justificado</option>';
+														}	
+													
+													}
+												
 												}
-											
-											}
 											?>
 										</select>
 									</div>
@@ -508,6 +542,86 @@ if($Tipo=='Titulo'){
 							<button type="submit" class="btn btn-primary" id="actualizar_datos3B">Guardar</button>
 						</div>
 						<?php
+					}else{
+						if($Tipo=='Album'){
+							$sql="SELECT * FROM Album where Id = ".$Id." ";    
+							$query = mysqli_query($con, $sql);
+							$row=mysqli_fetch_array($query);
+							?> 	
+							<div class="col-sm-2">
+								<button type="button" class="btn btn-default  btn-block" onclick="AgregarAlbum(<?php echo $Id;?>)"><i class="fas fa-plus"></i>Agregar</button>
+							</div>
+							<br>
+							<br>					
+							<?php
+							$sql="SELECT Imagen,Id FROM AlbumD where Album = ".$Id." order by Orden";    
+							$query = mysqli_query($con, $sql);
+							while ($row=mysqli_fetch_array($query)){
+								$Cid= $row['Id'];
+								?>
+								<div class="col-md-2">
+									<div class="card border-dark">
+										<div class="card-body">
+											<img src='data:image/jpg;base64,<?php echo $row['Imagen']; ?>' class='img-thumbnail'  alt="Imagen" />
+											<div class="form-group row">
+												<div class="col-md-4">
+													<button type="button" class="btn btn-outline-danger " onclick="EliminarObjeto(<?php echo $Cid;?>,'AlbumD')" ><i class="fas fa-trash-alt"></i></button>   
+												</div>
+												<div class="col-md-8">
+													<button type="button" class="btn btn-outline-secondary btn-block " onclick="ConfigurarObjeto(<?php echo $Cid;?>,'AlbumD')">Editar</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<br>
+								</div>
+								<?php
+							}	
+							?>
+							<div class="form-group">
+								<div class="col-sm-8">
+									<input type="text" class="form-control hidden" id="Id" name="Id"  value="<?php echo $Id;?>" > 
+									<input type="text" class="form-control hidden" id="Tipo" name="Tipo"  value="AlbumD" > 
+								</div>
+							</div>
+							<div id="resultados_Objeto"></div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('#Trae_Objeto').html('');$('#ConfiguracionObjeto').modal('hide');">Cerrar</button>
+							</div>
+							<?php
+						}else{
+							if($Tipo=='AlbumD'){
+								$sql="SELECT * FROM AlbumD where Id = ".$Id." ";    
+								$query = mysqli_query($con, $sql);
+								$row=mysqli_fetch_array($query);
+								$Imagen = $row['Imagen'];
+								$Album = $row['Album'];
+								?>
+								<div class="form-group" id="Div-Imagen">
+									<label for="Nombre" class="col-sm-4 control-label">Imagen</label>
+									<div class="col-sm-8">
+										<input type="file" class="form-control-file" id="Imagen" name="Imagen" data-max-size="10240" accept="image/x-png,image/jpg,image/jpeg">
+										<p class="text-muted">Tamaño Maximo 2Mb</p>	
+										<br>
+									</div>
+									<div class="col-md-offset-2 col-md-8 ">
+										<img src='data:image/jpg;base64,<?php echo $Imagen; ?>' class='img-thumbnail'  alt="Imagen" />
+									</div> 	
+								</div> 	
+								<div class="form-group">
+									<div class="col-sm-8">
+									<input type="text" class="form-control hidden" id="Id" name="Id"  value="<?php echo $Id;?>" > 
+									<input type="text" class="form-control hidden" id="Tipo" name="Tipo"  value="AlbumD" > 
+									</div>
+								</div>
+								<div id="resultados_Objeto"></div>
+								<div class="modal-footer">
+								<button type="button" class="btn btn-default" onclick="ConfigurarObjeto(<?php echo $Album;?>,'Album')">Cerrar</button>
+							<button type="submit" class="btn btn-primary" id="actualizar_datos3B">Guardar</button>
+								</div>
+								<?php
+							}
+						}
 					}
 				}
 			}
