@@ -43,6 +43,7 @@
 						<li class="<?php echo $Inicio;?>"><a href="index.php"><i class="fas fa-home"></i> <span>Paginas</span></a></li>
 						
 					</ul>
+					
 				</nav>
 				
 			</div>

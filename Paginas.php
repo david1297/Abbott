@@ -108,7 +108,9 @@ a, div {
 			<div class="container-fluid">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-		    		<div class="btn-group pull-right">				
+		    		<div class="btn-group pull-right">	
+							
+						<a class="btn btn-default" href="../BuenosMomentos/index.php?Id=<?php echo $Id;?>" target="_blank"><i class="fas fa-binoculars"></i> <span>Vista Previa</span></a>
 							<button type="button" class="btn btn-default" id="Configurarcion" onclick="ConfigurarPagina(<?php echo $Id; ?>)">
 								<span class="fas fa-cogs"></span> Configuracion
 							</button>

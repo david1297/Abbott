@@ -69,6 +69,32 @@ if (empty($_GET['Id'])){
 							} else {
 								$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
 							}
+						}else{
+							if($Tipo=='Album'){
+								$sql =  "DELETE FROM Album  where Id = $Id;";
+								$query_update = mysqli_query($con,$sql);
+								if ($query_update) {
+									$sql =  "DELETE FROM AlbumD  where Album = $Id;";
+									$query_update = mysqli_query($con,$sql);
+									if ($query_update) {
+										$messages = "Los Datos Se Han Eliminado Con Exito.";
+									} else {
+										$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
+									}
+								} else {
+									$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
+								}
+							}else{
+								if($Tipo=='AlbumD'){
+									$sql =  "DELETE FROM AlbumD  where Id = $Id;";
+									$query_update = mysqli_query($con,$sql);
+									if ($query_update) {
+										$messages = "Los Datos Se Han Eliminado Con Exito.";
+									} else {
+										$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
+									}
+								}
+							}
 						}
 					}
 				}

@@ -7,6 +7,14 @@
 @font-face {font-family: Georgia Black;src: url(Georgia/GeorgiaPro-Black.ttf);}
 @font-face {font-family: Georgia Thin;src: url(Georgia/georgiaz.ttf);}
 
+
+@font-face {font-family: Calibri ;src: url(Calibri/calibri.ttf);}
+@font-face {font-family: Calibri Bold;src: url(Calibri/calibrib.ttf);}
+@font-face {font-family: Calibri Italic;src: url(Calibri/calibrii.ttf);}
+@font-face {font-family: Calibri Light;src: url(Calibri/calibril.ttf);}
+@font-face {font-family: Calibri Light Italic;src: url(Calibri/calibrili.ttf);}
+@font-face {font-family: Calibri Bold Italic;src: url(Calibri/calibriz.ttf);}
+
 .BrandonBold{font-family: Brandon Bold;}
 .BrandonLight{font-family: Brandon Light;}
 .BrandonBlack{font-family: Brandon Black;}
@@ -15,6 +23,13 @@
 .GeorgiaLigh{font-family: Georgia Ligh;}
 .GeorgiaBlack{font-family:Georgia Black;}
 .GeorgiaThin{font-family:  Georgia Thin;}
+
+.Calibri{font-family:  Calibri ;}
+.CalibriBold{font-family:  Calibri Bold;}
+.CalibriItalic{font-family:  Calibri Italic;}
+.CalibriLight{font-family:  Calibri Light;}
+.CalibriLightItalic{font-family:  Calibri Light Italic;}
+.CalibriBoldItalic{font-family:  Calibri Bold Italic;}
 
 #ConfiguracionObjeto {
   padding-right: 0px;
