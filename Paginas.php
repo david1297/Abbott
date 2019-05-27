@@ -246,7 +246,7 @@ $( "#Editar_Pagina" ).submit(function( event ) {
 function CargarSessiones(){
 	var Id = document.getElementById('Id').value;
 	$.ajax({
-	url:'Componentes/Ajax/Cargar_Session.php?Id='+Id,
+	url:'Componentes/Ajax/Cargar_Sessiones.php?Id='+Id,
 		 beforeSend: function(objeto){
 			$('#resultados_ajax').html('<img src="./assets/img/ajax-loader.gif"> Cargando...');
 	  },
@@ -394,7 +394,44 @@ function Eliminar_SessionD(TipoS,Lado,Session,TipoO,IdO){
    });
    event.preventDefault();
 }
+function MoverSession(Session,Direccion,TipoS){
+	var Id = document.getElementById('Id').value;
 
+	$.ajax({
+	url:'Componentes/Ajax/Ordenar_Session.php?Session='+Session+'&Direccion='+Direccion+'&Pagina='+Id+'&TipoS='+TipoS,
+		 beforeSend: function(objeto){
+			$('#loader').html('<img src="./assets/img/ajax-loader.gif"> Cargando...');
+	  },
+		success:function(data){
+
+
+			CargarSessiones();
+		}
+	})
+
+}
+function MoverSessionD(TipoS,Linea,Direccion,Session){
+	$.ajax({
+	url:'Componentes/Ajax/Ordenar_Objetos.php?TipoS='+TipoS+'&Session='+Session+'&Direccion='+Direccion+'&Linea='+Linea,
+		 beforeSend: function(objeto){
+			$('#loader').html('<img src="./assets/img/ajax-loader.gif"> Cargando...');
+	  },
+		success:function(data){
+			CargarSession(TipoS,Session);
+		}
+	})
+
+}
+function CargarSession(TipoS,Session){
+	$.ajax({
+	url:'Componentes/Ajax/Cargar_Session.php?TipoS='+TipoS+'&Session='+Session,
+		 beforeSend: function(objeto){
+	  },
+		success:function(data){   
+		   $("#Tipo"+TipoS+"-"+Session).html(data);	 
+		}
+	})
+}
 
 
 
