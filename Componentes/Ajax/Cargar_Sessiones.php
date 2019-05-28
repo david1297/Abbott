@@ -61,7 +61,7 @@
 										<button type="button" class="btn btn-outline-secondary " id="Abajo" onclick="MoverSessionD(1,<?php echo $SessionD;?>,'Abajo',<?php echo $Session;?>)">
 											<i class="fas fa-chevron-down"></i>
 										</button>
-										<button type="button" class="btn btn-outline-danger  " onclick="Eliminar_SessionD(1,'I',<?php echo $SessionD;?>,'Titulo',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+										<button type="button" class="btn btn-outline-danger  " onclick="Eliminar_SessionD(1,'I',<?php echo $SessionD;?>,'Titulo',<?php echo $Objeto;?>,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
 									</div>
 								</div>
 							</div>
@@ -81,7 +81,7 @@
 											<button type="button" class="btn btn-outline-secondary " id="Abajo" onclick="MoverSessionD(1,<?php echo $SessionD;?>,'Abajo',<?php echo $Session;?>)">
 												<i class="fas fa-chevron-down"></i>
 											</button>
-											<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(1,'I',<?php echo $SessionD;?>,'Parrafo',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+											<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(1,'I',<?php echo $SessionD;?>,'Parrafo',<?php echo $Objeto;?>,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
 										</div>
 									</div>
 								</div>
@@ -101,7 +101,7 @@
 												<button type="button" class="btn btn-outline-secondary " id="Abajo" onclick="MoverSessionD(1,<?php echo $SessionD;?>,'Abajo',<?php echo $Session;?>)">
 													<i class="fas fa-chevron-down"></i>
 												</button>
-												<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(1,'I',<?php echo $SessionD;?>,'Imagen',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+												<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(1,'I',<?php echo $SessionD;?>,'Imagen',<?php echo $Objeto;?>,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
 											</div>
 										</div>
 									</div>
@@ -121,7 +121,7 @@
 													<button type="button" class="btn btn-outline-secondary " id="Abajo" onclick="MoverSessionD(1,<?php echo $SessionD;?>,'Abajo',<?php echo $Session;?>)">
 														<i class="fas fa-chevron-down"></i>
 													</button>
-													<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(1,'I',<?php echo $SessionD;?>,'Video',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+													<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(1,'I',<?php echo $SessionD;?>,'Video',<?php echo $Objeto;?>,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
 												</div>
 											</div>
 										</div>
@@ -141,7 +141,7 @@
 														<button type="button" class="btn btn-outline-secondary " id="Abajo" onclick="MoverSessionD(1,<?php echo $SessionD;?>,'Abajo',<?php echo $Session;?>)">
 															<i class="fas fa-chevron-down"></i>
 														</button>
-														<button type="button" class="btn btn-outline-danger" onclick="Eliminar_SessionD(1,'I',<?php echo $SessionD;?>,'Carrusel',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+														<button type="button" class="btn btn-outline-danger" onclick="Eliminar_SessionD(1,'I',<?php echo $SessionD;?>,'Carrusel',<?php echo $Objeto;?>,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
 													</div>
 												</div>
 											</div>
@@ -161,7 +161,7 @@
 															<button type="button" class="btn btn-outline-secondary " id="Abajo" onclick="MoverSessionD(1,<?php echo $SessionD;?>,'Abajo',<?php echo $Session;?>)">
 																<i class="fas fa-chevron-down"></i>
 															</button>
-															<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(1,'I',<?php echo $SessionD;?>,'Album',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+															<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(1,'I',<?php echo $SessionD;?>,'Album',<?php echo $Objeto;?>,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
 														</div>
 													</div>
 												</div>
@@ -242,7 +242,7 @@
 									<div class="col-md-1">
 										<div class="btn-group pull-right">
 											
-											<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(2,'I',<?php echo $Linea;?>,'Titulo',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+											<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(2,'I',<?php echo $Linea;?>,'Titulo',<?php echo $Objeto;?>,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
 										</div>
 									</div>
 								</div>
@@ -258,7 +258,7 @@
 										</div>
 										<div class="col-md-1">
 											<div class="btn-group pull-right">
-												<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(2,'I',<?php echo $Linea;?>,'Parrafo',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+												<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(2,'I',<?php echo $Linea;?>,'Parrafo',<?php echo $Objeto;?>,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
 											</div>
 										</div>
 									</div>
@@ -274,7 +274,7 @@
 											</div>
 											<div class="col-md-1">
 												<div class="btn-group pull-right">
-													<button type="button" class="btn btn-outline-danger btn-block" onclick="Eliminar_SessionD(2,'I',<?php echo $Linea;?>,'Imagen',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+													<button type="button" class="btn btn-outline-danger btn-block" onclick="Eliminar_SessionD(2,'I',<?php echo $Linea;?>,'Imagen',<?php echo $Objeto;?>,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
 												</div>
 											</div>
 										</div>
@@ -291,7 +291,7 @@
 												<div class="col-md-1">
 													<div class="btn-group pull-right">
 														
-														<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(2,'I',<?php echo $Linea;?>,'Video',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+														<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(2,'I',<?php echo $Linea;?>,'Video',<?php echo $Objeto;?>,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
 													</div>
 												</div>
 											</div>
@@ -325,7 +325,7 @@
 														<div class="col-md-1">
 															<div class="btn-group pull-right">
 																
-																<button type="button" class="btn btn-outline-danger" onclick="Eliminar_SessionD(2,'I',<?php echo $Linea;?>,'Album',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+																<button type="button" class="btn btn-outline-danger" onclick="Eliminar_SessionD(2,'I',<?php echo $Linea;?>,'Album',<?php echo $Objeto;?>,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
 															</div>
 														</div>
 													</div>
@@ -363,7 +363,7 @@
 											<button type="button" class="btn btn-outline-secondary " id="Abajo" onclick="MoverSessionD(2,<?php echo $Linea;?>,'Abajo',<?php echo $Session;?>)">
 												<i class="fas fa-chevron-down"></i>
 											</button>
-											<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(2,'D',<?php echo $Linea;?>,'Titulo',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+											<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(2,'D',<?php echo $Linea;?>,'Titulo',<?php echo $Objeto;?>,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
 										</div>
 									</div>
 								</div>
@@ -385,7 +385,7 @@
 												<button type="button" class="btn btn-outline-secondary " id="Abajo" onclick="MoverSessionD(2,<?php echo $Linea;?>,'Abajo',<?php echo $Session;?>)">
 													<i class="fas fa-chevron-down"></i>
 												</button>
-												<button type="button" class="btn btn-outline-danger" onclick="Eliminar_SessionD(2,'D',<?php echo $Linea;?>,'Parrafo',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+												<button type="button" class="btn btn-outline-danger" onclick="Eliminar_SessionD(2,'D',<?php echo $Linea;?>,'Parrafo',<?php echo $Objeto;?>,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
 											</div>
 										</div>
 									</div>
@@ -407,7 +407,7 @@
 													<button type="button" class="btn btn-outline-secondary " id="Abajo" onclick="MoverSessionD(2,<?php echo $Linea;?>,'Abajo',<?php echo $Session;?>)">
 														<i class="fas fa-chevron-down"></i>
 													</button>
-													<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(2,'D',<?php echo $Linea;?>,'Imagen',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+													<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(2,'D',<?php echo $Linea;?>,'Imagen',<?php echo $Objeto;?>,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
 												</div>
 											</div>
 										</div>
@@ -429,7 +429,7 @@
 														<button type="button" class="btn btn-outline-secondary " id="Abajo" onclick="MoverSessionD(2,<?php echo $Linea;?>,'Abajo',<?php echo $Session;?>)">
 															<i class="fas fa-chevron-down"></i>
 														</button>
-														<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(2,'D',<?php echo $Linea;?>,'Video',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+														<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(2,'D',<?php echo $Linea;?>,'Video',<?php echo $Objeto;?>,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
 													</div>
 												</div>
 											</div>
@@ -451,7 +451,7 @@
 															<button type="button" class="btn btn-outline-secondary " id="Abajo" onclick="MoverSessionD(2,<?php echo $Linea;?>,'Abajo',<?php echo $Session;?>)">
 																<i class="fas fa-chevron-down"></i>
 															</button>
-															<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(2,'D',<?php echo $Linea;?>,'Carrusel',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+															<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(2,'D',<?php echo $Linea;?>,'Carrusel',<?php echo $Objeto;?>,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
 														</div>
 													</div>
 												</div>
@@ -473,7 +473,7 @@
 																<button type="button" class="btn btn-outline-secondary " id="Abajo" onclick="MoverSessionD(2,<?php echo $Linea;?>,'Abajo',<?php echo $Session;?>)">
 																	<i class="fas fa-chevron-down"></i>
 																</button>
-																<button type="button" class="btn btn-outline-danger" onclick="Eliminar_SessionD(2,'D',<?php echo $Linea;?>,'Album',<?php echo $Objeto;?>)"><i class="fas fa-trash-alt"></i></button>
+																<button type="button" class="btn btn-outline-danger" onclick="Eliminar_SessionD(2,'D',<?php echo $Linea;?>,'Album',<?php echo $Objeto;?>,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
 															</div>
 														</div>
 													</div>

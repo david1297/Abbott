@@ -181,7 +181,7 @@ function NuevoObjeto(N){
 		success:function(data){
 	
 			$('#AgregarObjeto').modal('hide');
-			CargarSessiones();
+			CargarSession(Tipo,IdSession);
 		}
 	})
 	
@@ -380,7 +380,7 @@ function EliminarObjeto(IdO,TipoO){
 
 }
 
-function Eliminar_SessionD(TipoS,Lado,Session,TipoO,IdO){
+function Eliminar_SessionD(TipoS,Lado,Session,TipoO,IdO,S){
 	var R =0;
 	$.ajax({
 		url: "Componentes/Ajax/Eliminar_SessionD.php?TipoS="+TipoS+"&Lado="+Lado+"&Session="+Session+"&TipoO="+TipoO+"&IdO="+IdO,
@@ -389,7 +389,7 @@ function Eliminar_SessionD(TipoS,Lado,Session,TipoO,IdO){
 		   success: function(datos){ 
 			R=1;
 			EliminarObjeto(IdO,TipoO);
-			CargarSessiones();
+			CargarSession(TipoS,S);
 		 }	 
    });
    event.preventDefault();
