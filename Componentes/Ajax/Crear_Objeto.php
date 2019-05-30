@@ -106,6 +106,21 @@ require_once ("../../config/conexion.php");
 									if ($query_update) {						
 									}
 								}	
+							}else{
+								if($Tipo == '7'){
+									$sql =  "INSERT INTO Botonera(Descripcion) VALUES ('');";
+									$query_update = mysqli_query($con,$sql);
+									if ($query_update) {
+										$sql="SELECT Max(Id) AS Id FROM Botonera";
+										$query = mysqli_query($con, $sql);
+										$row=mysqli_fetch_array($query);
+										$Elemento= $row['Id'];
+										$sql =  "INSERT INTO seccion1d(Seccion,Tipo,Elemento,Orden) VALUES ($IdSession,'Botonera',$Elemento,$Orden);";
+										$query_update = mysqli_query($con,$sql);
+										if ($query_update) {						
+										}
+									}	
+								}
 							}
 						}
 					}
@@ -257,6 +272,30 @@ require_once ("../../config/conexion.php");
 											}
 										}
 									}	
+								}else{
+									if($Tipo == '7'){
+										$sql =  "INSERT INTO botonera(Descripcion) VALUES ('');";
+										$query_update = mysqli_query($con,$sql);
+										if ($query_update) {
+											$sql="SELECT Max(Id) AS Id FROM botonera";
+											$query = mysqli_query($con, $sql);
+											$row=mysqli_fetch_array($query);
+											$Elemento= $row['Id'];
+											if ($Lado=='I'){
+												$sql =  "INSERT INTO seccion2d(Seccion,Tipo1,Elemento1,Orden) VALUES ($IdSession,'Botonera',$Elemento,$Orden);";
+												$query_update = mysqli_query($con,$sql);
+												if ($query_update) {						
+												}
+											}else{
+												if ($Lado=='D'){
+													$sql =  "INSERT INTO seccion2d(Seccion,Tipo2,Elemento2,Orden) VALUES ($IdSession,'Botonera',$Elemento,$Orden);";
+													$query_update = mysqli_query($con,$sql);
+													if ($query_update) {						
+													}
+												}
+											}
+										}	
+									}
 								}
 							}
 						}
@@ -378,6 +417,54 @@ require_once ("../../config/conexion.php");
 										}
 									}
 								}	
+							}else{
+								if($Tipo == '6'){
+									$sql =  "INSERT INTO Album(Descripcion) VALUES ('');";
+									$query_update = mysqli_query($con,$sql);
+									if ($query_update) {
+										$sql="SELECT Max(Id) AS Id FROM Album";
+										$query = mysqli_query($con, $sql);
+										$row=mysqli_fetch_array($query);
+										$Elemento= $row['Id'];
+										if ($Lado=='I'){
+											$sql =  "UPDATE seccion2d SET Tipo1 ='Album' ,Elemento1=$Elemento WHERE ID= $IdObjeto;";
+											$query_update = mysqli_query($con,$sql);
+											if ($query_update) {						
+											}
+										}else{
+											if ($Lado=='D'){
+												$sql =  "UPDATE seccion2d SET Tipo2 ='Album' ,Elemento2=$Elemento WHERE ID= $IdObjeto;";
+												$query_update = mysqli_query($con,$sql);
+												if ($query_update) {						
+												}
+											}
+										}
+									}	
+								}else{
+									if($Tipo == '7'){
+										$sql =  "INSERT INTO Botonera(Descripcion) VALUES ('');";
+										$query_update = mysqli_query($con,$sql);
+										if ($query_update) {
+											$sql="SELECT Max(Id) AS Id FROM Botonera";
+											$query = mysqli_query($con, $sql);
+											$row=mysqli_fetch_array($query);
+											$Elemento= $row['Id'];
+											if ($Lado=='I'){
+												$sql =  "UPDATE seccion2d SET Tipo1 ='Botonera' ,Elemento1=$Elemento WHERE ID= $IdObjeto;";
+												$query_update = mysqli_query($con,$sql);
+												if ($query_update) {						
+												}
+											}else{
+												if ($Lado=='D'){
+													$sql =  "UPDATE seccion2d SET Tipo2 ='Botonera' ,Elemento2=$Elemento WHERE ID= $IdObjeto;";
+													$query_update = mysqli_query($con,$sql);
+													if ($query_update) {						
+													}
+												}
+											}
+										}	
+									}
+								}
 							}
 						}
 					}
@@ -412,6 +499,22 @@ require_once ("../../config/conexion.php");
 		$query_update = mysqli_query($con,$sql);
 		if ($query_update) {
 			$sql="SELECT Max(Id) AS Id FROM AlbumD";
+			$query = mysqli_query($con, $sql);
+			$row=mysqli_fetch_array($query);
+			echo $row['Id'];		
+		}
+	}
+	if (isset($_GET['Tipo3'])){
+		$Botonera=$_GET['Botonera'];
+		$sql="SELECT Max(Orden) AS Orden FROM BotoneraD where Botonera = ".$Botonera."; ";
+		$query = mysqli_query($con, $sql);
+		$row=mysqli_fetch_array($query);
+		$Orden= $row['Orden'];
+		$Orden=$Orden+1;
+		$sql =  "INSERT INTO BotoneraD (Botonera, Orden,BGrosor,RBorder) VALUES ($Botonera, $Orden,1,0);";
+		$query_update = mysqli_query($con,$sql);
+		if ($query_update) {
+			$sql="SELECT Max(Id) AS Id FROM BotoneraD";
 			$query = mysqli_query($con, $sql);
 			$row=mysqli_fetch_array($query);
 			echo $row['Id'];		

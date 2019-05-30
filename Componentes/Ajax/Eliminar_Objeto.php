@@ -93,6 +93,32 @@ if (empty($_GET['Id'])){
 									} else {
 										$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
 									}
+								}else{
+									if($Tipo=='Album'){
+										$sql =  "DELETE FROM Botonera  where Id = $Id;";
+										$query_update = mysqli_query($con,$sql);
+										if ($query_update) {
+											$sql =  "DELETE FROM Botonerad  where Botonera = $Id;";
+											$query_update = mysqli_query($con,$sql);
+											if ($query_update) {
+												$messages = "Los Datos Se Han Eliminado Con Exito.";
+											} else {
+												$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
+											}
+										} else {
+											$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
+										}
+									}else{
+										if($Tipo=='BotoneraD'){
+											$sql =  "DELETE FROM Botonerad  where Id = $Id;";
+											$query_update = mysqli_query($con,$sql);
+											if ($query_update) {
+												$messages = "Los Datos Se Han Eliminado Con Exito.";
+											} else {
+												$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
+											}
+										}
+									}
 								}
 							}
 						}

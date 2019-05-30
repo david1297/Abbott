@@ -210,6 +210,18 @@ function AgregarAlbum(N){
 		}
 	})
 }
+function AgregarBotonera(N){
+	$.ajax({
+	url:'Componentes/Ajax/Crear_Objeto.php?Tipo3=Botonera&Botonera='+N,
+		 beforeSend: function(objeto){
+			$('#loader').html('<img src="./assets/img/ajax-loader.gif"> Cargando...');
+	  },
+		success:function(data){
+
+			ConfigurarObjeto(data,'BotoneraD');
+		}
+	})
+}
 function ConfigurarPagina(Pagina){
 	
 	$('#ConfiguracionPagina').modal('show');
@@ -368,7 +380,6 @@ function nombre(fic) {
   $('#Video').val(fic[fic.length-1]);
 }
 function EliminarObjeto(IdO,TipoO){
-	
 	  $.ajax({
 		url: "Componentes/Ajax/Eliminar_Objeto.php?Id="+IdO+"&Tipo="+TipoO,
 			  beforeSend: function(objeto){

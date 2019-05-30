@@ -3,6 +3,7 @@ $session_id= session_id();
 require_once ("../../config/db.php");
 require_once ("../../config/conexion.php");
 
+$destino="C:/xampp/htdocs/Abbott/Imagenes";
 if (empty($_POST['Id'])){
 	$errors[] = "El Id  Vacio";
 } elseif (empty($_POST['Tipo'])){
@@ -15,9 +16,10 @@ if (empty($_POST['Id'])){
 		$Color = mysqli_real_escape_string($con,(strip_tags($_POST["Color"],ENT_QUOTES)));
 		$Tamaño = mysqli_real_escape_string($con,(strip_tags($_POST["Tamaño"],ENT_QUOTES)));
 		$TipoGrafia = mysqli_real_escape_string($con,(strip_tags($_POST["TipoGrafia"],ENT_QUOTES)));
+		$Justificacion = mysqli_real_escape_string($con,(strip_tags($_POST["Justificacion"],ENT_QUOTES)));
 
 	
-		$sql =  "UPDATE titulos SET Texto='$Texto',Color='$Color',Tamaño='$Tamaño' ,TipoGrafia='$TipoGrafia' 
+		$sql =  "UPDATE titulos SET Texto='$Texto',Color='$Color',Tamaño='$Tamaño' ,TipoGrafia='$TipoGrafia',Justificacion='$Justificacion'  
 		where Id = $Id;";
 		$query_update = mysqli_query($con,$sql);
 		if ($query_update) {
@@ -27,12 +29,12 @@ if (empty($_POST['Id'])){
 		}
 	} else{
 		if($Tipo=='Parrafo'){
-			$Texto = mysqli_real_escape_string($con,(strip_tags($_POST["Texto"],ENT_QUOTES)));
+			$Texto = $_POST["Texto"];
 			$Color = mysqli_real_escape_string($con,(strip_tags($_POST["Color"],ENT_QUOTES)));
 			$Tamaño = mysqli_real_escape_string($con,(strip_tags($_POST["Tamaño"],ENT_QUOTES)));
 			$TipoGrafia = mysqli_real_escape_string($con,(strip_tags($_POST["TipoGrafia"],ENT_QUOTES)));
 			$Justificacion = mysqli_real_escape_string($con,(strip_tags($_POST["Justificacion"],ENT_QUOTES)));
-	
+			
 		
 			$sql =  "UPDATE parrafos SET Texto='$Texto',Color='$Color',Tamaño='$Tamaño' ,TipoGrafia='$TipoGrafia' 
 			,Justificacion='$Justificacion' 
@@ -139,6 +141,37 @@ if (empty($_POST['Id'])){
 									} else {
 										$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
 									}	
+								}
+							}else{
+								if($Tipo=='BotoneraD'){
+									if(!empty($_FILES['Imagen']['name'])){
+										$nombre =$_FILES['Imagen']['name'];
+									
+										move_uploaded_file($_FILES['Imagen']['tmp_name'], $destino.'/'.$_FILES['Imagen']['name']);	
+										
+										$sql =  "UPDATE BotoneraD SET Imagen='$nombre' where Id = $Id;";
+										$query_update = mysqli_query($con,$sql);
+										if ($query_update) {
+											$messages = "Los Datos Se Han Guardado Con Exito.";
+										} else {
+											$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
+										}	
+									}
+									$Enlace = mysqli_real_escape_string($con,(strip_tags($_POST["Enlace"],ENT_QUOTES)));
+									$BColor = mysqli_real_escape_string($con,(strip_tags($_POST["BColor"],ENT_QUOTES)));
+									$RBorder = mysqli_real_escape_string($con,(strip_tags($_POST["RBorder"],ENT_QUOTES)));
+									$BGrosor = mysqli_real_escape_string($con,(strip_tags($_POST["BGrosor"],ENT_QUOTES)));
+									$Descripcion = mysqli_real_escape_string($con,(strip_tags($_POST["Descripcion"],ENT_QUOTES)));
+									$sql =  "UPDATE BotoneraD SET Enlace='$Enlace',BColor='$BColor',RBorder=$RBorder,BGrosor=$BGrosor,Descripcion='$Descripcion' where Id = $Id;";
+									$query_update = mysqli_query($con,$sql);
+									if ($query_update) {
+										$messages = "Los Datos Se Han Guardado Con Exito.";
+									} else {
+										$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
+									}	
+
+
+
 								}
 							}
 						}

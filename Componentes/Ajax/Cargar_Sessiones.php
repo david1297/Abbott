@@ -166,6 +166,27 @@
 													</div>
 												</div>
 												<?php
+											}else{
+												if ($row1['Tipo'] =='Botonera'){
+													?>
+													<div class="form-group row">
+														<div class="col-md-10">
+															<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Botonera')"><i class="fas fa-fighter-jet"></i> Botonera</button>
+														</div>
+														<div class="col-md-2">
+															<div class="btn-group pull-right">
+																<button type="button" class="btn btn-outline-secondary " id="Arriba" onclick="MoverSessionD(1,<?php echo $SessionD;?>,'Arriba',<?php echo $Session;?>)">
+																	<i class="fas fa-chevron-up"></i>
+																</button>	
+																<button type="button" class="btn btn-outline-secondary " id="Abajo" onclick="MoverSessionD(1,<?php echo $SessionD;?>,'Abajo',<?php echo $Session;?>)">
+																	<i class="fas fa-chevron-down"></i>
+																</button>
+																<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(1,'I',<?php echo $SessionD;?>,'Botonera',<?php echo $Objeto;?>,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
+															</div>
+														</div>
+													</div>
+													<?php
+												}
 											}
 										}
 									}
@@ -332,15 +353,33 @@
 												</div>
 												<?php
 											}else{
-												?>
-											<div class="col-md-6">
-												<div class="form-group row">
-													<div class="col-md-12">
-														<button type="button" class="btn btn-default  btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'I',<?php echo $Session;?>,<?php echo $Linea;?>)"><i class="fas fa-plus" ></i></button>
+												if ($row1['Tipo1'] =='Botonera'){
+													?>
+													<div class="col-md-6">
+														<div class="form-group row">
+															<div class="col-md-11">
+																<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Botonera')"><i class="fas fa-fighter-jet"></i> Botonera</button>
+															</div>
+															<div class="col-md-1">
+																<div class="btn-group pull-right">
+																	
+																	<button type="button" class="btn btn-outline-danger" onclick="Eliminar_SessionD(2,'I',<?php echo $Linea;?>,'Botonera',<?php echo $Objeto;?>,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
+																</div>
+															</div>
+														</div>
 													</div>
-												</div>
-											</div>
-											<?php
+													<?php
+												}else{
+													?>
+													<div class="col-md-6">
+														<div class="form-group row">
+															<div class="col-md-12">
+																<button type="button" class="btn btn-default  btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'I',<?php echo $Session;?>,<?php echo $Linea;?>)"><i class="fas fa-plus" ></i></button>
+															</div>
+														</div>
+													</div>
+													<?php
+												}
 											}
 										}
 									}
@@ -463,7 +502,7 @@
 												<div class="col-md-6">
 													<div class="form-group row">
 														<div class="col-md-9">
-															<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Album')"><i class="fas fa-images"></i> Album</button>
+															<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Album')"><i class="fas fa-book"></i> Album</button>
 														</div>
 														<div class="col-md-3">
 															<div class="btn-group pull-right">
@@ -480,21 +519,41 @@
 												</div>
 												<?php
 											}else{
-												?>
-											<div class="col-md-6">
-												<div class="form-group row">
-													<div class="col-md-12">
-														<button type="button" class="btn btn-default  btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'D',<?php echo $Session;?>,<?php echo $Linea;?>)"><i class="fas fa-plus" ></i></button>
-													</div>	
-												</div>
-											</div>
-											<?php	
-											}
-											
+												if ($row1['Tipo2'] =='Botonera'){
+													?>
+													<div class="col-md-6">
+														<div class="form-group row">
+															<div class="col-md-9">
+																<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Botonera')"><i class="fas fa-fighter-jet"></i> Botonera</button>
+															</div>
+															<div class="col-md-3">
+																<div class="btn-group pull-right">
+																	<button type="button" class="btn btn-outline-secondary " id="Arriba" onclick="MoverSessionD(2,<?php echo $Linea;?>,'Arriba',<?php echo $Session;?>)">
+																		<i class="fas fa-chevron-up"></i>
+																	</button>	
+																	<button type="button" class="btn btn-outline-secondary " id="Abajo" onclick="MoverSessionD(2,<?php echo $Linea;?>,'Abajo',<?php echo $Session;?>)">
+																		<i class="fas fa-chevron-down"></i>
+																	</button>
+																	<button type="button" class="btn btn-outline-danger" onclick="Eliminar_SessionD(2,'D',<?php echo $Linea;?>,'Botonera',<?php echo $Objeto;?>,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
+																</div>
+															</div>
+														</div>
+													</div>
+													<?php
+												}else{
+													?>
+													<div class="col-md-6">
+														<div class="form-group row">
+															<div class="col-md-12">
+																<button type="button" class="btn btn-default  btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'D',<?php echo $Session;?>,<?php echo $Linea;?>)"><i class="fas fa-plus" ></i></button>
+															</div>	
+														</div>
+													</div>
+													<?php
+												}
+											}	
 										}
 									}	
-										
-										
 								}
 							}
 						}
