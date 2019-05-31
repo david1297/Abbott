@@ -231,7 +231,7 @@ if ($TipoS =='2'){
 						</div>
 						<div class="col-md-6">
 							<div class="form-group row">
-								<div class="col-md-12">
+								<div class="col-md-12 " style=' padding-left: 0px;'>
 									<button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'D',<?php echo $Session;?>,0)">
 										<i class="fas fa-plus"></i>
 									</button>
@@ -382,10 +382,10 @@ if ($TipoS =='2'){
 							?>
 							<div class="col-md-6">
 								<div class="form-group row">
-									<div class="col-md-9">
+									<div class="col-md-9" style=' padding-left: 0px;'>
 										<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Titulo')"><i class="fas fa-text-height"></i>	 Titulo</button>
 									</div>
-									<div class="col-md-3">
+									<div class="col-md-3" style=' padding-left: 0px;'>
 										<div class="btn-group pull-right">
 											<button type="button" class="btn btn-outline-secondary " id="Arriba" onclick="MoverSessionD(2,<?php echo $Linea;?>,'Arriba',<?php echo $Session;?>)">
 												<i class="fas fa-chevron-up"></i>
@@ -404,10 +404,10 @@ if ($TipoS =='2'){
 								?>
 								<div class="col-md-6">
 									<div class="form-group row">
-										<div class="col-md-9">
+										<div class="col-md-9" style=' padding-left: 0px;'>
 											<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Parrafo')"><i class="fas fa-stream"></i>	 Parrafo</button>
 										</div>
-										<div class="col-md-3">
+										<div class="col-md-3" style=' padding-left: 0px;'>
 											<div class="btn-group pull-right">
 												<button type="button" class="btn btn-outline-secondary " id="Arriba" onclick="MoverSessionD(2,<?php echo $Linea;?>,'Arriba',<?php echo $Session;?>)">
 													<i class="fas fa-chevron-up"></i>
@@ -426,10 +426,10 @@ if ($TipoS =='2'){
 									?>
 									<div class="col-md-6">
 										<div class="form-group row">
-											<div class="col-md-9">
+											<div class="col-md-9" style=' padding-left: 0px;'>
 												<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Imagen')"><i class="fas fa-image"></i> Imagen</button>
 											</div>
-											<div class="col-md-3">
+											<div class="col-md-3" style=' padding-left: 0px;'>
 												<div class="btn-group pull-right">
 													<button type="button" class="btn btn-outline-secondary " id="Arriba" onclick="MoverSessionD(2,<?php echo $Linea;?>,'Arriba',<?php echo $Session;?>)">
 														<i class="fas fa-chevron-up"></i>
@@ -448,10 +448,10 @@ if ($TipoS =='2'){
 										?>
 										<div class="col-md-6">
 											<div class="form-group row">
-												<div class="col-md-9">
+												<div class="col-md-9" style=' padding-left: 0px;'>
 													<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Video')"><i class="fas fa-video"></i> Video</button>
 												</div>
-												<div class="col-md-3">
+												<div class="col-md-3" style=' padding-left: 0px;'>
 													<div class="btn-group pull-right">
 														<button type="button" class="btn btn-outline-secondary " id="Arriba" onclick="MoverSessionD(2,<?php echo $Linea;?>,'Arriba',<?php echo $Session;?>)">
 															<i class="fas fa-chevron-up"></i>
@@ -470,10 +470,10 @@ if ($TipoS =='2'){
 											?>
 											<div class="col-md-6">
 												<div class="form-group row">
-													<div class="col-md-9">
+													<div class="col-md-9" style=' padding-left: 0px;'>
 														<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Carrusel')"><i class="fas fa-images"></i> Carrusel</button>
 													</div>
-													<div class="col-md-3">
+													<div class="col-md-3" style=' padding-left: 0px;'>
 														<div class="btn-group pull-right">
 															<button type="button" class="btn btn-outline-secondary " id="Arriba" onclick="MoverSessionD(2,<?php echo $Linea;?>,'Arriba',<?php echo $Session;?>)">
 																<i class="fas fa-chevron-up"></i>
@@ -492,10 +492,10 @@ if ($TipoS =='2'){
 												?>
 												<div class="col-md-6">
 													<div class="form-group row">
-														<div class="col-md-9">
+														<div class="col-md-9" style=' padding-left: 0px;'>
 															<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Album')"><i class="fas fa-book"></i> Album</button>
 														</div>
-														<div class="col-md-3">
+														<div class="col-md-3" style=' padding-left: 0px;'>
 															<div class="btn-group pull-right">
 																<button type="button" class="btn btn-outline-secondary " id="Arriba" onclick="MoverSessionD(2,<?php echo $Linea;?>,'Arriba',<?php echo $Session;?>)">
 																	<i class="fas fa-chevron-up"></i>
@@ -514,10 +514,10 @@ if ($TipoS =='2'){
 													?>
 													<div class="col-md-6">
 														<div class="form-group row">
-															<div class="col-md-9">
+															<div class="col-md-9" style=' padding-left: 0px;'>
 																<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Botonera')"><i class="fas fa-fighter-jet"></i> Botonera</button>
 															</div>
-															<div class="col-md-3">
+															<div class="col-md-3" style=' padding-left: 0px;'>
 																<div class="btn-group pull-right">
 																	<button type="button" class="btn btn-outline-secondary " id="Arriba" onclick="MoverSessionD(2,<?php echo $Linea;?>,'Arriba',<?php echo $Session;?>)">
 																		<i class="fas fa-chevron-up"></i>
@@ -535,7 +535,7 @@ if ($TipoS =='2'){
 													?>
 													<div class="col-md-6">
 														<div class="form-group row">
-															<div class="col-md-12">
+															<div class="col-md-12" style=' padding-left: 0px;'>
 																<button type="button" class="btn btn-default  btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'D',<?php echo $Session;?>,<?php echo $Linea;?>)"><i class="fas fa-plus" ></i></button>
 															</div>	
 														</div>
