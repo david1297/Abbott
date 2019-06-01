@@ -299,6 +299,7 @@ if($Tipo=='Titulo'){
 					$query = mysqli_query($con, $sql);
 					$row=mysqli_fetch_array($query);
 					$Controles = $row['Controles'];
+					$Tamaño = $row['Tamaño'];
 					?> 	
 					<div class="col-sm-2">
 						<button type="button" class="btn btn-default  btn-block" onclick="AgregarCarrusel(<?php echo $Id;?>)"><i class="fas fa-plus"></i>Agregar</button>
@@ -307,8 +308,8 @@ if($Tipo=='Titulo'){
 					<br>
 					<div class="row">
 						<div class="form-group">
-							<label class="col-md-1 control-label" for="Principal">Controles</label>
-							<div class="col-sm-8">		
+							<label class="col-md-2 control-label" for="Principal">Controles</label>
+							<div class="col-md-2">		
 								<?php
 								if ($Controles =='True'){
 									?>
@@ -322,6 +323,22 @@ if($Tipo=='Titulo'){
 								?>													
 							</div>
 						</div>
+						<div class="form-group ">
+							<label  class="col-md-2 control-label">Tamaño de Pantalla </label>
+							<div class="col-md-2">
+								<select class='form-control' id="Tamaño" name ="Tamaño" placeholder="Tamaño"> 
+									<?php 
+									for ($i = 2; $i <= 12; $i=$i+2) {
+										if($i == $Tamaño){
+											echo '<option value="'.$i.'" selected>'.$i.'%</option>';
+										}else{
+											echo '<option value="'.$i.'">'.$i.'%</option>';
+										}
+									}
+									?>
+								</select>
+							</div>
+						</div> 
 					</div>
 					<?php
 					$sql="SELECT Imagen,Id FROM Carruseld where Carrusel = ".$Id." order by Orden";    
@@ -591,32 +608,35 @@ if($Tipo=='Titulo'){
 								<button type="button" class="btn btn-default  btn-block" onclick="AgregarAlbum(<?php echo $Id;?>)"><i class="fas fa-plus"></i>Agregar</button>
 							</div>
 							<br>
-							<br>					
-							<?php
-							$sql="SELECT Imagen,Id FROM AlbumD where Album = ".$Id." order by Orden";    
-							$query = mysqli_query($con, $sql);
-							while ($row=mysqli_fetch_array($query)){
-								$Cid= $row['Id'];
-								?>
-								<div class="col-md-2">
-									<div class="card border-dark">
-										<div class="card-body">
-											<img src='data:image/jpg;base64,<?php echo $row['Imagen']; ?>' class='img-thumbnail'  alt="Imagen" />
-											<div class="form-group row">
-												<div class="col-md-4">
-													<button type="button" class="btn btn-outline-danger " onclick="EliminarObjeto(<?php echo $Cid;?>,'AlbumD');ConfigurarObjeto(<?php echo $Id;?>,'Album');" ><i class="fas fa-trash-alt"></i></button>   
-												</div>
-												<div class="col-md-8">
-													<button type="button" class="btn btn-outline-secondary btn-block " onclick="ConfigurarObjeto(<?php echo $Cid;?>,'AlbumD')">Editar</button>
+							<br>		
+							<div class="row">			
+								<?php
+								$sql="SELECT Imagen,Id FROM AlbumD where Album = ".$Id." order by Orden";    
+								$query = mysqli_query($con, $sql);
+								while ($row=mysqli_fetch_array($query)){
+									$Cid= $row['Id'];
+									$Imagen= $row['Imagen'];
+									?>
+									<div class="col-md-2">
+										<div class="card border-dark">
+											<div class="card-body">
+												<img src='Imagenes/<?php echo $Imagen; ?>' class='img-thumbnail'  alt="Imagen" />
+												<div class="form-group row">
+													<div class="col-md-4">
+														<button type="button" class="btn btn-outline-danger " onclick="EliminarObjeto(<?php echo $Cid;?>,'AlbumD');ConfigurarObjeto(<?php echo $Id;?>,'Album');" ><i class="fas fa-trash-alt"></i></button>   
+													</div>
+													<div class="col-md-8">
+														<button type="button" class="btn btn-outline-secondary btn-block " onclick="ConfigurarObjeto(<?php echo $Cid;?>,'AlbumD')">Editar</button>
+													</div>
 												</div>
 											</div>
 										</div>
+										<br>
 									</div>
-									<br>
-								</div>
-								<?php
-							}	
+									<?php
+								}	
 							?>
+							</div>
 							<div class="form-group">
 								<div class="col-sm-8">
 									<input type="text" class="form-control hidden" id="Id" name="Id"  value="<?php echo $Id;?>" > 
@@ -644,7 +664,7 @@ if($Tipo=='Titulo'){
 										<br>
 									</div>
 									<div class="col-md-offset-2 col-md-8 ">
-										<img src='data:image/jpg;base64,<?php echo $Imagen; ?>' class='img-thumbnail'  alt="Imagen" />
+										<img src='Imagenes/<?php echo $Imagen; ?>' class='img-thumbnail'  alt="Imagen" />
 									</div> 	
 								</div> 	
 								<div class="form-group">
@@ -720,6 +740,7 @@ if($Tipo=='Titulo'){
 										$BGrosor = $row['BGrosor'];
 										$Descripcion = $row['Descripcion'];
 										$Botonera = $row['Botonera'];
+										$RBorderI = $row['RBorderI'];
 										?>
 										<div class="form-group" id="Div-Imagen">
 											<label for="Nombre" class="col-sm-4 control-label">Imagen</label>
@@ -769,6 +790,22 @@ if($Tipo=='Titulo'){
 															<?php 
 															for ($i = 0; $i <= 50; $i=$i+10) {
 																if($i == $RBorder){
+																	echo '<option value="'.$i.'" selected>'.$i.'%</option>';
+																}else{
+																	echo '<option value="'.$i.'">'.$i.'%</option>';
+																}
+															}
+															?>
+														</select>
+													</div>
+												</div> 
+												<div class="form-group ">
+													<label  class="col-sm-4 control-label">Borde de la imagen</label>
+													<div class="col-md-8 col-sm-8">
+														<select class='form-control' id="RBorderI" name ="RBorderI" placeholder="RBorderI"> 
+															<?php 
+															for ($i = 0; $i <= 50; $i=$i+10) {
+																if($i == $RBorderI){
 																	echo '<option value="'.$i.'" selected>'.$i.'%</option>';
 																}else{
 																	echo '<option value="'.$i.'">'.$i.'%</option>';

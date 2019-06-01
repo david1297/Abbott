@@ -87,7 +87,8 @@ if (empty($_POST['Id'])){
 						}else{
 							$Controles='False';
 						}
-						$sql =  "UPDATE  Carrusel SET Controles='$Controles'  where Id = $Id;";
+						$Tamaño = mysqli_real_escape_string($con,(strip_tags($_POST["Tamaño"],ENT_QUOTES)));
+						$sql =  "UPDATE  Carrusel SET Controles='$Controles',Tamaño=$Tamaño  where Id = $Id;";
 						$query_update = mysqli_query($con,$sql);
 						if ($query_update) {
 							$messages = "Los Datos Se Han Guardado Con Exito.";
@@ -131,19 +132,18 @@ if (empty($_POST['Id'])){
 						}else{
 							if($Tipo=='AlbumD'){
 								if(!empty($_FILES['Imagen']['name'])){
-									$nombre =$_FILES['Imagen']['tmp_name'];
-									$im = file_get_contents($nombre);
-									$imdata = base64_encode($im);
-									$sql =  "UPDATE AlbumD SET Imagen='$imdata' where Id = $Id;";
-									$query_update = mysqli_query($con,$sql);
-									if ($query_update) {
-										$messages = "Los Datos Se Han Guardado Con Exito.";
-									} else {
-										$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
-									}	
+									$nombre =$_FILES['Imagen']['name'];
+										move_uploaded_file($_FILES['Imagen']['tmp_name'], $destino.'/'.$_FILES['Imagen']['name']);	
+										$sql =  "UPDATE AlbumD SET Imagen='$nombre' where Id = $Id;";
+										$query_update = mysqli_query($con,$sql);
+										if ($query_update) {
+											$messages = "Los Datos Se Han Guardado Con Exito.";
+										} else {
+											$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
+										}	
 								}
 							}else{
-								if($Tipo=='BotoneraD'){
+								if($Tipo=='BotoneraD'){	
 									if(!empty($_FILES['Imagen']['name'])){
 										$nombre =$_FILES['Imagen']['name'];
 									
@@ -162,7 +162,8 @@ if (empty($_POST['Id'])){
 									$RBorder = mysqli_real_escape_string($con,(strip_tags($_POST["RBorder"],ENT_QUOTES)));
 									$BGrosor = mysqli_real_escape_string($con,(strip_tags($_POST["BGrosor"],ENT_QUOTES)));
 									$Descripcion = mysqli_real_escape_string($con,(strip_tags($_POST["Descripcion"],ENT_QUOTES)));
-									$sql =  "UPDATE BotoneraD SET Enlace='$Enlace',BColor='$BColor',RBorder=$RBorder,BGrosor=$BGrosor,Descripcion='$Descripcion' where Id = $Id;";
+									$RBorderI = mysqli_real_escape_string($con,(strip_tags($_POST["RBorderI"],ENT_QUOTES)));
+									$sql =  "UPDATE BotoneraD SET Enlace='$Enlace',BColor='$BColor',RBorder=$RBorder,RBorderI=$RBorderI,BGrosor=$BGrosor,Descripcion='$Descripcion' where Id = $Id;";
 									$query_update = mysqli_query($con,$sql);
 									if ($query_update) {
 										$messages = "Los Datos Se Han Guardado Con Exito.";
