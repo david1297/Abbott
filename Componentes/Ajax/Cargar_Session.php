@@ -24,6 +24,7 @@ if ($TipoS =='1'){
             <button type="button" class="btn btn-default" id="Configurarcion" onclick="ConfigurarSession(<?php echo $Session;?>,1)" >
                 <span class="fas fa-cogs"></span>
             </button>
+			<button type="button" class="btn btn-outline-danger " onclick="Eliminar_Session(1,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
         </div>
     </div>
     <div class="card-body text-secondary">
@@ -180,6 +181,27 @@ if ($TipoS =='1'){
 											</div>
 										</div>
 										<?php
+									}else{
+										if ($row1['Tipo'] =='Boton'){
+											?>
+											<div class="form-group row">
+												<div class="col-md-10">
+													<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Boton')"><i class="fas fa-external-link-square-alt"></i> Boton</button>
+												</div>
+												<div class="col-md-2">
+													<div class="btn-group pull-right">
+														<button type="button" class="btn btn-outline-secondary " id="Arriba" onclick="MoverSessionD(1,<?php echo $SessionD;?>,'Arriba',<?php echo $Session;?>)">
+															<i class="fas fa-chevron-up"></i>
+														</button>	
+														<button type="button" class="btn btn-outline-secondary " id="Abajo" onclick="MoverSessionD(1,<?php echo $SessionD;?>,'Abajo',<?php echo $Session;?>)">
+															<i class="fas fa-chevron-down"></i>
+														</button>
+														<button type="button" class="btn btn-outline-danger " onclick="Eliminar_SessionD(1,'I',<?php echo $SessionD;?>,'Boton',<?php echo $Objeto;?>,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
+													</div>
+												</div>
+											</div>
+											<?php
+										}
 									}	
 								}
                             }
@@ -202,7 +224,7 @@ if ($TipoS =='2'){
 		
 				?>
 				<br>
-				<div class="card border-secondary mb-12" id='Tipo2-<?php echo $Session;?>'>
+				
 					<div class="card-header">
 						<div class="btn-group pull-left">
 							<h4><?php echo $row1['Descripcion']; ?></h4>
@@ -217,6 +239,7 @@ if ($TipoS =='2'){
 						<button type="button" class="btn btn-default" id="Configurarcion" onclick="ConfigurarSession(<?php echo $Session;?>,2)">
 							<span class="fas fa-cogs"></span>
 						</button>
+						<button type="button" class="btn btn-outline-danger " onclick="Eliminar_Session(2,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
 						</div>
 					</div>
 					<div class="card-body text-secondary">
@@ -361,16 +384,35 @@ if ($TipoS =='2'){
 													</div>
 													<?php
 												}else{
-													?>
-												<div class="col-md-6">
-													<div class="form-group row">
-														<div class="col-md-12">
-															<button type="button" class="btn btn-default  btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'I',<?php echo $Session;?>,<?php echo $Linea;?>)"><i class="fas fa-plus" ></i></button>
+													if ($row1['Tipo1'] =='Boton'){
+														?>
+														<div class="col-md-6">
+															<div class="form-group row">
+																<div class="col-md-11">
+																	<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Boton')"><i class="fas fa-external-link-square-alt"></i> Boton</button>
+																</div>
+																<div class="col-md-1">
+																	<div class="btn-group pull-right">
+																		
+																		<button type="button" class="btn btn-outline-danger" onclick="Eliminar_SessionD(2,'I',<?php echo $Linea;?>,'Boton',<?php echo $Objeto;?>,<?php echo $Session;?>)"><i class=" fas fa-trash-alt"></i></button>
+																	</div>
+																</div>
+															</div>
 														</div>
-													</div>
-												</div>
-												<?php
+														<?php
+													}else{
+														?>
+														<div class="col-md-6">
+															<div class="form-group row">
+																<div class="col-md-12">
+																	<button type="button" class="btn btn-default  btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'I',<?php echo $Session;?>,<?php echo $Linea;?>)"><i class="fas fa-plus" ></i></button>
+																</div>
+															</div>
+														</div>
+														<?php
+													}
 												}
+
 											}	
 										}
 									}
@@ -532,16 +574,39 @@ if ($TipoS =='2'){
 													</div>
 													<?php
 												}else{
-													?>
-													<div class="col-md-6">
-														<div class="form-group row">
-															<div class="col-md-12" style=' padding-left: 0px;'>
-																<button type="button" class="btn btn-default  btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'D',<?php echo $Session;?>,<?php echo $Linea;?>)"><i class="fas fa-plus" ></i></button>
-															</div>	
+													if ($row1['Tipo2'] =='Boton'){
+														?>
+														<div class="col-md-6">
+															<div class="form-group row">
+																<div class="col-md-9" style=' padding-left: 0px;'>
+																	<button type="button" class="btn btn-outline-dark btn-block"onclick="ConfigurarObjeto(<?php echo $Objeto;?>,'Boton')"><i class="fas fa-external-link-square-alt"></i> Boton</button>
+																</div>
+																<div class="col-md-3" style=' padding-left: 0px;'>
+																	<div class="btn-group pull-right">
+																		<button type="button" class="btn btn-outline-secondary " id="Arriba" onclick="MoverSessionD(2,<?php echo $Linea;?>,'Arriba',<?php echo $Session;?>)">
+																			<i class="fas fa-chevron-up"></i>
+																		</button>	
+																		<button type="button" class="btn btn-outline-secondary " id="Abajo" onclick="MoverSessionD(2,<?php echo $Linea;?>,'Abajo',<?php echo $Session;?>)">
+																			<i class="fas fa-chevron-down"></i>
+																		</button>
+																		<button type="button" class="btn btn-outline-danger" onclick="Eliminar_SessionD(2,'D',<?php echo $Linea;?>,'Boton',<?php echo $Objeto;?>,<?php echo $Session;?>)"><i class="fas fa-trash-alt"></i></button>
+																	</div>
+																</div>
+															</div>
 														</div>
-													</div>
-													<?php	
-												}
+														<?php
+													}else{
+														?>
+														<div class="col-md-6">
+															<div class="form-group row">
+																<div class="col-md-12" style=' padding-left: 0px;'>
+																	<button type="button" class="btn btn-default  btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(2,'D',<?php echo $Session;?>,<?php echo $Linea;?>)"><i class="fas fa-plus" ></i></button>
+																</div>	
+															</div>
+														</div>
+														<?php	
+													}
+												}	
 											}	
 										}
 									}	
@@ -552,7 +617,6 @@ if ($TipoS =='2'){
 					?>
 
 					</div>
-				</div>
 				<br>	
 				<?php
 }

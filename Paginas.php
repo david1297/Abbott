@@ -405,6 +405,18 @@ function Eliminar_SessionD(TipoS,Lado,Session,TipoO,IdO,S){
    });
    event.preventDefault();
 }
+function Eliminar_Session(Tipo,Session){
+
+	$.ajax({
+		url: "Componentes/Ajax/Eliminar_Session.php?Tipo="+Tipo+"&Session="+Session,
+			  beforeSend: function(objeto){
+			   },
+		   success: function(datos){ 
+				CargarSessiones();
+		 }	 
+   });
+   event.preventDefault();
+}
 function MoverSession(Session,Direccion,TipoS){
 	var Id = document.getElementById('Id').value;
 

@@ -120,6 +120,22 @@ require_once ("../../config/conexion.php");
 										if ($query_update) {						
 										}
 									}	
+								}else{
+									if($Tipo == '8'){
+										$sql =  "INSERT INTO Boton(Enlace,Texto) VALUES ('','');";
+										$query_update = mysqli_query($con,$sql);
+										if ($query_update) {
+											$sql="SELECT Max(Id) AS Id FROM Boton";
+											$query = mysqli_query($con, $sql);
+											$row=mysqli_fetch_array($query);
+											$Elemento= $row['Id'];
+
+											$sql =  "INSERT INTO seccion1d(Seccion,Tipo,Elemento,Orden) VALUES ($IdSession,'Boton',$Elemento,$Orden);";
+											$query_update = mysqli_query($con,$sql);
+											if ($query_update) {						
+											}
+										}	
+									}
 								}
 							}
 						}
@@ -295,6 +311,28 @@ require_once ("../../config/conexion.php");
 												}
 											}
 										}	
+									}else{
+										$sql =  "INSERT INTO Boton(Texto,Enlace) VALUES ('','');";
+										$query_update = mysqli_query($con,$sql);
+										if ($query_update) {
+											$sql="SELECT Max(Id) AS Id FROM Boton";
+											$query = mysqli_query($con, $sql);
+											$row=mysqli_fetch_array($query);
+											$Elemento= $row['Id'];
+											if ($Lado=='I'){
+												$sql =  "INSERT INTO seccion2d(Seccion,Tipo1,Elemento1,Orden) VALUES ($IdSession,'Boton',$Elemento,$Orden);";
+												$query_update = mysqli_query($con,$sql);
+												if ($query_update) {						
+												}
+											}else{
+												if ($Lado=='D'){
+													$sql =  "INSERT INTO seccion2d(Seccion,Tipo2,Elemento2,Orden) VALUES ($IdSession,'Boton',$Elemento,$Orden);";
+													$query_update = mysqli_query($con,$sql);
+													if ($query_update) {						
+													}
+												}
+											}
+										}
 									}
 								}
 							}

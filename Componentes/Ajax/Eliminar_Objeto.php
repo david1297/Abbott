@@ -94,7 +94,7 @@ if (empty($_GET['Id'])){
 										$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
 									}
 								}else{
-									if($Tipo=='Album'){
+									if($Tipo=='Botonera'){
 										$sql =  "DELETE FROM Botonera  where Id = $Id;";
 										$query_update = mysqli_query($con,$sql);
 										if ($query_update) {

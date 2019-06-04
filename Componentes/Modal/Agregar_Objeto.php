@@ -59,6 +59,12 @@
 									<i class="fas fa-fighter-jet"></i> Botonera
 								</h4>
 							</li>
+							<li class="fusion_alert fusion-builder-element" onclick="NuevoObjeto(8);">
+								<h4 class="fusion_module_title">
+									<div class="fusion-module-icon fusiona-exclamation-triangle"></div>
+									<i class="fas fa-external-link-square-alt"></i> Boton
+								</h4>
+							</li>
 
 							
 							

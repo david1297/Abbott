@@ -46,25 +46,34 @@ if (empty($_POST['Id'])){
 				$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
 			}
 		} else{
-			if($Tipo=='Imagen'){
-				
+			if($Tipo=='Imagen'){ 
 				if(!empty($_FILES['Imagen']['name'])){
-					$nombre =$_FILES['Imagen']['tmp_name'];
-					$im = file_get_contents($nombre);
-					$imdata = base64_encode($im);
-					$sql =  "UPDATE imagenes SET Imagen='$imdata' where Id = $Id;";
-					$query_update = mysqli_query($con,$sql);
-					if ($query_update) {
-						$messages = "Los Datos Se Han Guardado Con Exito.";
-					} else {
-						$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
-					}	
+					$nombre =$_FILES['Imagen']['name'];
+						move_uploaded_file($_FILES['Imagen']['tmp_name'], $destino.'/'.$_FILES['Imagen']['name']);	
+						$sql =  "UPDATE imagenes SET Imagen='$nombre' where Id = $Id;";
+						$query_update = mysqli_query($con,$sql);
+						if ($query_update) {
+							$messages = "Los Datos Se Han Guardado Con Exito.";
+						} else {
+							$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
+						}	
+				}
+				$Tamaño = mysqli_real_escape_string($con,(strip_tags($_POST["Tamaño"],ENT_QUOTES)));
+		$Justificacion = mysqli_real_escape_string($con,(strip_tags($_POST["Justificacion"],ENT_QUOTES)));
+
+				$sql =  "UPDATE  imagenes SET Tamaño=$Tamaño,Justificacion='$Justificacion'  where Id = $Id;";
+				$query_update = mysqli_query($con,$sql);
+				if ($query_update) {
+					$messages = "Los Datos Se Han Guardado Con Exito.";
+				} else {
+					$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
 				}
 			}else{
 				if($Tipo=='Video'){
 					if(!empty($_POST["Video"])){
 						$Tipo = mysqli_real_escape_string($con,(strip_tags($_POST["Tipo"],ENT_QUOTES)));
 						$Video = mysqli_real_escape_string($con,(strip_tags($_POST["Video"],ENT_QUOTES)));	
+						
 						$sql =  "UPDATE videos SET Video='$Video' where Id = $Id;";
 						$query_update = mysqli_query($con,$sql);
 						if ($query_update) {
@@ -78,8 +87,15 @@ if (empty($_POST['Id'])){
 					}else{
 						$Autoplay='';
 					}
-					$sql =  "UPDATE  Videos SET Autoplay='$Autoplay'  where Id = $Id;";
+					$Tamaño = mysqli_real_escape_string($con,(strip_tags($_POST["Tamaño"],ENT_QUOTES)));
+		$Justificacion = mysqli_real_escape_string($con,(strip_tags($_POST["Justificacion"],ENT_QUOTES)));
+		$sql =  "UPDATE  Videos SET Autoplay='$Autoplay',Tamaño=$Tamaño,Justificacion='$Justificacion'  where Id = $Id;";
 					$query_update = mysqli_query($con,$sql);
+					if ($query_update) {
+						$messages = "Los Datos Se Han Guardado Con Exito.";
+					} else {
+						$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
+					}
 				}else{
 					if($Tipo=='Carrusel'){
 						if (isset($_POST['Controles'])){
@@ -98,16 +114,15 @@ if (empty($_POST['Id'])){
 					}else{
 						if($Tipo=='CarruselD'){
 							if(!empty($_FILES['Imagen']['name'])){
-								$nombre =$_FILES['Imagen']['tmp_name'];
-								$im = file_get_contents($nombre);
-								$imdata = base64_encode($im);
-								$sql =  "UPDATE Carruseld SET Imagen='$imdata' where Id = $Id;";
-								$query_update = mysqli_query($con,$sql);
-								if ($query_update) {
-									$messages = "Los Datos Se Han Guardado Con Exito.";
-								} else {
-									$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
-								}	
+								$nombre =$_FILES['Imagen']['name'];
+									move_uploaded_file($_FILES['Imagen']['tmp_name'], $destino.'/'.$_FILES['Imagen']['name']);	
+									$sql =  "UPDATE Carruseld SET Imagen='$nombre' where Id = $Id;";
+									$query_update = mysqli_query($con,$sql);
+									if ($query_update) {
+										$messages = "Los Datos Se Han Guardado Con Exito.";
+									} else {
+										$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
+									}	
 							}
 							$Titulo = mysqli_real_escape_string($con,(strip_tags($_POST["Titulo"],ENT_QUOTES)));
 							$TTamaño = mysqli_real_escape_string($con,(strip_tags($_POST["TTamaño"],ENT_QUOTES)));
@@ -173,6 +188,20 @@ if (empty($_POST['Id'])){
 
 
 
+								}else{
+									if($Tipo=='Boton'){
+										$Texto = mysqli_real_escape_string($con,(strip_tags($_POST["Texto"],ENT_QUOTES)));
+										$Enlace = mysqli_real_escape_string($con,(strip_tags($_POST["Enlace"],ENT_QUOTES)));
+										$Justificacion = mysqli_real_escape_string($con,(strip_tags($_POST["Justificacion"],ENT_QUOTES)));
+										$sql =  "UPDATE Boton SET Texto='$Texto',Enlace='$Enlace',Justificacion='$Justificacion' 
+										where Id = $Id;";
+										$query_update = mysqli_query($con,$sql);
+										if ($query_update) {
+											$messages = "Los Datos Se Han Guardado Con Exito.";
+										} else {
+											$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
+										}
+									}
 								}
 							}
 						}

@@ -72,30 +72,16 @@ if($Tipo=='Titulo'){
 						echo '<option value="text-right">Derecha</option>';
 						echo '<option value="text-left">Izquierda</option>';
 						echo '<option value="text-center">Centrada</option>';
-						echo '<option value="text-justify">Justificado</option>';
 					}else{
 						if($Justificacion == 'text-left'){
 							echo '<option value="text-left">Izquierda</option>';
 							echo '<option value="text-right">Derecha</option>';
 							echo '<option value="text-center">Centrada</option>';
-							echo '<option value="text-justify">Justificado</option>';
 						}else{
-							if($Justificacion == 'text-justify'){
-								echo '<option value="text-justify">Justificado</option>';
 								echo '<option value="text-center">Centrada</option>';
 								echo '<option value="text-left">Izquierda</option>';
 								echo '<option value="text-right">Derecha</option>';
-							
-
-							}else{
-								echo '<option value="text-center">Centrada</option>';
-								echo '<option value="text-left">Izquierda</option>';
-								echo '<option value="text-right">Derecha</option>';
-								echo '<option value="text-justify">Justificado</option>';
-							}	
-						
 						}
-					
 					}
 					?>
 				</select>
@@ -219,7 +205,8 @@ if($Tipo=='Titulo'){
 			$query = mysqli_query($con, $sql);
 			$row=mysqli_fetch_array($query);
 			$Imagen = $row['Imagen'];
-			
+			$Tamaño = $row['Tamaño'];
+			$Justificacion= $row['Justificacion'];
 			?>
 			<div class="form-group" id="Div-Imagen">
 				<label for="Nombre" class="col-sm-4 control-label">Imagen</label>
@@ -228,8 +215,41 @@ if($Tipo=='Titulo'){
 					<p class="text-muted">Tamaño Maximo 2Mb</p>	
 					<br>
 				</div>
+				<div class="form-group ">
+					<label  class="col-md-2 control-label">Tamaño de Pantalla </label>
+					<div class="col-md-2">
+						<select class='form-control' id="Tamaño" name ="Tamaño" placeholder="Tamaño"> 
+							<?php 
+							for ($i = 2; $i <= 12; $i=$i+2) {
+								if($i == $Tamaño){
+									echo '<option value="'.$i.'" selected>'.$i.'%</option>';
+								}else{
+									echo '<option value="'.$i.'">'.$i.'%</option>';
+								}
+							}
+							?>
+						</select>
+					</div>
+				</div> 
+				<div class="form-group ">
+					<label  class="col-md-2 control-label">Alineacion </label>
+					<div class="col-md-2">
+						<select class='form-control' id="Justificacion" name ="Justificacion" placeholder="Justificacion" > 
+							<?php 
+							
+								if($Justificacion == 'text-left'){
+									echo '<option value="text-left">Izquierda</option>';
+									echo '<option value="text-center">Centrada</option>';
+								}else{
+										echo '<option value="text-center">Centrada</option>';
+										echo '<option value="text-left">Izquierda</option>';
+								}
+							?>
+						</select>
+					</div>
+				</div>
 				<div class="col-md-offset-2 col-md-8 ">
-					<img src='data:image/jpg;base64,<?php echo $Imagen; ?>' class='img-thumbnail'  alt="Imagen" />
+					<img src='Imagenes/<?php echo $Imagen; ?>' class='img-thumbnail'  alt="Imagen" />
 				</div> 	
 			</div> 	
 			<div class="form-group">
@@ -251,6 +271,8 @@ if($Tipo=='Titulo'){
 				$row=mysqli_fetch_array($query);
 				$Video = $row['Video'];
 				$Autoplay = $row['Autoplay'];
+				$Tamaño = $row['Tamaño'];
+				$Justificacion = $row['Justificacion'];
 				?>
 				<div class="form-group" id="Div-Video">
 					<label for="Nombre" class="col-sm-4 control-label">Video</label>
@@ -260,6 +282,42 @@ if($Tipo=='Titulo'){
 					
 						<br>
 					</div>
+					<div class="form-group ">
+						<label  class="col-md-2 control-label">Tamaño de Pantalla </label>
+						<div class="col-md-2">
+							<select class='form-control' id="Tamaño" name ="Tamaño" placeholder="Tamaño"> 
+								<?php 
+								for ($i = 2; $i <= 12; $i=$i+2) {
+									if($i == $Tamaño){
+										echo '<option value="'.$i.'" selected>'.$i.'%</option>';
+									}else{
+										echo '<option value="'.$i.'">'.$i.'%</option>';
+									}
+								}
+								?>
+							</select>
+						</div>
+					</div> 	
+					<div class="form-group ">
+					<label  class="col-md-2 control-label">Alineacion </label>
+					<div class="col-md-2">
+						<select class='form-control' id="Justificacion" name ="Justificacion" placeholder="Justificacion" > 
+							<?php 
+							
+								if($Justificacion == 'text-left'){
+									echo '<option value="text-left">Izquierda</option>';
+									
+									echo '<option value="text-center">Centrada</option>';
+								}else{
+										echo '<option value="text-center">Centrada</option>';
+										echo '<option value="text-left">Izquierda</option>';
+										
+								
+								}
+							?>
+						</select>
+					</div>
+				</div>
 					<div class="col-md-offset-2 col-md-8 ">
 						<video controls loop class="embed-responsive-item"  width="100%" <?php echo $Autoplay; ?> >
                             <source src="Videos/<?php echo $Video; ?>" type="video/mp4"  >
@@ -300,6 +358,7 @@ if($Tipo=='Titulo'){
 					$row=mysqli_fetch_array($query);
 					$Controles = $row['Controles'];
 					$Tamaño = $row['Tamaño'];
+					
 					?> 	
 					<div class="col-sm-2">
 						<button type="button" class="btn btn-default  btn-block" onclick="AgregarCarrusel(<?php echo $Id;?>)"><i class="fas fa-plus"></i>Agregar</button>
@@ -345,11 +404,12 @@ if($Tipo=='Titulo'){
 					$query = mysqli_query($con, $sql);
 					while ($row=mysqli_fetch_array($query)){
 						$Cid= $row['Id'];
+						$Imagen = $row['Imagen'];
 						?>
 						<div class="col-md-2">
 							<div class="card border-dark">
 							  <div class="card-body">
-							  <img src='data:image/jpg;base64,<?php echo $row['Imagen']; ?>' class='img-thumbnail'  alt="Imagen" />
+							  <img src='Imagenes/<?php echo $Imagen; ?>' class='img-thumbnail'  alt="Imagen" />
 							  	<div class="form-group row">
 								  <div class="col-md-4">
 							  		<button type="button" class="btn btn-outline-danger " onclick="EliminarObjeto(<?php echo $Cid;?>,'CarruselD');ConfigurarObjeto(<?php echo $Id;?>,'Carrusel')" ><i class="fas fa-trash-alt"></i></button>   
@@ -406,7 +466,7 @@ if($Tipo=='Titulo'){
 						</div> 
 						<div class="row"> 
 							<div class="col-md-2 ">
-								<img src='data:image/jpg;base64,<?php echo $Imagen; ?>' class='img-thumbnail'  alt="Imagen" />
+								<img src='Imagenes/<?php echo $Imagen; ?>' class='img-thumbnail'  alt="Imagen" />
 							</div>
 							<div class="col-md-5">
 								<div class="form-group">
@@ -676,7 +736,7 @@ if($Tipo=='Titulo'){
 								<div id="resultados_Objeto"></div>
 								<div class="modal-footer">
 								<button type="button" class="btn btn-default" onclick="ConfigurarObjeto(<?php echo $Album;?>,'Album')">Cerrar</button>
-							<button type="submit" class="btn btn-primary" id="actualizar_datos3B">Guardar</button>
+								<button type="submit" class="btn btn-primary" id="actualizar_datos3B">Guardar</button>
 								</div>
 								<?php
 							}else{
@@ -847,9 +907,74 @@ if($Tipo=='Titulo'){
 										<div id="resultados_Objeto"></div>
 										<div class="modal-footer">
 										<button type="button" class="btn btn-default" onclick="ConfigurarObjeto(<?php echo $Botonera;?>,'Botonera')">Cerrar</button>
-									<button type="submit" class="btn btn-primary" id="actualizar_datos3B">Guardar</button>
+										<button type="submit" class="btn btn-primary" id="actualizar_datos3B">Guardar</button>
 										</div>
 										<?php
+									}else{
+										if($Tipo=='Boton'){
+											$sql="SELECT * FROM Boton where Id = ".$Id." ";      
+											$query = mysqli_query($con, $sql);
+											$row=mysqli_fetch_array($query);
+											$Texto = $row['Texto'];
+											$Enlace = $row['Enlace'];
+											?>
+											<div class="form-group">
+												<label for="Nombre" class="col-sm-4 control-label">Texto</label>
+												<div class="col-sm-8">
+												<input type="Text" class="form-control" id="Texto" name="Texto" Value="<?php echo $Texto;?>" placeholder="Titulo" autocomplete="off" required>
+												<input type="text" class="form-control hidden" id="Id" name="Id"  value="<?php echo $Id;?>" > 
+												<input type="text" class="form-control hidden" id="Tipo" name="Tipo"  value="Boton" > 
+												</div>
+											</div>	
+											<div class="form-group ">
+													<label  class="col-sm-4 control-label">Enlace </label>
+													<div class="col-md-8 col-sm-8">
+														<select class='form-control' id="Enlace" name ="Enlace" placeholder="Enlace" > 
+														<?php 
+															$sql="SELECT * FROM pagina order by Id ";    
+															$query1 = mysqli_query($con, $sql);
+															while($row1=mysqli_fetch_array($query1)){
+																if($Enlace == $row1['Id']){
+																	echo '<option  value="'.$row1['Id'].'" selected>'.$row1['Nombre'].'</option>';
+																}else{
+																	echo '<option  value="'.$row1['Id'].'" >'.$row1['Nombre'].'</option>';
+																}
+															}
+
+														?>
+														</select>
+													</div>
+												</div>								
+												<div class="form-group ">
+					<label  class="col-sm-4 control-label">Alineacion </label>
+					<div class="col-md-8 col-sm-8">
+						<select class='form-control' id="Justificacion" name ="Justificacion" placeholder="Justificacion" > 
+							<?php 
+							
+								if($Justificacion == 'text-left'){
+									echo '<option value="text-left">Izquierda</option>';
+									echo '<option value="text-right">Derecha</option>';
+									echo '<option value="text-center">Centrada</option>';
+								}else{
+										echo '<option value="text-center">Centrada</option>';
+										echo '<option value="text-left">Izquierda</option>';
+										echo '<option value="text-right">Derecha</option>';
+								
+								}
+							?>
+						</select>
+					</div>
+				</div>
+											
+											
+											
+											<div id="resultados_Objeto"></div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('#Trae_Objeto').html('');$('#ConfiguracionObjeto').modal('hide');">Cerrar</button>
+												<button type="submit" class="btn btn-primary" id="actualizar_datos3B">Guardar</button>
+											</div>
+											<?php
+										}
 									}
 								}
 							}
