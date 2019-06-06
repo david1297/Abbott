@@ -7,6 +7,9 @@
 	require_once ("config/db.php");
 	require_once ("config/conexion.php");
 	$Paginas="active";
+	if ($_SESSION['Login'] <> 'True') {
+		header("location: Login.php");
+ }
 	
 ?>
 <!doctype html>

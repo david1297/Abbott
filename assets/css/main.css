@@ -31,6 +31,9 @@
 .CalibriLightItalic{font-family:  Calibri Light Italic;}
 .CalibriBoldItalic{font-family:  Calibri Bold Italic;}
 
+.Album{
+  height:15rem;
+}
 #ConfiguracionObjeto {
   padding-right: 0px;
   left: 0px;

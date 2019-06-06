@@ -70,12 +70,12 @@ $Tipo = $_GET["Tipo"];
 					<div class="form-group <?php echo $Imagen; ?>" id="Div-Imagen">
 						<label for="Nombre" class="col-sm-4 control-label">Fondo</label>
 						<div class="col-sm-8">
-							<input type="file" class="form-control-file" id="Imagen" name="Imagen" data-max-size="2048" accept="image/x-png,image/jpg,image/jpeg">
-							<p class="text-muted">Tamaño Maximo 2Mb</p>	
+							<input type="file" class="form-control-file" id="Imagen" name="Imagen"  accept="image/x-png,image/jpg,image/jpeg">
+					
 							<br>
 						</div>
 						<div class="col-md-offset-2 col-md-8 ">
-							<img src='data:image/jpg;base64,<?php echo $ImagenFondo; ?>' class='img-thumbnail'  alt="Imagen" />
+							<img src='Imagenes/<?php echo $ImagenFondo; ?>' class='img-thumbnail'  alt="Imagen" />
 						</div>
 					</div> 						
 					<div class="form-group <?php echo $Color; ?>" id="Div-Fondo">

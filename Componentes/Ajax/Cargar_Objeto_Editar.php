@@ -211,8 +211,7 @@ if($Tipo=='Titulo'){
 			<div class="form-group" id="Div-Imagen">
 				<label for="Nombre" class="col-sm-4 control-label">Imagen</label>
 				<div class="col-sm-8">
-					<input type="file" class="form-control-file" id="Imagen" name="Imagen" data-max-size="10240" accept="image/x-png,image/jpg,image/jpeg">
-					<p class="text-muted">Tamaño Maximo 2Mb</p>	
+					<input type="file" class="form-control-file" id="Imagen" name="Imagen" accept="image/x-png,image/jpg,image/jpeg">
 					<br>
 				</div>
 				<div class="form-group ">
@@ -409,7 +408,7 @@ if($Tipo=='Titulo'){
 						<div class="col-md-2">
 							<div class="card border-dark">
 							  <div class="card-body">
-							  <img src='Imagenes/<?php echo $Imagen; ?>' class='img-thumbnail'  alt="Imagen" />
+							  <img src='Imagenes/<?php echo $Imagen; ?>' class='img-thumbnail Album'  alt="Imagen" />
 							  	<div class="form-group row">
 								  <div class="col-md-4">
 							  		<button type="button" class="btn btn-outline-danger " onclick="EliminarObjeto(<?php echo $Cid;?>,'CarruselD');ConfigurarObjeto(<?php echo $Id;?>,'Carrusel')" ><i class="fas fa-trash-alt"></i></button>   
@@ -458,8 +457,7 @@ if($Tipo=='Titulo'){
 						<div class="form-group" id="Div-Imagen">
 							<label for="Nombre" class="col-sm-4 control-label">Imagen</label>
 							<div class="col-sm-8">
-								<input type="file" class="form-control-file" id="Imagen" name="Imagen" data-max-size="10240" accept="image/x-png,image/jpg,image/jpeg">
-								<p class="text-muted">Tamaño Maximo 2Mb</p>	
+								<input type="file" class="form-control-file" id="Imagen" name="Imagen" accept="image/x-png,image/jpg,image/jpeg">
 								<br>
 							</div>
 							 	
@@ -664,8 +662,9 @@ if($Tipo=='Titulo'){
 							$query = mysqli_query($con, $sql);
 							$row=mysqli_fetch_array($query);
 							?> 	
+						
 							<div class="col-sm-2">
-								<button type="button" class="btn btn-default  btn-block" onclick="AgregarAlbum(<?php echo $Id;?>)"><i class="fas fa-plus"></i>Agregar</button>
+								<button type="button" class="btn btn-default  btn-block" onclick="CargarAlbum(<?php echo $Id;?>)"><i class="fas fa-plus"></i>Cargar Album</button>
 							</div>
 							<br>
 							<br>		
@@ -680,7 +679,7 @@ if($Tipo=='Titulo'){
 									<div class="col-md-2">
 										<div class="card border-dark">
 											<div class="card-body">
-												<img src='Imagenes/<?php echo $Imagen; ?>' class='img-thumbnail'  alt="Imagen" />
+												<img src='Imagenes/<?php echo $Imagen; ?>' class='img-thumbnail Album'  alt="Imagen"  />
 												<div class="form-group row">
 													<div class="col-md-4">
 														<button type="button" class="btn btn-outline-danger " onclick="EliminarObjeto(<?php echo $Cid;?>,'AlbumD');ConfigurarObjeto(<?php echo $Id;?>,'Album');" ><i class="fas fa-trash-alt"></i></button>   
@@ -720,7 +719,6 @@ if($Tipo=='Titulo'){
 									<label for="Nombre" class="col-sm-4 control-label">Imagen</label>
 									<div class="col-sm-8">
 										<input type="file" class="form-control-file" id="Imagen" name="Imagen" data-max-size="10240" accept="image/x-png,image/jpg,image/jpeg">
-										<p class="text-muted">Tamaño Maximo 2Mb</p>	
 										<br>
 									</div>
 									<div class="col-md-offset-2 col-md-8 ">
@@ -806,7 +804,6 @@ if($Tipo=='Titulo'){
 											<label for="Nombre" class="col-sm-4 control-label">Imagen</label>
 											<div class="col-sm-8">
 												<input type="file" class="form-control-file" id="Imagen" name="Imagen" data-max-size="10240" accept="image/x-png,image/jpg,image/jpeg">
-												<p class="text-muted">Tamaño Maximo 2Mb</p>	
 												<br>
 											</div>	
 										</div> 
@@ -927,47 +924,42 @@ if($Tipo=='Titulo'){
 												</div>
 											</div>	
 											<div class="form-group ">
-													<label  class="col-sm-4 control-label">Enlace </label>
-													<div class="col-md-8 col-sm-8">
-														<select class='form-control' id="Enlace" name ="Enlace" placeholder="Enlace" > 
+												<label  class="col-sm-4 control-label">Enlace </label>
+												<div class="col-md-8 col-sm-8">
+													<select class='form-control' id="Enlace" name ="Enlace" placeholder="Enlace" > 
 														<?php 
-															$sql="SELECT * FROM pagina order by Id ";    
-															$query1 = mysqli_query($con, $sql);
-															while($row1=mysqli_fetch_array($query1)){
-																if($Enlace == $row1['Id']){
-																	echo '<option  value="'.$row1['Id'].'" selected>'.$row1['Nombre'].'</option>';
-																}else{
-																	echo '<option  value="'.$row1['Id'].'" >'.$row1['Nombre'].'</option>';
-																}
+														$sql="SELECT * FROM pagina order by Id ";    
+														$query1 = mysqli_query($con, $sql);
+														while($row1=mysqli_fetch_array($query1)){
+															if($Enlace == $row1['Id']){
+																echo '<option  value="'.$row1['Id'].'" selected>'.$row1['Nombre'].'</option>';
+															}else{
+																echo '<option  value="'.$row1['Id'].'" >'.$row1['Nombre'].'</option>';
 															}
-
+														}
 														?>
-														</select>
-													</div>
-												</div>								
-												<div class="form-group ">
-					<label  class="col-sm-4 control-label">Alineacion </label>
-					<div class="col-md-8 col-sm-8">
-						<select class='form-control' id="Justificacion" name ="Justificacion" placeholder="Justificacion" > 
-							<?php 
-							
-								if($Justificacion == 'text-left'){
-									echo '<option value="text-left">Izquierda</option>';
-									echo '<option value="text-right">Derecha</option>';
-									echo '<option value="text-center">Centrada</option>';
-								}else{
-										echo '<option value="text-center">Centrada</option>';
-										echo '<option value="text-left">Izquierda</option>';
-										echo '<option value="text-right">Derecha</option>';
-								
-								}
-							?>
-						</select>
-					</div>
-				</div>
-											
-											
-											
+													</select>
+												</div>
+											</div>								
+											<div class="form-group ">
+												<label  class="col-sm-4 control-label">Alineacion </label>
+												<div class="col-md-8 col-sm-8">
+													<select class='form-control' id="Justificacion" name ="Justificacion" placeholder="Justificacion" > 
+														<?php 
+														if($Justificacion == 'text-left'){
+															echo '<option value="text-left">Izquierda</option>';
+															echo '<option value="text-right">Derecha</option>';
+															echo '<option value="text-center">Centrada</option>';
+														}else{
+																echo '<option value="text-center">Centrada</option>';
+																echo '<option value="text-left">Izquierda</option>';
+																echo '<option value="text-right">Derecha</option>';
+														
+														}
+													?>
+													</select>
+												</div>
+											</div>
 											<div id="resultados_Objeto"></div>
 											<div class="modal-footer">
 												<button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('#Trae_Objeto').html('');$('#ConfiguracionObjeto').modal('hide');">Cerrar</button>

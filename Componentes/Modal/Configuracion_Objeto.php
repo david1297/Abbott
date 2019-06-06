@@ -17,6 +17,12 @@
 					
 		  			
 		  		</form>
+				<form class="form-horizontal"  enctype="multipart/form-data" id="Cargar_Album" name="Cargar_Album">							
+					
+				<input type="file" class="form-control hidden" id="InputAlbum" name="archivo[]" multiple="" onchange="SubirAlbum()">	
+				<input type="text" class="form-control hidden" id="IdAlbum" name="IdAlbum"  value="" > 	
+				<button type="submit" class="btn btn-primary hidden" id="Cargar_Album_Input">Guardar</button>
+		  		</form>
 				</div>
 	  	</div>
 		</div>

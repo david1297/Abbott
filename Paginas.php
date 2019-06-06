@@ -3,7 +3,9 @@
 
 	require_once ("config/db.php");
 	require_once ("config/conexion.php");
-	
+	if ($_SESSION['Login'] <> 'True') {
+		header("location: Login.php");
+ }
 	
 
 	if (isset($_GET['id'])) {
@@ -348,26 +350,24 @@ $( "#Editar_Objeto" ).submit(function( event ) {
    event.preventDefault();
 })
 $("#Imagen").change(function() {
-        var file = this.files[0];
-        var imagefile = file.type;
-        var match= ["image/jpeg","image/png","image/jpg"];
-        if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]))){
-            alert('Por Favor Seleccione un Archivo (JPEG/JPG/PNG).');
-            $("#file").val('');
-          
-            return false;
-        }
-    });
+	var file = this.files[0];
+	var imagefile = file.type;
+	var match= ["image/jpeg","image/png","image/jpg"];
+	if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]))){
+			alert('Por Favor Seleccione un Archivo (JPEG/JPG/PNG).');
+			$("#file").val('');
+		
+			return false;
+	}
+});
 function CambioTipoFondo(){
-	
 	if (document.getElementById('TipoFondo').value=='Imagen'){
 		$('#Div-Imagen').removeClass("hidden");
 		$('#Div-Fondo').addClass("hidden");
 	} else{
 		$('#Div-Imagen').addClass("hidden");
 		$('#Div-Fondo').removeClass("hidden");
-	}
-	
+	}	
 }
 function TipoCSession(Tipo,Lado,Id,Objeto){
 	$('#LadoSession').val(Lado);
@@ -390,7 +390,6 @@ function EliminarObjeto(IdO,TipoO){
    });
 
 }
-
 function Eliminar_SessionD(TipoS,Lado,Session,TipoO,IdO,S){
 	var R =0;
 	$.ajax({
@@ -455,6 +454,40 @@ function CargarSession(TipoS,Session){
 		}
 	})
 }
+function CargarAlbum(Album){
+	$("#IdAlbum").val(Album);
+	$("#InputAlbum").trigger('click');   
+}
+function SubirAlbum(){
+	
+	$('#Cargar_Album_Input').click();
+}
+
+$( "#Cargar_Album" ).submit(function( event ) { 
+  var parametros = $(this).serialize();
+	  $.ajax({
+		url: "Componentes/Ajax/Cargar_Album.php",
+		   type: "POST",
+		   data: new FormData(this),
+		   cache: false,
+    contentType: false,
+    processData: false,
+			  beforeSend: function(objeto){
+					$("#resultados_Objeto").html("Mensaje: Cargando...");
+			   },
+		   success: function(datos){ 
+		
+		   $("#resultados_Objeto").html(datos);	 
+		   $('#resultados_Objeto').fadeOut(2000); 
+			 setTimeout(function() { 
+				 $('#resultados_Objeto').html('');	
+				 $('#resultados_Objeto').fadeIn(1000); 
+			 }, 1000);
+			 ConfigurarObjeto($('#IdAlbum').val(),'Album')	
+		 }	 
+   });
+   event.preventDefault();
+})
 
 
 

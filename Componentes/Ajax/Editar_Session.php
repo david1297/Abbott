@@ -4,6 +4,7 @@ $session_id= session_id();
 
 require_once ("../../config/db.php");
 require_once ("../../config/conexion.php");
+$destino="C:/xampp/htdocs/Abbott/Imagenes";
 if (empty($_POST['Id'])){
 	$errors[] = "El Id  Vacio";
 } elseif (empty($_POST['TipoFondo'])){
@@ -20,20 +21,17 @@ if (empty($_POST['Id'])){
 	$Descripcion = mysqli_real_escape_string($con,(strip_tags($_POST["Descripcion"],ENT_QUOTES)));
 
 	if ($TipoFondo=='Imagen'){
+		
 		if(!empty($_FILES['Imagen']['name'])){
-			$nombre =$_FILES['Imagen']['tmp_name'];
-		
-		
-			$im = file_get_contents($nombre);
-			$imdata = base64_encode($im);
-			$sql =  "UPDATE seccion".$Tipo." SET Fondo='$imdata' where Id = $Id;";
-			$query_update = mysqli_query($con,$sql);
-			if ($query_update) {
-				$messages = "Los Datos Se Han Guardado Con Exito.";
-			} else {
-				$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
-			}	
-		
+			$nombre =$_FILES['Imagen']['name'];
+				move_uploaded_file($_FILES['Imagen']['tmp_name'], $destino.'/'.$_FILES['Imagen']['name']);	
+				$sql =  "UPDATE seccion".$Tipo." SET Fondo='$nombre' where Id = $Id;";
+				$query_update = mysqli_query($con,$sql);
+				if ($query_update) {
+					$messages = "Los Datos Se Han Guardado Con Exito.";
+				} else {
+					$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
+				}	
 		}
 	}else{
 		$imdata = mysqli_real_escape_string($con,(strip_tags($_POST["Color"],ENT_QUOTES)));

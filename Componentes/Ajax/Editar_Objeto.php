@@ -49,17 +49,21 @@ if (empty($_POST['Id'])){
 			if($Tipo=='Imagen'){ 
 				if(!empty($_FILES['Imagen']['name'])){
 					$nombre =$_FILES['Imagen']['name'];
-						move_uploaded_file($_FILES['Imagen']['tmp_name'], $destino.'/'.$_FILES['Imagen']['name']);	
-						$sql =  "UPDATE imagenes SET Imagen='$nombre' where Id = $Id;";
-						$query_update = mysqli_query($con,$sql);
-						if ($query_update) {
-							$messages = "Los Datos Se Han Guardado Con Exito.";
-						} else {
-							$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
+						if(copy($_FILES['Imagen']['tmp_name'], $destino.'/'.$_FILES['Imagen']['name'])){
+							$sql =  "UPDATE imagenes SET Imagen='$nombre' where Id = $Id;";
+							$query_update = mysqli_query($con,$sql);
+							if ($query_update) {
+								$messages = "Los Datos Se Han Guardado Con Exito.";
+							} else {
+								$errors = "Lo sentimos , el registro falló. Por favor, regrese y vuelva a intentarlo.<br>";
+							}	
+						}else{
+							$errors = "Lo sentimos , no se Cargo la imagen .<br>";
 						}	
+						
 				}
 				$Tamaño = mysqli_real_escape_string($con,(strip_tags($_POST["Tamaño"],ENT_QUOTES)));
-		$Justificacion = mysqli_real_escape_string($con,(strip_tags($_POST["Justificacion"],ENT_QUOTES)));
+				$Justificacion = mysqli_real_escape_string($con,(strip_tags($_POST["Justificacion"],ENT_QUOTES)));
 
 				$sql =  "UPDATE  imagenes SET Tamaño=$Tamaño,Justificacion='$Justificacion'  where Id = $Id;";
 				$query_update = mysqli_query($con,$sql);
@@ -88,8 +92,8 @@ if (empty($_POST['Id'])){
 						$Autoplay='';
 					}
 					$Tamaño = mysqli_real_escape_string($con,(strip_tags($_POST["Tamaño"],ENT_QUOTES)));
-		$Justificacion = mysqli_real_escape_string($con,(strip_tags($_POST["Justificacion"],ENT_QUOTES)));
-		$sql =  "UPDATE  Videos SET Autoplay='$Autoplay',Tamaño=$Tamaño,Justificacion='$Justificacion'  where Id = $Id;";
+					$Justificacion = mysqli_real_escape_string($con,(strip_tags($_POST["Justificacion"],ENT_QUOTES)));
+					$sql =  "UPDATE  Videos SET Autoplay='$Autoplay',Tamaño=$Tamaño,Justificacion='$Justificacion'  where Id = $Id;";
 					$query_update = mysqli_query($con,$sql);
 					if ($query_update) {
 						$messages = "Los Datos Se Han Guardado Con Exito.";
