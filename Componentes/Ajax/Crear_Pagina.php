@@ -1,12 +1,10 @@
-<?php
+﻿<?php
 
-include('is_logged.php');
-$session_id= session_id();
-	if (isset($_POST['Nombre'])){$Nombre=$_POST['Nombre'];}
 
 require_once ("../../config/db.php");
 require_once ("../../config/conexion.php");
-if (!empty($Nombre)){
+$Nombre=$_POST['Nombre'];
+
 	
 	if (isset($_POST['Principal'])){
 		$Principal='True';
@@ -49,7 +47,7 @@ if (!empty($Nombre)){
 			<?php
 		}
 
-}
+
 ?>
 
 

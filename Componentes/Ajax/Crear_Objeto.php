@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 
 $session_id= session_id();
@@ -19,7 +19,7 @@ require_once ("../../config/conexion.php");
 		$Orden = $row['Numero'];
 		$Orden = $Orden + 1;
 		if($Tipo == '1'){
-			$sql =  "INSERT INTO titulos(Texto,color,Tamaño,TipoGrafia) VALUES ('','',12,'');";
+			$sql =  "INSERT INTO titulos(Texto,color,Tamano,TipoGrafia) VALUES ('','',12,'');";
 			$query_update = mysqli_query($con,$sql);
     		if ($query_update) {
 				$sql="SELECT Max(Id) AS Id FROM titulos";
@@ -34,7 +34,7 @@ require_once ("../../config/conexion.php");
 			}	
 		}else{
 			if($Tipo == '2'){
-				$sql =  "INSERT INTO parrafos(Texto,color,Tamaño,TipoGrafia,Justificacion) VALUES ('','',12,'','');";
+				$sql =  "INSERT INTO parrafos(Texto,color,Tamano,TipoGrafia,Justificacion) VALUES ('','',12,'','');";
 				$query_update = mysqli_query($con,$sql);
 				if ($query_update) {
 					$sql="SELECT Max(Id) AS Id FROM parrafos";
@@ -152,7 +152,7 @@ require_once ("../../config/conexion.php");
 			$Orden = $row['Numero'];
 			$Orden = $Orden + 1;
 			if($Tipo == '1'){
-				$sql =  "INSERT INTO titulos(Texto,color,Tamaño,TipoGrafia) VALUES ('','',12,'');";
+				$sql =  "INSERT INTO titulos(Texto,color,Tamano,TipoGrafia) VALUES ('','',12,'');";
 				$query_update = mysqli_query($con,$sql);
 				if ($query_update) {
 					$sql="SELECT Max(Id) AS Id FROM titulos";
@@ -175,7 +175,7 @@ require_once ("../../config/conexion.php");
 				}	
 			}else{
 				if($Tipo == '2'){
-					$sql =  "INSERT INTO parrafos(Texto,color,Tamaño,TipoGrafia,Justificacion) VALUES ('','',12,'','');";
+					$sql =  "INSERT INTO parrafos(Texto,color,Tamano,TipoGrafia,Justificacion) VALUES ('','',12,'','');";
 					$query_update = mysqli_query($con,$sql);
 					if ($query_update) {
 						$sql="SELECT Max(Id) AS Id FROM parrafos";
@@ -342,7 +342,7 @@ require_once ("../../config/conexion.php");
 			}
 		}else{
 			if($Tipo == '1'){
-				$sql =  "INSERT INTO titulos(Texto,color,Tamaño,TipoGrafia) VALUES ('','',12,'');";
+				$sql =  "INSERT INTO titulos(Texto,color,Tamano,TipoGrafia) VALUES ('','',12,'');";
 				$query_update = mysqli_query($con,$sql);
 				if ($query_update) {
 					$sql="SELECT Max(Id) AS Id FROM titulos";
@@ -365,7 +365,7 @@ require_once ("../../config/conexion.php");
 				}	
 			}else{
 				if($Tipo == '2'){
-					$sql =  "INSERT INTO parrafos(Texto,color,Tamaño,TipoGrafia,Justificacion) VALUES ('','',12,'','');";
+					$sql =  "INSERT INTO parrafos(Texto,color,Tamano,TipoGrafia,Justificacion) VALUES ('','',12,'','');";
 					$query_update = mysqli_query($con,$sql);
 					if ($query_update) {
 						$sql="SELECT Max(Id) AS Id FROM parrafos";
@@ -517,7 +517,7 @@ require_once ("../../config/conexion.php");
 		$row=mysqli_fetch_array($query);
 		$Orden= $row['Orden'];
 		$Orden=$Orden+1;
-		$sql =  "INSERT INTO carruseld (Carrusel, Orden, TTamaño,PTamaño) VALUES ($IdCarrusel, $Orden, '12', '12');";
+		$sql =  "INSERT INTO carruseld (Carrusel, Orden, TTamano,PTamano) VALUES ($IdCarrusel, $Orden, '12', '12');";
 		$query_update = mysqli_query($con,$sql);
 		if ($query_update) {
 			$sql="SELECT Max(Id) AS Id FROM carruseld";

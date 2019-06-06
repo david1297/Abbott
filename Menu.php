@@ -20,7 +20,7 @@
 								<ul class="dropdown-menu user-menu menu-icon">
 									<li class="menu-heading">CONFIGURACIONES DE LA CUENTA</li>
 									<!--<li><a href="#"><i class="fa fa-fw fa-bell"></i> <span>Notificaciones</span></a></li>-->
-									<li><a href="Usuarios.php?Nit=<?php echo $_SESSION['Nit'];?>&Perfil=Si"><i class="fas fa-sliders-h"></i> <span>Preferencias</span></a></li>
+									<li><a href="Admin.php"><i class="fas fa-sliders-h"></i> <span>Preferencias</span></a></li>
 									<li><a href="login.php?logout"><i class="fa fa-fw fa-sign-out-alt"></i> <span>Cerrar Sesion</span></a></li>
 								</ul>
 							</li>
@@ -40,7 +40,8 @@
 				<nav id="left-sidebar-nav" class="sidebar-nav">
 					<ul id="main-menu" class="metismenu">
 						<!--<i class="fas fa-cogs"></i> <i class="fas fa-dolly"></i> -->
-						<li class="<?php echo $Inicio;?>"><a href="index.php"><i class="fas fa-home"></i> <span>Paginas</span></a></li>
+						<li class="<?php echo $Paginas;?>"><a href="index.php"><i class="fas fa-file"></i> <span>Paginas</span></a></li>
+						<li class="<?php echo $Encuestas;?>"><a href="Encuestas.php"><i class="fas fa-file-alt"></i> <span>Encuestas</span></a></li>
 						
 					</ul>
 					

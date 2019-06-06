@@ -17,7 +17,7 @@
 	}else{
 		
 	}
-
+	$Paginas='active';
 ?>
 <!doctype html>
 <html lang="es">
@@ -196,7 +196,7 @@ function AgregarCarrusel(N) {
 			$('#loader').html('<img src="./assets/img/ajax-loader.gif"> Cargando...');
 	  },
 		success:function(data){
-			ConfigurarObjeto(data,'CarruselD');
+			ConfigurarObjeto(N,'Carrusel');
 		}
 	})
 	
@@ -220,7 +220,7 @@ function AgregarBotonera(N){
 	  },
 		success:function(data){
 
-			ConfigurarObjeto(data,'BotoneraD');
+			ConfigurarObjeto(N,'Botonera');
 		}
 	})
 }

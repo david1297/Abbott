@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 require_once ("../../config/db.php");
 require_once ("../../config/conexion.php");
 $Id = $_GET["Id"];
@@ -9,7 +9,7 @@ if($Tipo=='Titulo'){
 	$row=mysqli_fetch_array($query);
 	$Texto = $row['Texto'];
 	$Color = $row['color'];
-	$Tamaño = $row['Tamaño'];
+	$Tamano = $row['Tamano'];
 	$TipoGrafia = $row['TipoGrafia'];
 	$Justificacion = $row['Justificacion'];
 	?>
@@ -28,12 +28,12 @@ if($Tipo=='Titulo'){
 		</div>
 	</div>
 	<div class="form-group ">
-		<label  class="col-sm-4 control-label">Tamaño </label>
+		<label  class="col-sm-4 control-label">Tamano </label>
 		<div class="col-md-8 col-sm-8">
-			<select class='form-control' id="Tamaño" name ="Tamaño" placeholder="Tamaño"> 
+			<select class='form-control' id="Tamano" name ="Tamano" placeholder="Tamano"> 
 				<?php 
 				for ($i = 1; $i <= 72; $i++) {
-					if($i == $Tamaño){
+					if($i == $Tamano){
 						echo '<option value="'.$i.'" selected>'.$i.'</option>';
 						
 					}else{
@@ -100,7 +100,7 @@ if($Tipo=='Titulo'){
 		$row=mysqli_fetch_array($query);
 		$Texto = $row['Texto'];
 		$Color = $row['color'];
-		$Tamaño = $row['Tamaño'];
+		$Tamano = $row['Tamano'];
 		$TipoGrafia = $row['TipoGrafia'];
 		$Justificacion = $row['Justificacion'];
 		?>
@@ -112,12 +112,12 @@ if($Tipo=='Titulo'){
 			</div>
 		</div>
 		<div class="form-group ">
-			<label  class="col-sm-4 control-label">Tamaño </label>
+			<label  class="col-sm-4 control-label">Tamano </label>
 			<div class="col-md-8 col-sm-8">
-				<select class='form-control' id="Tamaño" name ="Tamaño" placeholder="Tamaño"> 
+				<select class='form-control' id="Tamano" name ="Tamano" placeholder="Tamano"> 
 					<?php 
 					for ($i = 1; $i <= 72; $i++) {
-						if($i == $Tamaño){
+						if($i == $Tamano){
 							echo '<option value="'.$i.'" selected>'.$i.'</option>';
 							
 						}else{
@@ -205,7 +205,7 @@ if($Tipo=='Titulo'){
 			$query = mysqli_query($con, $sql);
 			$row=mysqli_fetch_array($query);
 			$Imagen = $row['Imagen'];
-			$Tamaño = $row['Tamaño'];
+			$Tamano = $row['Tamano'];
 			$Justificacion= $row['Justificacion'];
 			?>
 			<div class="form-group" id="Div-Imagen">
@@ -215,12 +215,12 @@ if($Tipo=='Titulo'){
 					<br>
 				</div>
 				<div class="form-group ">
-					<label  class="col-md-2 control-label">Tamaño de Pantalla </label>
+					<label  class="col-md-2 control-label">Tamano de Pantalla </label>
 					<div class="col-md-2">
-						<select class='form-control' id="Tamaño" name ="Tamaño" placeholder="Tamaño"> 
+						<select class='form-control' id="Tamano" name ="Tamano" placeholder="Tamano"> 
 							<?php 
 							for ($i = 2; $i <= 12; $i=$i+2) {
-								if($i == $Tamaño){
+								if($i == $Tamano){
 									echo '<option value="'.$i.'" selected>'.$i.'%</option>';
 								}else{
 									echo '<option value="'.$i.'">'.$i.'%</option>';
@@ -270,7 +270,7 @@ if($Tipo=='Titulo'){
 				$row=mysqli_fetch_array($query);
 				$Video = $row['Video'];
 				$Autoplay = $row['Autoplay'];
-				$Tamaño = $row['Tamaño'];
+				$Tamano = $row['Tamano'];
 				$Justificacion = $row['Justificacion'];
 				?>
 				<div class="form-group" id="Div-Video">
@@ -282,12 +282,12 @@ if($Tipo=='Titulo'){
 						<br>
 					</div>
 					<div class="form-group ">
-						<label  class="col-md-2 control-label">Tamaño de Pantalla </label>
+						<label  class="col-md-2 control-label">Tamano de Pantalla </label>
 						<div class="col-md-2">
-							<select class='form-control' id="Tamaño" name ="Tamaño" placeholder="Tamaño"> 
+							<select class='form-control' id="Tamano" name ="Tamano" placeholder="Tamano"> 
 								<?php 
 								for ($i = 2; $i <= 12; $i=$i+2) {
-									if($i == $Tamaño){
+									if($i == $Tamano){
 										echo '<option value="'.$i.'" selected>'.$i.'%</option>';
 									}else{
 										echo '<option value="'.$i.'">'.$i.'%</option>';
@@ -356,7 +356,7 @@ if($Tipo=='Titulo'){
 					$query = mysqli_query($con, $sql);
 					$row=mysqli_fetch_array($query);
 					$Controles = $row['Controles'];
-					$Tamaño = $row['Tamaño'];
+					$Tamano = $row['Tamano'];
 					
 					?> 	
 					<div class="col-sm-2">
@@ -382,12 +382,12 @@ if($Tipo=='Titulo'){
 							</div>
 						</div>
 						<div class="form-group ">
-							<label  class="col-md-2 control-label">Tamaño de Pantalla </label>
+							<label  class="col-md-2 control-label">Tamano de Pantalla </label>
 							<div class="col-md-2">
-								<select class='form-control' id="Tamaño" name ="Tamaño" placeholder="Tamaño"> 
+								<select class='form-control' id="Tamano" name ="Tamano" placeholder="Tamano"> 
 									<?php 
 									for ($i = 2; $i <= 12; $i=$i+2) {
-										if($i == $Tamaño){
+										if($i == $Tamano){
 											echo '<option value="'.$i.'" selected>'.$i.'%</option>';
 										}else{
 											echo '<option value="'.$i.'">'.$i.'%</option>';
@@ -438,18 +438,18 @@ if($Tipo=='Titulo'){
 					<?php
 				}else{
 					if($Tipo=='CarruselD'){
-						$sql="SELECT Carrusel,Imagen,Id,Titulo,TTamaño,TColor,TTipografia,TJustificacion,Parrafo,PTamaño,PColor,PTipografia,PJustificacion FROM Carruseld where Id = ".$Id." order by Orden";    
+						$sql="SELECT Carrusel,Imagen,Id,Titulo,TTamano,TColor,TTipografia,TJustificacion,Parrafo,PTamano,PColor,PTipografia,PJustificacion FROM Carruseld where Id = ".$Id." order by Orden";    
 						$query = mysqli_query($con, $sql);
 						$row=mysqli_fetch_array($query);
 						$Imagen = $row['Imagen'];
 						$Titulo = $row['Titulo'];
 						$TColor = $row['TColor'];
-						$TTamaño = $row['TTamaño'];
+						$TTamano = $row['TTamano'];
 						$TTipografia = $row['TTipografia'];
 						$TJustificacion =$row['TJustificacion']; 
 						$Parrafo = $row['Parrafo'];
 						$PColor = $row['PColor'];
-						$PTamaño = $row['PTamaño'];
+						$PTamano = $row['PTamano'];
 						$PTipografia = $row['PTipografia'];
 						$PJustificacion =$row['PJustificacion'];
 						$Carrusel =$row['Carrusel'];  
@@ -480,12 +480,12 @@ if($Tipo=='Titulo'){
 									</div>
 								</div>
 								<div class="form-group ">
-									<label  class="col-sm-4 control-label">Tamaño </label>
+									<label  class="col-sm-4 control-label">Tamano </label>
 									<div class="col-md-8 col-sm-8">
-										<select class='form-control' id="TTamaño" name ="TTamaño" placeholder="TTamaño"> 
+										<select class='form-control' id="TTamano" name ="TTamano" placeholder="TTamano"> 
 											<?php 
 											for ($i = 1; $i <= 72; $i++) {
-												if($i == $TTamaño){
+												if($i == $TTamano){
 													echo '<option value="'.$i.'" selected>'.$i.'</option>';
 												}else{
 													echo '<option value="'.$i.'">'.$i.'</option>';
@@ -569,12 +569,12 @@ if($Tipo=='Titulo'){
 									</div>
 								</div>
 								<div class="form-group ">
-									<label  class="col-sm-4 control-label">Tamaño </label>
+									<label  class="col-sm-4 control-label">Tamano </label>
 									<div class="col-md-8 col-sm-8">
-										<select class='form-control' id="PTamaño" name ="PTamaño" placeholder="PTamaño"> 
+										<select class='form-control' id="PTamano" name ="PTamano" placeholder="PTamano"> 
 											<?php 
 											for ($i = 1; $i <= 72; $i++) {
-												if($i == $PTamaño){
+												if($i == $PTamano){
 													echo '<option value="'.$i.'" selected>'.$i.'</option>';
 													
 												}else{
@@ -825,7 +825,7 @@ if($Tipo=='Titulo'){
 													</div>
 												</div>
 												<div class="form-group ">
-													<label  class="col-sm-4 control-label">Tamaño del Borde </label>
+													<label  class="col-sm-4 control-label">Tamano del Borde </label>
 													<div class="col-md-8 col-sm-8">
 														<select class='form-control' id="BGrosor" name ="BGrosor" placeholder="BGrosor"> 
 															<?php 

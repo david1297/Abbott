@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $session_id= session_id();
 require_once ("../../config/db.php");
 require_once ("../../config/conexion.php");
@@ -14,12 +14,12 @@ if (empty($_POST['Id'])){
 	if($Tipo=='Titulo'){
 		$Texto = mysqli_real_escape_string($con,(strip_tags($_POST["Texto"],ENT_QUOTES)));
 		$Color = mysqli_real_escape_string($con,(strip_tags($_POST["Color"],ENT_QUOTES)));
-		$Tamaño = mysqli_real_escape_string($con,(strip_tags($_POST["Tamaño"],ENT_QUOTES)));
+		$Tamano = mysqli_real_escape_string($con,(strip_tags($_POST["Tamano"],ENT_QUOTES)));
 		$TipoGrafia = mysqli_real_escape_string($con,(strip_tags($_POST["TipoGrafia"],ENT_QUOTES)));
 		$Justificacion = mysqli_real_escape_string($con,(strip_tags($_POST["Justificacion"],ENT_QUOTES)));
 
 	
-		$sql =  "UPDATE titulos SET Texto='$Texto',Color='$Color',Tamaño='$Tamaño' ,TipoGrafia='$TipoGrafia',Justificacion='$Justificacion'  
+		$sql =  "UPDATE titulos SET Texto='$Texto',Color='$Color',Tamano='$Tamano' ,TipoGrafia='$TipoGrafia',Justificacion='$Justificacion'  
 		where Id = $Id;";
 		$query_update = mysqli_query($con,$sql);
 		if ($query_update) {
@@ -31,12 +31,12 @@ if (empty($_POST['Id'])){
 		if($Tipo=='Parrafo'){
 			$Texto = $_POST["Texto"];
 			$Color = mysqli_real_escape_string($con,(strip_tags($_POST["Color"],ENT_QUOTES)));
-			$Tamaño = mysqli_real_escape_string($con,(strip_tags($_POST["Tamaño"],ENT_QUOTES)));
+			$Tamano = mysqli_real_escape_string($con,(strip_tags($_POST["Tamano"],ENT_QUOTES)));
 			$TipoGrafia = mysqli_real_escape_string($con,(strip_tags($_POST["TipoGrafia"],ENT_QUOTES)));
 			$Justificacion = mysqli_real_escape_string($con,(strip_tags($_POST["Justificacion"],ENT_QUOTES)));
 			
 		
-			$sql =  "UPDATE parrafos SET Texto='$Texto',Color='$Color',Tamaño='$Tamaño' ,TipoGrafia='$TipoGrafia' 
+			$sql =  "UPDATE parrafos SET Texto='$Texto',Color='$Color',Tamano='$Tamano' ,TipoGrafia='$TipoGrafia' 
 			,Justificacion='$Justificacion' 
 			where Id = $Id;";
 			$query_update = mysqli_query($con,$sql);
@@ -62,10 +62,10 @@ if (empty($_POST['Id'])){
 						}	
 						
 				}
-				$Tamaño = mysqli_real_escape_string($con,(strip_tags($_POST["Tamaño"],ENT_QUOTES)));
+				$Tamano = mysqli_real_escape_string($con,(strip_tags($_POST["Tamano"],ENT_QUOTES)));
 				$Justificacion = mysqli_real_escape_string($con,(strip_tags($_POST["Justificacion"],ENT_QUOTES)));
 
-				$sql =  "UPDATE  imagenes SET Tamaño=$Tamaño,Justificacion='$Justificacion'  where Id = $Id;";
+				$sql =  "UPDATE  imagenes SET Tamano=$Tamano,Justificacion='$Justificacion'  where Id = $Id;";
 				$query_update = mysqli_query($con,$sql);
 				if ($query_update) {
 					$messages = "Los Datos Se Han Guardado Con Exito.";
@@ -91,9 +91,9 @@ if (empty($_POST['Id'])){
 					}else{
 						$Autoplay='';
 					}
-					$Tamaño = mysqli_real_escape_string($con,(strip_tags($_POST["Tamaño"],ENT_QUOTES)));
+					$Tamano = mysqli_real_escape_string($con,(strip_tags($_POST["Tamano"],ENT_QUOTES)));
 					$Justificacion = mysqli_real_escape_string($con,(strip_tags($_POST["Justificacion"],ENT_QUOTES)));
-					$sql =  "UPDATE  Videos SET Autoplay='$Autoplay',Tamaño=$Tamaño,Justificacion='$Justificacion'  where Id = $Id;";
+					$sql =  "UPDATE  Videos SET Autoplay='$Autoplay',Tamano=$Tamano,Justificacion='$Justificacion'  where Id = $Id;";
 					$query_update = mysqli_query($con,$sql);
 					if ($query_update) {
 						$messages = "Los Datos Se Han Guardado Con Exito.";
@@ -107,8 +107,8 @@ if (empty($_POST['Id'])){
 						}else{
 							$Controles='False';
 						}
-						$Tamaño = mysqli_real_escape_string($con,(strip_tags($_POST["Tamaño"],ENT_QUOTES)));
-						$sql =  "UPDATE  Carrusel SET Controles='$Controles',Tamaño=$Tamaño  where Id = $Id;";
+						$Tamano = mysqli_real_escape_string($con,(strip_tags($_POST["Tamano"],ENT_QUOTES)));
+						$sql =  "UPDATE  Carrusel SET Controles='$Controles',Tamano=$Tamano  where Id = $Id;";
 						$query_update = mysqli_query($con,$sql);
 						if ($query_update) {
 							$messages = "Los Datos Se Han Guardado Con Exito.";
@@ -129,17 +129,17 @@ if (empty($_POST['Id'])){
 									}	
 							}
 							$Titulo = mysqli_real_escape_string($con,(strip_tags($_POST["Titulo"],ENT_QUOTES)));
-							$TTamaño = mysqli_real_escape_string($con,(strip_tags($_POST["TTamaño"],ENT_QUOTES)));
+							$TTamano = mysqli_real_escape_string($con,(strip_tags($_POST["TTamano"],ENT_QUOTES)));
 							$TTipografia = mysqli_real_escape_string($con,(strip_tags($_POST["TTipografia"],ENT_QUOTES)));
 							$TColor = mysqli_real_escape_string($con,(strip_tags($_POST["TColor"],ENT_QUOTES)));
 							$TJustificacion = mysqli_real_escape_string($con,(strip_tags($_POST["TJustificacion"],ENT_QUOTES)));
 							$Parrafo = mysqli_real_escape_string($con,(strip_tags($_POST["Parrafo"],ENT_QUOTES)));
-							$PTamaño = mysqli_real_escape_string($con,(strip_tags($_POST["PTamaño"],ENT_QUOTES)));
+							$PTamano = mysqli_real_escape_string($con,(strip_tags($_POST["PTamano"],ENT_QUOTES)));
 							$PTipografia = mysqli_real_escape_string($con,(strip_tags($_POST["PTipografia"],ENT_QUOTES)));
 							$PColor = mysqli_real_escape_string($con,(strip_tags($_POST["PColor"],ENT_QUOTES)));
 							$PJustificacion = mysqli_real_escape_string($con,(strip_tags($_POST["PJustificacion"],ENT_QUOTES)));
-							$sql =  "UPDATE Carruseld SET Titulo='$Titulo',TTamaño='$TTamaño',TTipografia='$TTipografia',TColor='$TColor',TJustificacion='$TJustificacion'
-									,Parrafo='$Parrafo',PTamaño='$PTamaño',PTipografia='$PTipografia',PColor='$PColor',PJustificacion='$PJustificacion'
+							$sql =  "UPDATE Carruseld SET Titulo='$Titulo',TTamano='$TTamano',TTipografia='$TTipografia',TColor='$TColor',TJustificacion='$TJustificacion'
+									,Parrafo='$Parrafo',PTamano='$PTamano',PTipografia='$PTipografia',PColor='$PColor',PJustificacion='$PJustificacion'
 							
 							 where Id = $Id;";
 								$query_update = mysqli_query($con,$sql);
