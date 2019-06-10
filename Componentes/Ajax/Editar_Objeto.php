@@ -182,7 +182,8 @@ if (empty($_POST['Id'])){
 									$BGrosor = mysqli_real_escape_string($con,(strip_tags($_POST["BGrosor"],ENT_QUOTES)));
 									$Descripcion = mysqli_real_escape_string($con,(strip_tags($_POST["Descripcion"],ENT_QUOTES)));
 									$RBorderI = mysqli_real_escape_string($con,(strip_tags($_POST["RBorderI"],ENT_QUOTES)));
-									$sql =  "UPDATE BotoneraD SET Enlace='$Enlace',BColor='$BColor',RBorder=$RBorder,RBorderI=$RBorderI,BGrosor=$BGrosor,Descripcion='$Descripcion' where Id = $Id;";
+									$Anio = mysqli_real_escape_string($con,(strip_tags($_POST["Anio"],ENT_QUOTES)));
+									$sql =  "UPDATE BotoneraD SET Enlace='$Enlace',BColor='$BColor',RBorder=$RBorder,RBorderI=$RBorderI,BGrosor=$BGrosor,Descripcion='$Descripcion',Anio=$Anio where Id = $Id;";
 									$query_update = mysqli_query($con,$sql);
 									if ($query_update) {
 										$messages = "Los Datos Se Han Guardado Con Exito.";

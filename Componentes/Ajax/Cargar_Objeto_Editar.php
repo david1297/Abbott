@@ -112,7 +112,7 @@ if($Tipo=='Titulo'){
 			</div>
 		</div>
 		<div class="form-group ">
-			<label  class="col-sm-4 control-label">Tamano </label>
+			<label  class="col-sm-4 control-label">Tamaño </label>
 			<div class="col-md-8 col-sm-8">
 				<select class='form-control' id="Tamano" name ="Tamano" placeholder="Tamano"> 
 					<?php 
@@ -799,6 +799,7 @@ if($Tipo=='Titulo'){
 										$Descripcion = $row['Descripcion'];
 										$Botonera = $row['Botonera'];
 										$RBorderI = $row['RBorderI'];
+										$Anio = $row['Anio'];
 										?>
 										<div class="form-group" id="Div-Imagen">
 											<label for="Nombre" class="col-sm-4 control-label">Imagen</label>
@@ -890,7 +891,23 @@ if($Tipo=='Titulo'){
 														?>
 														</select>
 													</div>
-												</div>	
+												</div>
+												<div class="form-group ">
+													<label  class="col-sm-4 control-label">Año</label>
+													<div class="col-md-8 col-sm-8">
+														<select class='form-control' id="Anio" name ="Anio" placeholder="Anio"> 
+															<?php 
+															for ($i = 2016; $i <= 3000; $i++) {
+																if($i == $Anio){
+																	echo '<option value="'.$i.'" selected>'.$i.'</option>';
+																}else{
+																	echo '<option value="'.$i.'">'.$i.'</option>';
+																}
+															}
+															?>
+														</select>
+													</div>
+												</div> 	
 												
 											</div>
 											
