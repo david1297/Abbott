@@ -6,7 +6,7 @@
         }*/
 	require_once ("config/db.php");
 	require_once ("config/conexion.php");
-	$Paginas="active";
+	$Encuestas="active";
 	if ($_SESSION['Login'] <> 'True') {
 		header("location: Login.php");
  }
@@ -19,23 +19,23 @@
 <?php include("head.php");?>
 </head>
 
-<body class="" onload='CargarPaginas();'>
+<body class="" onload='CargarEncuestas();'>
 	<div id="Menus">
 		<div id="wrapper">
 			<?php
 			include("Menu.php");
-			include("componentes/modal/Agregar_Pagina.php");
+			include("componentes/modal/Agregar_Encuesta.php");
 			?>
 			<div id="main-content">
 				<div class="container-fluid">
 					<div class="panel panel-default">
 						<div class="panel-heading">
 		    				<div class="btn-group pull-right">				
-								<button type="button" class="btn btn-default"data-toggle="modal" data-target="#AgregarPagina">
-									<i class="fas fa-plus"></i> Adicionar Paginas
+								<button type="button" class="btn btn-default"data-toggle="modal" data-target="#AgregarEncuesta">
+									<i class="fas fa-plus"></i> Adicionar Encuestas
 								</button>
 							</div>
-							<h4><i class="fas fa-file-alt"></i> Paginas</h4>
+							<h4><i class="fas fa-file-alt"></i> Encuestas</h4>
 						</div>
 						<div class="panel-body">
 							<div class="tab-content content-profile">
@@ -65,10 +65,10 @@
 	<script src="assets/vendor/toastr/toastr.js"></script>
 	<script src="assets/scripts/common.js"></script>
 	<script>
-	function CargarPaginas(){
+	function CargarEncuestas(){
 			$("#loader").fadeIn('slow');
 			$.ajax({
-				url:'Componentes/Ajax/Cargar_Paginas.php',
+				url:'Componentes/Ajax/Cargar_Encuestas.php',
 				 beforeSend: function(objeto){
 					$('#loader').html('<img src="./assets/img/ajax-loader.gif"> Cargando...');
 			  },
@@ -78,22 +78,21 @@
 					
 				}
 			})
-
 	}
-	$( "#Nueva_Pagina" ).submit(function( event ) {
+	$( "#Nueva_Encuesta" ).submit(function( event ) {
   
   
   var parametros = $(this).serialize();
 	  $.ajax({
 		   type: "POST",
-			 url: "Componentes/Ajax/Crear_Pagina.php",
+			 url: "Componentes/Ajax/Crear_Encuesta.php",
 		   data: parametros,
 			  beforeSend: function(objeto){
 			   $("#resultados_ajax3B").html("Mensaje: Cargando...");
 			   },
 		   success: function(datos){
 			document.getElementById('Nombre').value = '';
-			CargarPaginas();
+			CargarEncuestas();
 		   $("#resultados_ajax3B").html(datos);
 		   $('#actualizar_datos3B').attr("disabled", false);
 		   $('#resultados_ajax3B').fadeOut(2000); 
