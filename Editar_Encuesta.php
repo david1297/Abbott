@@ -121,7 +121,7 @@
 									<i class="fas fa-plus"></i> Adicionar Pregunta
 								</button>
 								<form class="form-horizontal " method="post" id="Guardar_Encuesta" name="Guardar_Encuesta">
-								<input type="text" class="hidden" id="Id" value="<?php echo $Id;?>">
+								<input type="text" class="hidden" id="IdPregunta" value="<?php echo $Id;?>">
 								<input type="text" class="hidden" id="TipoSession">
 								<input type="text" class="hidden" id="LadoSession">
 								<input type="text" class="hidden" id="IdSession">
@@ -151,16 +151,16 @@
 	<script>
 
 function NuevaPregunta(N){
-	var Id = document.getElementById('Id').value;
+	var Id = document.getElementById('IdPregunta').value;
 	$.ajax({
 	url:'Componentes/Ajax/Crear_Pregunta.php?Encuesta='+Id+'&Tipo='+N,
 		 beforeSend: function(objeto){
 			$('#loader').html('<img src="./assets/img/ajax-loader.gif"> Cargando...');
 	  },
 		success:function(data){
+			var palabras = data.split("-");
 			$('#AgregarPregunta').modal('hide');
-		
-			ConfigurarPregunta(data);
+			ConfigurarPregunta(palabras[1]);
 			
 		}
 	})
@@ -176,14 +176,12 @@ function ConfigurarPregunta(Id){
 	  },
 		success:function(data){
 			$('#Trae_Pregunta').html(data);
-			//CargarPreguntas();
+			
 		}
 	})
 }
-
-
 function CargarPreguntas(){
-	var Id = document.getElementById('Id').value;
+	var Id = document.getElementById('IdPregunta').value;
 	$.ajax({
 	url:'Componentes/Ajax/Cargar_Preguntas.php?Id='+Id,
 		 beforeSend: function(objeto){
@@ -197,51 +195,71 @@ function CargarPreguntas(){
 	})
 	
 }
-function ConfigurarSession(Session,Tipo){
-	$('#ConfiguracionSession').modal('show');
-	$.ajax({
-	url:'Componentes/Ajax/Cargar_Session_Editar.php?Id='+Session+'&Tipo='+Tipo,
-		 beforeSend: function(objeto){
-			$('#Trae_Session').html('<img src="./assets/img/ajax-loader.gif"> Cargando...');
-	  },
-		success:function(data){
+
+$( "#Editar_Pregunta" ).submit(function( event ) {
+  
+  
+  var parametros = $(this).serialize();
+	  $.ajax({
+		   type: "POST",
+			 url: "Componentes/Ajax/Editar_Pregunta.php",
+		   data: parametros,
+			  beforeSend: function(objeto){
+			   $("#resultados_Pregunta").html("Mensaje: Cargando...");
+			   },
+		   success: function(datos){
 	
-			$('#Trae_Session').html(data);
-			
-		}
-	})
+		
+			$("#resultados_Pregunta").html(datos);
+		 
+		 $('#actualizar_datos3B').attr("disabled", false);
+		 $('#resultados_Pregunta').fadeOut(2000); 
+			 setTimeout(function() { 
+				 $('#resultados_Pregunta').html('');	
+				 $('#resultados_Pagina').fadeIn(1000); 
+			 }, 1000);	
+			 CargarPreguntas();
+		 }
+   });
+   event.preventDefault();
+})
 
-}
-
-
-
-function MoverSession(Session,Direccion,TipoS){
-	var Id = document.getElementById('Id').value;
+function MoverPregunta(Pregunta,Direccion){
+	var Id = document.getElementById('IdPregunta').value;
 
 	$.ajax({
-	url:'Componentes/Ajax/Ordenar_Session.php?Session='+Session+'&Direccion='+Direccion+'&Pagina='+Id+'&TipoS='+TipoS,
+	url:'Componentes/Ajax/Ordenar_Pregunta.php?Id='+Id+'&Direccion='+Direccion+'&Pregunta='+Pregunta,
 		 beforeSend: function(objeto){
 			$('#loader').html('<img src="./assets/img/ajax-loader.gif"> Cargando...');
 	  },
 		success:function(data){
-
-
-			CargarSessiones();
+			CargarPreguntas();
 		}
 	})
 
 }
-function CargarSession(TipoS,Session){
+function CargarPregunta(Pregunta){
 	$.ajax({
-	url:'Componentes/Ajax/Cargar_Session.php?TipoS='+TipoS+'&Session='+Session,
+	url:'Componentes/Ajax/Cargar_Pregunta.php?Pregunta='+Pregunta,
 		 beforeSend: function(objeto){
 	  },
 		success:function(data){   
-		   $("#Tipo"+TipoS+"-"+Session).html(data);	 
+		   $("#Pregunta-"+Pregunta).html(data);	 
 		}
 	})
 }
 
+function EliminarPregunta(IdO,TipoO){
+	  $.ajax({
+		url: "Componentes/Ajax/Eliminar_Objeto.php?Id="+IdO+"&Tipo="+TipoO,
+			  beforeSend: function(objeto){
+			   },
+		   success: function(datos){ 
+		 
+		 }	 
+   });
+
+}
 
 
 

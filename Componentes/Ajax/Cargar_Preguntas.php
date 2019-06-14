@@ -3,9 +3,7 @@
 	require_once ("../../config/db.php");
 	require_once ("../../config/conexion.php");
 	$Id = $_GET["Id"];
-
 	$sql="SELECT Id,Tipo,Pregunta FROM encuestad where Encuesta = $Id order by Orden";
-
 	$query = mysqli_query($con, $sql);
 	while ($row=mysqli_fetch_array($query)){
 			$Id_Pregunta=$row['Id'];
@@ -20,11 +18,9 @@
 					$TipoP='<i class="far fa-check-square"></i> Seleccion';
 				}	
 			}
-
-			
 			?>
 			<br>
-			<div class="card border-secondary mb-12" id='Tipo1-<?php echo $Id_Pregunta;?>' >
+			<div class="card border-secondary mb-12" id='Pregunta-<?php echo $Id_Pregunta;?>' >
 				<div class="card-header">
 					<div class="btn-group pull-left">
 						<h4><?php echo $TipoP; ?></h4>
@@ -44,19 +40,25 @@
 				</div>
 				<div class="card-body text-secondary">
 					<div class="form-group row">
-					<div class="col-md-12">
-					<span>
-					<?php
-					
-					echo $Pregunta;
-					?>
-					</span>
-						</div>
 						<div class="col-md-12">
-							<button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(1,'I',<?php echo $Session;?>,0)">
-								<i class="fas fa-plus"></i>
-							</button>
+							<span>
+								<?php
+								echo $Pregunta;
+								?>
+							</span>
 						</div>
+						<?php
+						if($Tipo<>'Texto'){
+							?>
+							<div class="col-md-12">
+								<button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#AgregarObjeto" onclick="TipoCSession(1,'I',<?php echo $Session;?>,0)">	
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
+							<?php
+						}
+						?>
+						
 					</div>
 					
 					

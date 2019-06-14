@@ -1,7 +1,4 @@
 ﻿<?php
-
-
-$session_id= session_id();
 $TipoSession=0;
 	if (isset($_GET['Encuesta'])){$Encuesta=$_GET['Encuesta'];}
 	if (isset($_GET['Tipo'])){$Tipo=$_GET['Tipo'];}
@@ -28,9 +25,9 @@ require_once ("../../config/conexion.php");
 				}
 			}
 		}
-		$sql="SELECT max(Id) Numero FROM encuestad";
+		$sql="SELECT max(Id) as Numero FROM encuestad";
 
 	$query = mysqli_query($con, $sql);
 	$row=mysqli_fetch_array($query);
-	echo $row['Numero'];
+	echo '-'.$row['Numero'];
 ?>
