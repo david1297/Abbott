@@ -249,18 +249,59 @@ function CargarPregunta(Pregunta){
 	})
 }
 
-function EliminarPregunta(IdO,TipoO){
+function Eliminar_Pregunta(Id,Tipo){
 	  $.ajax({
-		url: "Componentes/Ajax/Eliminar_Objeto.php?Id="+IdO+"&Tipo="+TipoO,
+		url: "Componentes/Ajax/Eliminar_Pregunta.php?Id="+Id+"&Tipo="+Tipo,
 			  beforeSend: function(objeto){
 			   },
 		   success: function(datos){ 
-		 
+			CargarPreguntas();
 		 }	 
    });
 
 }
+function Eliminar_Opcion(Id){
+	  $.ajax({
+		url: "Componentes/Ajax/Eliminar_Opcion.php?Id="+Id,
+			  beforeSend: function(objeto){
+			   },
+		   success: function(datos){ 
+			CargarPregunta();
+		 }	 
+   });
 
+}
+function UpdateOpciones(Key,Id){
+	if (Key.keyCode == 13) {
+			var Opcion = $("#Seleccion"+Id).val();
+		$.ajax({
+        type: "POST",
+				url: "Componentes/Ajax/Actualizar_Opcion.php",
+        data: "Id="+Id+"&Opcion="+Opcion,
+			beforeSend: function(objeto){
+				$('#loader_B'+Id).html('<img src="./assets/img/ajax-loader.gif"> Cargando...');
+			},success: function(datos){
+				$('#loader_B'+Id).html(datos);
+				$('#loader_B'+Id).fadeOut(2000); 
+				setTimeout(function() { 
+					$('#loader_B'+Id).html('');	
+					$('#loader_B'+Id).fadeIn(1000); 
+				}, 1000);	
+			}
+		});
+  }
+}
+function Agregar_Opcion(Id){
+	  $.ajax({
+		url: "Componentes/Ajax/Agregar_Opcion.php?Id="+Id,
+			  beforeSend: function(objeto){
+			   },
+		   success: function(datos){ 
+			CargarPregunta();
+		 }	 
+   });
+
+}
 
 
 	</script>
