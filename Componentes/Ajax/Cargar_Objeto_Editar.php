@@ -926,11 +926,14 @@ if($Tipo=='Titulo'){
 										<?php
 									}else{
 										if($Tipo=='Boton'){
+											
 											$sql="SELECT * FROM Boton where Id = ".$Id." ";      
 											$query = mysqli_query($con, $sql);
 											$row=mysqli_fetch_array($query);
 											$Texto = $row['Texto'];
 											$Enlace = $row['Enlace'];
+											$TipoB = $row['Tipo'];
+											$Justificacion = $row['Justificacion'];
 											?>
 											<div class="form-group">
 												<label for="Nombre" class="col-sm-4 control-label">Texto</label>
@@ -941,9 +944,35 @@ if($Tipo=='Titulo'){
 												</div>
 											</div>	
 											<div class="form-group ">
+												<label  class="col-sm-4 control-label">Tipo </label>
+												<div class="col-md-8 col-sm-8">
+													<select class='form-control' id="TipoB" name ="TipoB" placeholder="TipoB" onchange="CambioTipoBoton()"> 
+														<?php 
+														if($TipoB == 'Pagina'){
+															echo '<option value="Pagina">Pagina</option>';
+															echo '<option value="Encuesta">Encuesta</option>';
+														}else{
+																echo '<option value="Encuesta">Encuesta</option>';
+																echo '<option value="Pagina">Pagina</option>';
+														}
+													?>
+													</select>
+												</div>
+											</div>
+											<?php
+										
+											if($TipoB=="Pagina"){
+												$Pagina='';
+												$Encuesta='hidden';
+											}else{
+												$Pagina='hidden';
+												$Encuesta='';
+											}
+											?>
+											<div class="form-group <?php echo $Pagina;?>" id="Boton_Pagina">
 												<label  class="col-sm-4 control-label">Enlace </label>
 												<div class="col-md-8 col-sm-8">
-													<select class='form-control' id="Enlace" name ="Enlace" placeholder="Enlace" > 
+													<select class='form-control' id="EnlaceP" name ="EnlaceP" placeholder="Enlace" > 
 														<?php 
 														$sql="SELECT * FROM pagina order by Id ";    
 														$query1 = mysqli_query($con, $sql);
@@ -957,7 +986,25 @@ if($Tipo=='Titulo'){
 														?>
 													</select>
 												</div>
-											</div>								
+											</div>	
+											<div class="form-group <?php echo $Encuesta;?>"  id="Boton_Encuesta">
+												<label  class="col-sm-4 control-label">Enlace </label>
+												<div class="col-md-8 col-sm-8">
+													<select class='form-control' id="EnlaceE" name ="EnlaceE" placeholder="Enlace" > 
+														<?php 
+														$sql="SELECT * FROM encuesta order by Id ";    
+														$query1 = mysqli_query($con, $sql);
+														while($row1=mysqli_fetch_array($query1)){
+															if($Enlace == $row1['Id']){
+																echo '<option  value="'.$row1['Id'].'" selected>'.$row1['Nombre'].'</option>';
+															}else{
+																echo '<option  value="'.$row1['Id'].'" >'.$row1['Nombre'].'</option>';
+															}
+														}
+														?>
+													</select>
+												</div>
+											</div>							
 											<div class="form-group ">
 												<label  class="col-sm-4 control-label">Alineacion </label>
 												<div class="col-md-8 col-sm-8">

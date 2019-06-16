@@ -488,6 +488,16 @@ $( "#Cargar_Album" ).submit(function( event ) {
    });
    event.preventDefault();
 })
+function CambioTipoBoton(){
+
+	if (document.getElementById('TipoB').value=='Pagina'){
+		$('#Boton_Pagina').removeClass("hidden");
+		$('#Boton_Encuesta').addClass("hidden");
+	} else{
+		$('#Boton_Pagina').addClass("hidden");
+		$('#Boton_Encuesta').removeClass("hidden");
+	}	
+}
 
 
 

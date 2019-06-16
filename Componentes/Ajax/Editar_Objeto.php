@@ -196,9 +196,17 @@ if (empty($_POST['Id'])){
 								}else{
 									if($Tipo=='Boton'){
 										$Texto = mysqli_real_escape_string($con,(strip_tags($_POST["Texto"],ENT_QUOTES)));
-										$Enlace = mysqli_real_escape_string($con,(strip_tags($_POST["Enlace"],ENT_QUOTES)));
+										$EnlaceP = mysqli_real_escape_string($con,(strip_tags($_POST["EnlaceP"],ENT_QUOTES)));
 										$Justificacion = mysqli_real_escape_string($con,(strip_tags($_POST["Justificacion"],ENT_QUOTES)));
-										$sql =  "UPDATE Boton SET Texto='$Texto',Enlace='$Enlace',Justificacion='$Justificacion' 
+										$TipoB = mysqli_real_escape_string($con,(strip_tags($_POST["TipoB"],ENT_QUOTES)));
+										$EnlaceE = mysqli_real_escape_string($con,(strip_tags($_POST["EnlaceE"],ENT_QUOTES)));
+										if($TipoB=="Pagina"){
+											$Enlace=$EnlaceP; 	
+
+										}else{
+											$Enlace=$EnlaceE; 	
+										}
+										$sql =  "UPDATE Boton SET Texto='$Texto',Tipo='$TipoB',Enlace='$Enlace',Justificacion='$Justificacion' 
 										where Id = $Id;";
 										$query_update = mysqli_query($con,$sql);
 										if ($query_update) {

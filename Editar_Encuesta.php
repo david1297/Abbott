@@ -160,6 +160,7 @@ function NuevaPregunta(N){
 		success:function(data){
 			var palabras = data.split("-");
 			$('#AgregarPregunta').modal('hide');
+		
 			ConfigurarPregunta(palabras[1]);
 			
 		}
@@ -239,6 +240,7 @@ function MoverPregunta(Pregunta,Direccion){
 
 }
 function CargarPregunta(Pregunta){
+	alert(Pregunta);
 	$.ajax({
 	url:'Componentes/Ajax/Cargar_Pregunta.php?Pregunta='+Pregunta,
 		 beforeSend: function(objeto){
@@ -265,8 +267,9 @@ function Eliminar_Opcion(Id){
 		url: "Componentes/Ajax/Eliminar_Opcion.php?Id="+Id,
 			  beforeSend: function(objeto){
 			   },
-		   success: function(datos){ 
-			CargarPregunta();
+		   success: function(data){ 
+				var palabras = data.split("-");
+			CargarPregunta(palabras[1]);
 		 }	 
    });
 
@@ -296,8 +299,9 @@ function Agregar_Opcion(Id){
 		url: "Componentes/Ajax/Agregar_Opcion.php?Id="+Id,
 			  beforeSend: function(objeto){
 			   },
-		   success: function(datos){ 
-			CargarPregunta();
+		   success: function(data){ 
+				var palabras = data.split("-");
+			CargarPregunta(palabras[1]);
 		 }	 
    });
 

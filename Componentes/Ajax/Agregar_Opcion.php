@@ -9,4 +9,6 @@ require_once ("../../config/conexion.php");
 			$sql =  "INSERT INTO p_seleccion (Pregunta,Opcion,Tipo) VALUES ($Id,'','');";
 				$query_update = mysqli_query($con,$sql);	
 		
+				
+	echo '-'.$Id;
 ?>
