@@ -240,7 +240,6 @@ function MoverPregunta(Pregunta,Direccion){
 
 }
 function CargarPregunta(Pregunta){
-	alert(Pregunta);
 	$.ajax({
 	url:'Componentes/Ajax/Cargar_Pregunta.php?Pregunta='+Pregunta,
 		 beforeSend: function(objeto){
