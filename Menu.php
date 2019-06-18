@@ -1,5 +1,9 @@
 
 
+<?php
+	
+			include("componentes/modal/GenerarPDF.php");
+		?>
 <nav class="navbar navbar-default navbar-fixed-top">
 
 			<div class="container-fluid">
@@ -42,6 +46,7 @@
 						<!--<i class="fas fa-cogs"></i> <i class="fas fa-dolly"></i> -->
 						<li class="<?php echo $Paginas;?>"><a href="index.php"><i class="fas fa-file"></i> <span>Paginas</span></a></li>
 						<li class="<?php echo $Encuestas;?>"><a href="Encuestas.php"><i class="fas fa-file-alt"></i> <span>Encuestas</span></a></li>
+						<li class=""><a href="#.php" data-toggle="modal" data-target="#Pdf"><i class="fas fa-file-pdf"></i> <span>PDF</span></a></li>
 						
 					</ul>
 					
