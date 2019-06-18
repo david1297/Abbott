@@ -81,27 +81,7 @@
 
 	}
 
-	
-$( "#GenerarPDF" ).submit(function( event ) { 
-  var parametros = $(this).serialize();
-	  $.ajax({
-		url: "Pdf.php",
-		   type: "POST",
-		   data: new FormData(this),
-		   cache: false,
-    contentType: false,
-    processData: false,
-			  beforeSend: function(objeto){
-				alert(parametros);
-			   },
-		   success: function(datos){ 
-			alert(datos);
-			$('#Pdf').modal('hide');
-			 
-		 }	 
-   });
-   event.preventDefault();
-})
+
 
 	$( "#Nueva_Pagina" ).submit(function( event ) {
   

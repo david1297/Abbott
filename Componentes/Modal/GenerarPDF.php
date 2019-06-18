@@ -11,7 +11,7 @@ if (isset($con)){
 					<h4 class="modal-title" id="AgregarBanco">Generar PDF</h4>
 				</div>
 				<div class="modal-body">
-					<form class="form-horizontal" method="post" id="GenerarPDF" name="GenerarPDF">
+					<form class="form-horizontal" method="post" action="Pdf.php" id="GenerarPDF" name="GenerarPDF">
 						<div id="resultados_ajax3B"></div>
 						<label for="Nombre" class="text-left col-md-12 ">Fechas</label>
 						<div class="form-group">
