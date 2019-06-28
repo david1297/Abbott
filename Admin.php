@@ -77,12 +77,20 @@
 	}
 	function ActualizarBoton(Numero){
 		var Texto = $("#Texto"+Numero).val();
-		var Enlace = $("#Enlace"+Numero).val();
+		
+		var Tipo = $("#Tipo"+Numero).val();
+		if(Tipo=='Pagina'){
+			var Enlace = $("#EnlaceP"+Numero).val();
+		}else{
+			var Enlace = $("#EnlaceE"+Numero).val();	
+		}
+		var Seccion = $("#Seccion"+Numero).val();
+
 
 		$.ajax({
         type: "POST",
 				url: "Componentes/Ajax/Editar_AdminD.php",
-        data: "Id="+Numero+"&Texto="+Texto+"&Enlace="+Enlace,
+        data: "Id="+Numero+"&Texto="+Texto+"&Enlace="+Enlace+"&Tipo="+Tipo+"&Seccion="+Seccion,
 			beforeSend: function(objeto){
 				$('#loader_B'+Numero).html('<img src="./assets/img/ajax-loader.gif"> Cargando...');
 			},success: function(datos){
@@ -128,6 +136,33 @@ function NuevoBoton(){
    });
 }
 	
+function CambioTipoBoton(Id,T){
+
+if (document.getElementById(Id).value=='Pagina'){
+	$('#SelectP'+T).removeClass("hidden");
+	$('#SelectE'+T).addClass("hidden");
+} else{
+	$('#SelectP'+T).addClass("hidden");
+	$('#SelectE'+T).removeClass("hidden");
+	$("#Seccion"+T).html('<option  value="0" >...</option>');
+}	
+}
+function CambioEnlaceP(Id){
+	var Pagina = $("#EnlaceP"+Id).val();
+	$.ajax({
+        type: "GET",
+				url: "Componentes/Ajax/CargarSBoton.php",
+        data: "Pagina="+Pagina,
+			beforeSend: function(objeto){
+			
+			},success: function(datos){
+				$("#Seccion"+Id).html(datos);	
+			}
+		});
+	
+	
+
+}
 
 		
 

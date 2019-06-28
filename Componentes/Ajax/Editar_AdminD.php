@@ -12,7 +12,9 @@ $query_update = mysqli_query($con,$sql);
 	$Id = mysqli_real_escape_string($con,(strip_tags($_POST["Id"],ENT_QUOTES)));
 	$Texto = mysqli_real_escape_string($con,(strip_tags($_POST["Texto"],ENT_QUOTES)));
 	$Enlace = mysqli_real_escape_string($con,(strip_tags($_POST["Enlace"],ENT_QUOTES)));
-	$sql =  "UPDATE administraciond SET Texto='$Texto',Enlace='$Enlace'
+	$Tipo = mysqli_real_escape_string($con,(strip_tags($_POST["Tipo"],ENT_QUOTES)));
+	$Seccion = mysqli_real_escape_string($con,(strip_tags($_POST["Seccion"],ENT_QUOTES)));
+	$sql =  "UPDATE administraciond SET Texto='$Texto',Enlace='$Enlace',Tipo='$Tipo',Seccion='$Seccion'
 			 where Id=$Id";
 	$query_update = mysqli_query($con,$sql);
 	if ($query_update) {

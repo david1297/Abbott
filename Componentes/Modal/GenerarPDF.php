@@ -8,7 +8,7 @@ if (isset($con)){
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="AgregarBanco">Generar PDF</h4>
+					<h4 class="modal-title" id="AgregarBanco">Generar Exportacion</h4>
 				</div>
 				<div class="modal-body">
 					<form class="form-horizontal" method="post" action="Pdf.php" id="GenerarPDF" name="GenerarPDF">
