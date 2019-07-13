@@ -152,6 +152,8 @@ a, div {
 	<script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 	<script src="assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 	<script src="assets/scripts/common.js"></script>
+	<script src="Componentes/Js/Script.js"></script>
+	<script lang = "javascript"  src = "js-xlsx-master/dist/xlsx.full.min.js"> </script>
 	<script>
 
 function NuevaSession(N){

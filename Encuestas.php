@@ -64,6 +64,8 @@
 	<script src="assets/vendor/bootstrap-progressbar/js/bootstrap-progressbar.min.js"></script>
 	<script src="assets/vendor/toastr/toastr.js"></script>
 	<script src="assets/scripts/common.js"></script>
+	<script src="Componentes/Js/Script.js"></script>
+	<script lang = "javascript"  src = "js-xlsx-master/dist/xlsx.full.min.js"> </script>
 	<script>
 	function CargarEncuestas(){
 			$("#loader").fadeIn('slow');

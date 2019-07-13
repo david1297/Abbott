@@ -22,9 +22,10 @@ if (isset($con)){
 									<input type="Date" class="form-control" id="FechaFin" name="FechaFin" value="<?php echo date("Y-m-d")?>" onchange='load(1);'>
 							</div>
 						</div>
+						<div id="Resp"></div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-							<button type="submit" class="btn btn-primary" id="actualizar_datos3B">Generar</button>
+							<button type="button" class="btn btn-primary" id='ExportarExcel'>Generar</button>
 						</div>
 					</form>
 				</div>
