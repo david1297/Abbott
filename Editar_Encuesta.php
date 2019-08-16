@@ -104,13 +104,16 @@
 			include("componentes/modal/Agregar_Pregunta.php");
 			include("componentes/modal/Configuracion_Session.php");
 			include("componentes/modal/Configuracion_Objeto.php");
+			include("componentes/modal/Configuracion_Encuesta.php");
 		?>
 		<div id="main-content">
 			<div class="container-fluid">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 		    		<div class="btn-group pull-right">	
-						
+					<button type="button" class="btn btn-default" id="Configurarcion" onclick="ConfigurarEncuesta(<?php echo $Id; ?>)">
+								<span class="fas fa-cogs"></span> Configuracion
+							</button>
 						</div>
 						<h4><i class="fas fa-file-alt"></i>&nbsp;&nbsp;&nbsp;<?php echo $Nombre1;?></h4>
 					</div>
@@ -128,7 +131,7 @@
 								<input type="text" class="hidden" id="IdObjeto">
 			   					<div id="resultados_ajax"></div>
 									
-								
+						
 								
 								</form>	
 							</div>
@@ -307,6 +310,38 @@ function Agregar_Opcion(Id){
    });
 
 }
+function ConfigurarEncuesta(Pagina){
+	
+	$('#ConfiguracionEncuesta').modal('show');
+
+}
+$( "#Editar_Encuesta" ).submit(function( event ) {
+  
+  
+  var parametros = $(this).serialize();
+	  $.ajax({
+		   type: "POST",
+			 url: "Componentes/Ajax/Editar_Encuesta.php",
+		   data: parametros,
+			  beforeSend: function(objeto){
+			   $("#resultados_Encuesta").html("Mensaje: Cargando...");
+			   },
+		   success: function(datos){
+	
+		
+			$("#resultados_Encuesta").html(datos);
+		 
+		 $('#actualizar_datos3B').attr("disabled", false);
+		 $('#resultados_Encuesta').fadeOut(2000); 
+			 setTimeout(function() { 
+				 $('#resultados_Encuesta').html('');	
+				 $('#resultados_Encuesta').fadeIn(1000); 
+			 }, 1000);	
+		 
+		 }
+   });
+   event.preventDefault();
+})
 
 
 	</script>
