@@ -2,7 +2,7 @@
 
 <?php
 	
-			include("componentes/modal/GenerarPDF.php");
+			include("Componentes/Modal/GenerarPDF.php");
 		?>
 <nav class="navbar navbar-default navbar-fixed-top">
 

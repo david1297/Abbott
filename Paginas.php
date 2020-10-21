@@ -100,11 +100,11 @@ a, div {
 	<div id="wrapper">
 		<?php
 			include("Menu.php");
-			include("componentes/modal/Agregar_Objeto.php");
-			include("componentes/modal/Configuracion_Pagina.php");
-			include("componentes/modal/Agregar_Session.php");
-			include("componentes/modal/Configuracion_Session.php");
-			include("componentes/modal/Configuracion_Objeto.php");
+			include("Componentes/Modal/Agregar_Objeto.php");
+			include("Componentes/Modal/Configuracion_Pagina.php");
+			include("Componentes/Modal/Agregar_Session.php");
+			include("Componentes/Modal/Configuracion_Session.php");
+			include("Componentes/Modal/Configuracion_Objeto.php");
 		?>
 		<div id="main-content">
 			<div class="container-fluid">

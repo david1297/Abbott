@@ -24,7 +24,7 @@
 		<div id="wrapper">
 			<?php
 			include("Menu.php");
-			include("componentes/modal/Agregar_Pagina.php");
+			include("Componentes/Modal/Agregar_Pagina.php");
 			?>
 			<div id="main-content">
 				<div class="container-fluid">

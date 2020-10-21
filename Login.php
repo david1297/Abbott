@@ -32,7 +32,7 @@ if (@$_SESSION['Login'] == 'True') {
 						<div class="text-center"><img src="assets/img/logo-buenos-momentos.png" class="img-fluid " alt="Responsive image" ></div>
 							<p class="lead">Ingrese a su cuenta</p>
 						</div>
-						<form method="post" accept-charset="utf-8" action="login.php" name="loginform" autocomplete="off" role="form" class="form-signin">
+						<form method="post" accept-charset="utf-8" action="Login.php" name="loginform" autocomplete="off" role="form" class="form-signin">
 							<?php
 				if (isset($login)) {
 					if ($login->errors) {

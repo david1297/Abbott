@@ -24,7 +24,7 @@
 		<div id="wrapper">
 			<?php
 			include("Menu.php");
-			include("componentes/modal/Agregar_Encuesta.php");
+			include("Componentes/Modal/Agregar_Encuesta.php");
 			?>
 			<div id="main-content">
 				<div class="container-fluid">

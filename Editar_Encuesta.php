@@ -99,12 +99,12 @@
 	<div id="wrapper">
 		<?php
 			include("Menu.php");
-			include("componentes/modal/Agregar_Objeto.php");
-			include("componentes/modal/Configuracion_Pregunta.php");
-			include("componentes/modal/Agregar_Pregunta.php");
-			include("componentes/modal/Configuracion_Session.php");
-			include("componentes/modal/Configuracion_Objeto.php");
-			include("componentes/modal/Configuracion_Encuesta.php");
+			include("Componentes/Modal/Agregar_Objeto.php");
+			include("Componentes/Modal/Configuracion_Pregunta.php");
+			include("Componentes/Modal/Agregar_Pregunta.php");
+			include("Componentes/Modal/Configuracion_Session.php");
+			include("Componentes/Modal/Configuracion_Objeto.php");
+			include("Componentes/Modal/Configuracion_Encuesta.php");
 		?>
 		<div id="main-content">
 			<div class="container-fluid">
